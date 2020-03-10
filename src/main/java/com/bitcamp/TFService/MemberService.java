@@ -1,5 +1,5 @@
 package com.bitcamp.TFService;
 
-public class MemberService {
+public interface MemberService {
 
 }

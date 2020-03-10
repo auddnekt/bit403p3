@@ -1,5 +1,5 @@
 package com.bitcamp.TFService;
 
-public class MemberServiceImple {
+public class MemberServiceImple implements MemberService{
 
 }

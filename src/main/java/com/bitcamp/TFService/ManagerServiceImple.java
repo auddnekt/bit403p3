@@ -1,5 +1,5 @@
 package com.bitcamp.TFService;
 
-public class ManagerServiceImple {
+public class ManagerServiceImple implements ManagerService{
 
 }
