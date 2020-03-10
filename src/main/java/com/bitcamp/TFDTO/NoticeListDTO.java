@@ -12,5 +12,5 @@ public class NoticeListDTO {
 	private String NoticeTitle;
 	private String NoticeDate;
 	private String NoticeContent;
-	private int UserInfo;
+	private int UserNo;
 }
