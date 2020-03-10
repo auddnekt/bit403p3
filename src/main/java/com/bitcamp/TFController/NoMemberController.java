@@ -1,5 +1,5 @@
 package com.bitcamp.TFController;
 
-public class NonMemberController {
+public class NoMemberController {
 
 }
