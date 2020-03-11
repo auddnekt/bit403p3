@@ -25,13 +25,13 @@ public class NonMemberController {
 	
 	@RequestMapping("login")
 	public String login() {
-		return "login";
+		return "Back/NonMember/login";
 	}
 	@RequestMapping("/loginresult")
 	public String loginresult(UserInfoDTO dto, HttpSession session) {
 		if(dto.getUserId().equals("aaa") && dto.getUserPwd().equals("123")) {
 			session.setAttribute("id", dto.getUserId());
-			return "redirect:Back/NonMember/Main";
+			return "Back/NonMember/Main";
 		}
 		else {
 			return "redirect:Back/NonMember/Login";
@@ -40,11 +40,11 @@ public class NonMemberController {
 	
 	@RequestMapping("/Main")
 	public String Main() {
-		return "redirect:Back/NonMember/Main";
+		return "Back/NonMember/Main";
 	}
 	
 	@RequestMapping("/StoreSearch")
-	public String StoreSearch(@RequestParam(required=false, defaultValue="1") int currPage,
+	public String StoreSearch(@RequestParam(required=false, defaultValue="1") int currpage,
 					   @RequestParam(required=false, defaultValue="") String search,
 					   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
 	{
@@ -60,11 +60,11 @@ public class NonMemberController {
 			}
 		}
 		
-		int totalCount = service.totalCount(search, searchtxt);
+		int totalCount = service.SearchCount(search, searchtxt);
 		int pageSize=10;
 		int blockSize=5;
 		
-		MakePage page = new MakePage(currPage, totalCount, pageSize, blockSize);
+		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
 		
 		List<StoreListDTO> StoreSearch = service.StoreSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
 		
@@ -73,7 +73,40 @@ public class NonMemberController {
 		model.addAttribute("search", search);
 		model.addAttribute("searchtxt", searchtxt);
 		
-		return "redireck:Back/NonMember/Search";
+		return "Back/NonMember/StoreSearch";
+	}
+	
+	@RequestMapping("/MemberSearch")
+	public String MemberSearch(@RequestParam(required=false, defaultValue="1") int currpage,
+							   @RequestParam(required=false, defaultValue="") String search,
+							   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
+	{
+		Pattern p = Pattern.compile("(^[0-9]*$");
+		if(search=="" || "".equals(search)) {
+			Matcher m = p.matcher(searchtxt);
+			if(!m.find()) {
+				searchtxt="";
+				model.addAttribute("searchtxt", "");
+			}
+			else {
+				model.addAttribute("searchtxt", searchtxt);
+			}
+		}
+		
+		int totalCount = service.MemberCount(search, searchtxt);
+		int pageSize=10;
+		int blockSize=5;
+		
+		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
+		
+		List<StoreListDTO> MemberSearch = service.MemberSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
+		
+		model.addAttribute("StoreSearch", MemberSearch);
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("searchtxt", searchtxt);
+		
+		return "Back/NonMember/MemberSearch";
 	}
 	
 }

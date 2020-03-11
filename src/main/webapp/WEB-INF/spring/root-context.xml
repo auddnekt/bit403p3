@@ -29,7 +29,7 @@
 		<property name="mapperLocations" value = "classpath:mapper/*.xml"></property>
 	</bean>
 	
-	<context:component-scan base-package="com.bitcamp.TFservice"></context:component-scan>
+	<context:component-scan base-package="com.bitcamp.TFService"></context:component-scan>
 	<mybatis-spring:scan base-package="com.bitcamp.TFmapper"/>
 	
 	<bean name = "transactionManager" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
