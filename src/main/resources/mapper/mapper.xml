@@ -8,7 +8,7 @@
   		select count(*)
   		from StoreInfo
   		<where>
-	  		<if test = "search==null and searchtxt=''">
+	  		<if test = "search==null and searchtxt!=''">
 	  			and StoreName like '%'||#{searchtxt}||'%' or StoreAddr1 like '%'||#{searchtxt}||'%' or
 	  			StoreAddr2 like '%'||#{searchtxt}||'%' or StoreCategori like '%'||#{searchtxt}||'%'
 	  		</if>
@@ -18,11 +18,13 @@
   		</where>
   	</select>
   	
-  	<select id = "StoreSearch" resultType = "com.bitcamp.TFService" parameterMap="hashmap">
-  		select *
+  	<select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+  		<![CDATA[
+  		select StoreNo, StoreName, StoreGrade, StoreAddr1, StoreAddr2, StoreCategori, StoreFood, StoreCall,
+  		 StoreDate, FoodWeather, StoreContent, StoreHit, StoreUp
   		from StoreInfo
   		<where>
-	  		<if test = "search==null and searchtxt=''">
+	  		<if test = "search==null and searchtxt!=''">
 	  			and StoreName like '%'||#{searchtxt}||'%' or StoreAddr1 like '%'||#{searchtxt}||'%' or
 	  			StoreAddr2 like '%'||#{searchtxt}||'%' or StoreCategori like '%'||#{searchtxt}||'%'
 	  		</if>
@@ -30,9 +32,7 @@
 	  			and #{search} like %||'%'#{searchtxt}'%'
 	  		</if>
   		</where>
-  		<![CDATA[
-  			oredr by StoreNo]]>
-  		<![CDATA[
+  			oredr by StoreNo
   			 limit ${startRow} offset ${endRow}]]>
   		
   	</select>

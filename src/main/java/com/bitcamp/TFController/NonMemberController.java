@@ -20,8 +20,8 @@ import com.bitcamp.TFService.NonMemberService;
 @Controller
 public class NonMemberController {
 	
-	@Resource(name="NonMemberServiceImple")
-	public NonMemberService service;
+	@Resource
+	public NonMemberService nonmemberservice;
 	
 	@RequestMapping("login")
 	public String login() {
@@ -38,17 +38,17 @@ public class NonMemberController {
 		}
 	}
 	
-	@RequestMapping("/Main")
+	@RequestMapping("/main")
 	public String Main() {
 		return "Back/NonMember/Main";
 	}
 	
-	@RequestMapping("/StoreSearch")
+	@RequestMapping("/storesearch")
 	public String StoreSearch(@RequestParam(required=false, defaultValue="1") int currpage,
 					   @RequestParam(required=false, defaultValue="") String search,
 					   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
 	{
-		Pattern p = Pattern.compile("(^[0-9]*$");
+		Pattern p = Pattern.compile("(^[0-9]*$)");
 		if(search=="" || "".equals(search)) {
 			Matcher m = p.matcher(searchtxt);
 			if(!m.find()) {
@@ -60,13 +60,13 @@ public class NonMemberController {
 			}
 		}
 		
-		int totalCount = service.SearchCount(search, searchtxt);
+		int totalCount = nonmemberservice.SearchCount(search, searchtxt);
 		int pageSize=10;
 		int blockSize=5;
 		
 		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
 		
-		List<StoreListDTO> StoreSearch = service.StoreSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
+		List<StoreListDTO> StoreSearch = nonmemberservice.StoreSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
 		
 		model.addAttribute("StoreSearch", StoreSearch);
 		model.addAttribute("page", page);
@@ -93,13 +93,13 @@ public class NonMemberController {
 			}
 		}
 		
-		int totalCount = service.MemberCount(search, searchtxt);
+		int totalCount = nonmemberservice.MemberCount(search, searchtxt);
 		int pageSize=10;
 		int blockSize=5;
 		
 		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
 		
-		List<StoreListDTO> MemberSearch = service.MemberSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
+		List<StoreListDTO> MemberSearch = nonmemberservice.MemberSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
 		
 		model.addAttribute("StoreSearch", MemberSearch);
 		model.addAttribute("page", page);

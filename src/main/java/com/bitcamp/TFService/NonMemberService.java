@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitcamp.TFDTO.StoreListDTO;
 
+
 public interface NonMemberService {
 
 	int SearchCount(String search, String searchtxt);

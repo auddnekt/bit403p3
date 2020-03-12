@@ -9,13 +9,13 @@
 <body>
 <a href="${pageContext.request.contextPath}Back/NonMember/Main">메인으로</a><br>
 
-<a href="NonMember/Login">로그인</a><br>
-<a href="NonMember/Logout">로그아웃</a><br>
-<a href="Back/Nonmember/MemberList">회원추천맛집</a>
-<a href="NonMember/MemberJoin">회원가입</a><br>
-<a href="NonMember/FindIdPwd">아이디/패스워드 찾기</a><br>
-<a href="NonMember/RandomReco">랜덤추천</a><br>
-<form method="post" action="SearchSearch?currpage${page.startBlock }">
+<a href="/NonMember/Login">로그인</a><br>
+<a href="/NonMember/Logout">로그아웃</a><br>
+<a href="/Back/Nonmember/MemberList">회원추천맛집</a>
+<a href="/NonMember/MemberJoin">회원가입</a><br>
+<a href="/NonMember/FindIdPwd">아이디/패스워드 찾기</a><br>
+<a href="/NonMember/RandomReco">랜덤추천</a><br>
+<form method="post" action="storesearch?currpage${page.startBlock }">
 	<input type = "text" name = "searchtxt">
 	<input type = "submit" value = "검색">
 </form><br>
