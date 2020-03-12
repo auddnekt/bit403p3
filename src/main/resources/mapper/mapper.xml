@@ -4,22 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.bitcamp.TFmapper.TFmapper">
   	<parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
-  	<select id = "StoreCount" resultType="int" parameterMap="hashmap">
+  	<select id = "SearchCount" resultType="int" parameterMap="hashmap">
   		select count(*)
   		from StoreInfo
   		<where>
-	  		<if test = "search==null and searchtxt!=''">
+	  		<if test = "search=='' and searchtxt!=''">
 	  			and StoreName like '%'||#{searchtxt}||'%' or StoreAddr1 like '%'||#{searchtxt}||'%' or
 	  			StoreAddr2 like '%'||#{searchtxt}||'%' or StoreCategori like '%'||#{searchtxt}||'%'
 	  		</if>
-	  		<if test= "search!=null and searchtxt!=''" >
-	  			and #{search} like %||'%'#{searchtxt}'%'
+	  		<if test= "search!='' and searchtxt!=''" >
+	  			and #{search} like '%'||#{searchtxt}||'%'
 	  		</if>
   		</where>
   	</select>
   	
   	<select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-  		<![CDATA[
+  		
   		select StoreNo, StoreName, StoreGrade, StoreAddr1, StoreAddr2, StoreCategori, StoreFood, StoreCall,
   		 StoreDate, FoodWeather, StoreContent, StoreHit, StoreUp
   		from StoreInfo
@@ -29,11 +29,10 @@
 	  			StoreAddr2 like '%'||#{searchtxt}||'%' or StoreCategori like '%'||#{searchtxt}||'%'
 	  		</if>
 	  		<if test= "search!=null and searchtxt!=''" >
-	  			and #{search} like %||'%'#{searchtxt}'%'
+	  			and #{search} like '%'||#{searchtxt}||'%'
 	  		</if>
   		</where>
-  			oredr by StoreNo
-  			 limit ${startRow} offset ${endRow}]]>
+  			<![CDATA[order by StoreNo limit 10 offset #{endRow}]]>
   		
   	</select>
   </mapper>

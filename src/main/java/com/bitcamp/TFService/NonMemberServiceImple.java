@@ -21,14 +21,8 @@ public class NonMemberServiceImple implements NonMemberService{
 		hm.put("search", search);
 		hm.put("searchtxt", searchtxt);
 		return mapper.SearchCount(hm);
-	}
-	
-	@Override
-	public int MemberCount(String search, String searchtxt) {
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("search", search);
-		hm.put("searchtxt", searchtxt);
-		return mapper.MemberCount(hm);
+		
+		
 	}
 
 	@Override
@@ -40,6 +34,17 @@ public class NonMemberServiceImple implements NonMemberService{
 		hm.put("endRow", endRow);
 		return mapper.StoreSearch(hm);
 	}
+	
+	@Override
+	public int MemberCount(String search, String searchtxt) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("search", search);
+		hm.put("searchtxt", searchtxt);
+		System.out.println(search+' '+searchtxt+" service");
+		return mapper.MemberCount(hm);
+	}
+
+
 
 	@Override
 	public List<StoreListDTO> MemberSearch(String search, String searchtxt, int startRow, int endRow) {

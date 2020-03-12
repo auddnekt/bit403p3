@@ -1,10 +1,6 @@
 package com.bitcamp.TFDTO;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class MakePage {
 	private int currPage;
 	private int totalCount;
@@ -14,9 +10,11 @@ public class MakePage {
 	private int endRow;
 	private int startBlock;
 	private int endBlock;
-	
+		
 	private boolean prev;
 	private boolean next;
+	
+	
 	
 	
 	public MakePage(int currPage, int totalCount, int pageSize, int blockSize) {
@@ -26,13 +24,15 @@ public class MakePage {
 		this.blockSize=blockSize;
 		calData();
 	}
+	
+	
 	public void calData() {
 		startRow=(currPage-1)*pageSize+1;
 		endRow=startRow+pageSize-1;
 		
 		if(endRow>totalCount) {
 			endRow=totalCount;
-		}
+		}	
 		
 		int totalpage = (int)Math.ceil(totalCount/(float)pageSize);
 		startBlock=(currPage-1)/blockSize*blockSize+1;
@@ -44,6 +44,30 @@ public class MakePage {
 		
 		prev=(startBlock==1)? false:true;
 		next=(endBlock<totalpage)? true:false;
+			
 		
 	}
+	public int getCurrPage() {
+		return currPage;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public int getStartBlock() {
+		return startBlock;
+	}
+	public int getEndBlock() {
+		return endBlock;
+	}
+	public boolean isPrev() {
+		return prev;
+	}
+	public boolean isNext() {
+		return next;
+	}
+	
+	
 }

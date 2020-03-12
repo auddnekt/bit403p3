@@ -38,17 +38,20 @@ public class NonMemberController {
 		}
 	}
 	
-	@RequestMapping("/main")
+	@RequestMapping("main")
 	public String Main() {
 		return "Back/NonMember/Main";
 	}
 	
-	@RequestMapping("/storesearch")
+	@RequestMapping("storesearch")
 	public String StoreSearch(@RequestParam(required=false, defaultValue="1") int currpage,
-					   @RequestParam(required=false, defaultValue="") String search,
-					   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
+							  @RequestParam(required=false, defaultValue="") String search,
+							  @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
 	{
-		Pattern p = Pattern.compile("(^[0-9]*$)");
+		
+		System.out.println(search+' '+searchtxt);		
+		
+/*		Pattern p = Pattern.compile("(^[0-9]*$)");
 		if(search=="" || "".equals(search)) {
 			Matcher m = p.matcher(searchtxt);
 			if(!m.find()) {
@@ -58,14 +61,16 @@ public class NonMemberController {
 			else {
 				model.addAttribute("searchtxt", searchtxt);
 			}
-		}
+		}*/
 		
 		int totalCount = nonmemberservice.SearchCount(search, searchtxt);
+		System.out.println(totalCount);
 		int pageSize=10;
 		int blockSize=5;
 		
-		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
 		
+		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
+		System.out.println();
 		List<StoreListDTO> StoreSearch = nonmemberservice.StoreSearch(search, searchtxt, page.getStartRow(), page.getEndRow());
 		
 		model.addAttribute("StoreSearch", StoreSearch);
@@ -76,7 +81,7 @@ public class NonMemberController {
 		return "Back/NonMember/StoreSearch";
 	}
 	
-	@RequestMapping("/MemberSearch")
+	@RequestMapping("MemberSearch")
 	public String MemberSearch(@RequestParam(required=false, defaultValue="1") int currpage,
 							   @RequestParam(required=false, defaultValue="") String search,
 							   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
@@ -106,7 +111,7 @@ public class NonMemberController {
 		model.addAttribute("search", search);
 		model.addAttribute("searchtxt", searchtxt);
 		
-		return "Back/NonMember/MemberSearch";
+		return "redirect:Back/NonMember/MemberSearch";
 	}
 	
 }

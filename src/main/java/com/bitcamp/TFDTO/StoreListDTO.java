@@ -1,12 +1,10 @@
 package com.bitcamp.TFDTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class StoreListDTO {
 	private int StoreNo;
 	private String StoreName;
