@@ -2,6 +2,7 @@ package com.bitcamp.TFService;
 
 import java.util.List;
 
+import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
 
 
@@ -9,10 +10,26 @@ public interface NonMemberService {
 
 	int SearchCount(String search, String searchtxt);
 
-	List<StoreListDTO> StoreSearch(String search, String searchtxt, int startRow, int endRow);
+	List<StoreListDTO> StoreSearch(String search, String searchtxt, int endRow);
 
-	List<StoreListDTO> MemberSearch(String search, String searchtxt, int startRow, int endRow);
+	List<StoreListDTO> MemberSearch(String search, String searchtxt, int endRow);
 
 	int MemberCount(String search, String searchtxt);
+	
+	void insertresult(StoreListDTO dto);
+
+	StoreListDTO detail(int no);
+
+	void updateresult(StoreListDTO dto);
+
+	void delete(int no);
+
+	StoreListDTO randomreco();
+
+	List<ReviewListDTO> replylist(int no);
+
+	void replyinsert(ReviewListDTO dto);
+
+	void replydelete(int no);
 
 }

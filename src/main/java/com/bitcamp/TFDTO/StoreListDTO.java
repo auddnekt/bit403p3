@@ -10,13 +10,15 @@ public class StoreListDTO {
 	private String StoreName;
 	private String StoreGrade;
 	private String StoreCategori;
+	private String StoreFood;
 	private String FoodWeather;
-	private String StoreLoc1;
-	private String StoreLoc2;
+	private String StoreAddr1;
+	private String StoreAddr2;
 	private String StoreDate;
 	private String StoreContent;
+	private String StoreCall;
 	private String StoreHit;
-	private String Storeup;
+	private String StoreUp;
 	private int UserNo;
 	private String image;
 	private int CodeNo;

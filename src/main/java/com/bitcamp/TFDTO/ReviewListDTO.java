@@ -6,12 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class ReviewListDTO {
-	private int ReviewNo;
-	private String ReviewDate;
-	private String ReviewContent;
-	private int count;
+	private int StoreReviewNo;
+	private String StoreReviewDate;
+	private String StoreReviewContent;
+	private int StoreCount;
 	private int UserNo;
 	private int StoreNo;
 }

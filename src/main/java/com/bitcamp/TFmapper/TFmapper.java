@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
 
 @Mapper
@@ -18,6 +19,20 @@ public interface TFmapper {
 
 	List<StoreListDTO> MemberSearch(HashMap<String, Object> hm);
 
+	public void MamberInsertResult(StoreListDTO dto);
 
-	
+	StoreListDTO MemberDetail(int no);
+
+	public void MemberUpdateResult(StoreListDTO dto);
+
+	public void MemberDelete(int no);
+
+	StoreListDTO RandomReco();
+
+	List<ReviewListDTO> ReplyList(int no);
+
+	public void ReplyInsert(ReviewListDTO dto);
+
+	void ReplyDelete(int no);
+
 }
