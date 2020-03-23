@@ -17,6 +17,7 @@ public class StoreListDTO {
 	private String StoreDate;
 	private String StoreContent;
 	private String StoreCall;
+	private String StoreScore;
 	private String StoreHit;
 	private String StoreUp;
 	private int UserNo;

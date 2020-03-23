@@ -9,7 +9,9 @@
 </head>
 <body>
 	<c:forEach var = "Store" items = "${StoreSearch }">
-		<a href = "#">${Store.storeName }</a><br>
+		<a href = "#">${Store.storeName }</a><br> 
+		${Store.storeAddr1} ${Store.storeAddr2}<br>
+		<hr>
 	</c:forEach>
 	<br>
 	

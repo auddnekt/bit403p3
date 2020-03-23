@@ -33,7 +33,6 @@ $(document).ready(function(){
 		
 });
 
-
 </script>
 
 </head>
@@ -95,4 +94,4 @@ $(document).ready(function(){
 	<input type = "submit" value = "경양식베스트">
 </form><br>
 </body>
-</html>	
+</html>

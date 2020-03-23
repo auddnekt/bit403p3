@@ -5,20 +5,24 @@
   <mapper namespace="com.bitcamp.TFmapper.TFmapper">
   	<parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
   	<select id = "SearchCount" resultType="int" parameterMap="hashmap">
-  		select count(*)
+  		select count(distinct StoreName)
   		from StoreInfo
-  		<where>
-	  		<if test = "search=='' and searchtxt!=''">
+   		<where>
+ 	  		<if test = "search=='' and searchtxt!=''">
 	  			and StoreName like CONCAT('%',#{searchtxt},'%') or StoreAddr1 like CONCAT ('%', #{searchtxt}, '%') or
 	  			StoreAddr2 like CONCAT ('%',#{searchtxt},'%') or StoreCategori like CONCAT('%', #{searchtxt}, '%')
 	  		</if>
-	  		<if test= "search !='' and searchtxt !=''" >
-	  			and ${search} like CONCAT('%',#{searchtxt},'%')
+	  		<if test= "search =='StoreAddr1' and searchtxt !=''" >
+	  			and StoreAddr1 like CONCAT('%',#{searchtxt},'%')
+	  		</if>
+ 	  		<if test= "search =='StoreFood' and searchtxt !=''" >
+	  			and StoreFood like CONCAT('%',#{searchtxt},'%')
 	  		</if>
   		</where>
+  		
   	</select>
   	
-  	<select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+  	 <select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
   		
   		select StoreNo, StoreName, StoreGrade, StoreAddr1, StoreAddr2, StoreCategori, StoreFood, StoreCall,
   		 StoreDate, FoodWeather, StoreContent, StoreHit, StoreUp
@@ -28,10 +32,14 @@
 	  			and StoreName like CONCAT('%',#{searchtxt},'%') or StoreAddr1 like CONCAT('%',#{searchtxt},'%') or
 	  			StoreAddr2 like CONCAT('%',#{searchtxt},'%') or StoreCategori like CONCAT('%',#{searchtxt},'%')
 	  		</if>
-	  		<if test= "search!='' and searchtxt!=''" >
-	  			and ${search} like CONCAT('%',#{searchtxt}, '%')
+	  		<if test= "search =='StoreAddr1' and searchtxt !=''" >
+	  			and StoreAddr1 like CONCAT('%',#{searchtxt},'%')
+	  		</if>
+ 	  		<if test= "search =='StoreFood' and searchtxt !=''" >
+	  			and StoreFood like CONCAT('%',#{searchtxt},'%')
 	  		</if>
   		</where>
+  			group by StoreName
   			<![CDATA[order by StoreNo limit 10 offset #{endRow}]]>
   		
   	</select>
@@ -63,7 +71,8 @@
 
 	
   	<select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-  		select StoreNo, StoreName, StoreAddr1, StoreAddr2, StoreCategori, StoreFood, StoreCall, StoreDate, FoodWeather, StoreContent, StoreHit, StoreUp
+  		select StoreNo, StoreName, StoreAddr1, StoreAddr2, StoreCategori, StoreFood, StoreCall, StoreDate, 
+  		FoodWeather, StoreContent, StoreHit, StoreUp, (select avg(StoreCount) from ReviewList2) as 'StoreScore'
 		from StoreInfo2
 		where StoreNo=#{no}
   	</select>

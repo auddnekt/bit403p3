@@ -1,6 +1,5 @@
 package com.bitcamp.TFController;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 
 import java.util.List;
@@ -71,17 +70,15 @@ public class NonMemberController {
 							  @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
 	{
 		
-		System.out.println(search+' '+searchtxt);
-
 		int totalCount = nonmemberservice.SearchCount(search, searchtxt);
-		System.out.println(totalCount);
 		int pageSize=10;
 		int blockSize=5;
 		
 		
 		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
-		System.out.println();
 		List<StoreListDTO> StoreSearch = nonmemberservice.StoreSearch(search, searchtxt, page.getEndRow());
+		
+		System.out.println(page.getEndRow()+"!!");
 		
 		model.addAttribute("StoreSearch", StoreSearch);
 		model.addAttribute("page", page);

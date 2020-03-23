@@ -1,6 +1,5 @@
 package com.bitcamp.TFDTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -23,7 +23,6 @@ public class NonMemberServiceImple implements NonMemberService{
 		hm.put("searchtxt", searchtxt);
 		return mapper.SearchCount(hm);
 		
-		
 	}
 
 	@Override

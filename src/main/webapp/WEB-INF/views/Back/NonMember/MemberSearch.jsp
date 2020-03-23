@@ -9,7 +9,9 @@
 </head>
 <body>
 	<c:forEach var = "Store" items = "${StoreSearch }">
-		<a href = "${pageContext.request.contextPath }/memberdetail/${Store.storeNo}">${Store.storeName }</a><a href = "#">${Store.storeFood }</a><br>
+		<a href = "${pageContext.request.contextPath }/memberdetail/${Store.storeNo}">${Store.storeName }</a><br> 
+		${Store.storeAddr1} ${Store.storeAddr2}<br>
+		<hr>
 	</c:forEach>
 	<br>
 	
