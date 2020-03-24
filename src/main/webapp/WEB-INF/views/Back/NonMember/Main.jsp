@@ -45,6 +45,7 @@ $(document).ready(function(){
 <a href="/NonMember/MemberJoin">회원가입</a><br>
 <a href="/NonMember/FindIdPwd">아이디/패스워드 찾기</a><br>
 <a href="${pageContext.request.contextPath}/randomreco" rel="modal:open">랜덤추천</a><br>
+<a href="${pageContext.request.contextPath}/storeview" rel="modal:open">최근본목록</a><br>
 
 <form method="post" action="storesearch?currpage${page.startBlock }">
 	<input type = "text" name = "searchtxt">
@@ -53,22 +54,22 @@ $(document).ready(function(){
 </form><br>
 <h3>지역별 음식</h3>
 <form method="post" action="storesearch?currpage${page.startBlock }">
-	<input type = "hidden" name = "search" value = "StoreAddr1">
+	<input type = "hidden" name = "search" value = "StoreAddr">
 	<input type = "hidden" name = "searchtxt" value = "강동">
 	<input type = "submit" value = "강동음식 검색">
 </form><br>
 <form method="post" action="storesearch?currpage${page.startBlock }">
-	<input type = "hidden" name = "search" value = "StoreAddr1">
+	<input type = "hidden" name = "search" value = "StoreAddr">
 	<input type = "hidden" name = "searchtxt" value = "강서">
 	<input type = "submit" value = "강서음식 검색">
 </form><br>
 <form method="post" action="storesearch?currpage${page.startBlock }">
-	<input type = "hidden" name = "search" value = "StoreAddr1">
+	<input type = "hidden" name = "search" value = "StoreAddr">
 	<input type = "hidden" name = "searchtxt" value = "강남">
 	<input type = "submit" value = "강남음식 검색">
 </form><br>
 <form method="post" action="storesearch?currpage${page.startBlock }">
-	<input type = "hidden" name = "search" value = "StoreAddr1">
+	<input type = "hidden" name = "search" value = "StoreAddr">
 	<input type = "hidden" name = "searchtxt" value = "강북">
 	<input type = "submit" value = "강북음식 검색">
 </form><br>

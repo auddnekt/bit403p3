@@ -11,14 +11,29 @@
 
 
 $(document).ready(function(){
-	$("#5btn").one("click", function(){
+ 	$("#5btn").one("click", function(){
 		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 5>";
 		$("#rep").append(count);
-		
 		})
+	$("#4btn").one("click", function(){
+		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 4>";
+		$("#rep").append(count);
+		})
+	$("#3btn").one("click", function(){
+		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 3>";
+		$("#rep").append(count);
+		})
+	$("#2btn").one("click", function(){
+		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 2>";
+		$("#rep").append(count);
+		})
+	$("#1btn").one("click", function(){
+		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 1>";
+		$("#rep").append(count);
+		}) 
+
 });
-	
-	 
+
 </script>
 </head>
 <body>
@@ -33,21 +48,22 @@ $(document).ready(function(){
 	
 	<c:forEach var = "reply" items = "${reply }">
 <%-- 	<c:if test=${reply!=0 }> --%>	
-		
 	        ${reply.storeReviewContent}<br>
 	              작성 날짜 : ${reply.storeReviewDate}
 	        <a href = "${pageContext.request.contextPath }/replydelete/${reply.storeReviewNo}?rno=${reply.storeNo }">삭제</a><br>
-    	
+
 <%--     </c:if> --%>
 	</c:forEach>  
-	평점<input type = "button" id = "5btn" value = "5점"><br>
+	평점<input type = "button" id = "5btn" value = "5점">
+	<input type = "button" id = "4btn" value = "4점">
+	<input type = "button" id = "3btn" value = "3점">
+	<input type = "button" id = "2btn" value = "2점">
+	<input type = "button" id = "1btn" value = "1점">
 	<form id = "rep" method = "post" action = "${pageContext.request.contextPath }/replyinsert">
 		<label for = "ReviewContent">댓글</label>
 		<input type = "text" name = 'StoreReviewContent' id = "StoreReviewContent"><br>
 		<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${dto.storeNo}"><br>
 		<input type = "submit" value = "전송">
 	</form>
-	
-
 </body>
 </html>

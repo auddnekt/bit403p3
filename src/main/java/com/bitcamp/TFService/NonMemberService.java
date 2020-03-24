@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.ViewListDTO;
 
 
 public interface NonMemberService {
@@ -31,5 +32,9 @@ public interface NonMemberService {
 	void replyinsert(ReviewListDTO dto);
 
 	void replydelete(int no);
+
+	void view(int no);
+
+	List<ViewListDTO> storeviewlist();
 
 }

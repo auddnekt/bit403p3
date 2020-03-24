@@ -19,6 +19,7 @@ import com.bitcamp.TFDTO.MakePage;
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
 import com.bitcamp.TFDTO.UserInfoDTO;
+import com.bitcamp.TFDTO.ViewListDTO;
 import com.bitcamp.TFService.NonMemberService;
 import com.mysql.cj.log.Log;
 
@@ -131,6 +132,9 @@ public class NonMemberController {
 		StoreListDTO dto = nonmemberservice.detail(no);
 		model.addAttribute("dto", dto);
 		
+		nonmemberservice.view(no);
+		model.addAttribute("no", no);
+		
 		List<ReviewListDTO> reply = nonmemberservice.replylist(no);
 		model.addAttribute("reply", reply);
 		
@@ -183,5 +187,13 @@ public class NonMemberController {
 		
 		nonmemberservice.replydelete(no);
 		return "redirect:/memberdetail/"+rno;
+	}
+	
+	@RequestMapping("/storeview")
+	public String storeView(Model model) {
+		List<ViewListDTO> dto = nonmemberservice.storeviewlist();
+		model.addAttribute("dto", dto);
+				
+		return "Back/NonMember/StoreListView";
 	}
 }

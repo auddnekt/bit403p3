@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.ViewListDTO;
 
 @Mapper
 public interface TFmapper {
@@ -34,5 +35,9 @@ public interface TFmapper {
 	public void ReplyInsert(ReviewListDTO dto);
 
 	void ReplyDelete(int no);
+
+	void StoreView(int no);
+
+	List<ViewListDTO> StoreViewList();
 
 }

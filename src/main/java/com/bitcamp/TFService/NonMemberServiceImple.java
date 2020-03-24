@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.ViewListDTO;
 import com.bitcamp.TFmapper.TFmapper;
 
 @Service("nonmemberservice")
@@ -96,6 +97,17 @@ public class NonMemberServiceImple implements NonMemberService{
 	public void replydelete(int no) {
 		mapper.ReplyDelete(no);
 		
+	}
+
+	@Override
+	public void view(int no) {
+		mapper.StoreView(no);
+		
+	}
+
+	@Override
+	public List<ViewListDTO> storeviewlist() {
+		return mapper.StoreViewList();
 	}
 
 	
