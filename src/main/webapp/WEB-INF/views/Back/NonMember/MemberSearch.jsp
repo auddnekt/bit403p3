@@ -28,7 +28,7 @@
 	</c:forEach>	
 	<c:if test="${page.next }">
 		<a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } ">다음</a>
-	</c:if>
+	</c:if><br>
 	
 	<a href="${pageContext.request.contextPath}/storeinsert">작성</a>
 </body>

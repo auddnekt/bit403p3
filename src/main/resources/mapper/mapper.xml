@@ -65,8 +65,8 @@
   	</select>
   	
   	<insert id = "MamberInsertResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-  		insert into StoreInfo2(StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
-  		 FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
+  		insert into StoreInfo2(StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+  		FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
   		StoreClose, StoreHit, StoreUp)
 		values(#{StoreName}, "member", #{StoreAddr}, #{StoreCategori}, #{StoreFood}, #{FoodWeather},
 		 #{StoreCost}, #{StoreCall}, date_format(now(), '%Y-%m-%d'), #{StoreParking},
@@ -75,17 +75,19 @@
 
 	
   	<select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-  		select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+  		select StoreNo, StoreName, (select avg(StoreCount) from ReviewList2 where StoreNo=#{no})as StoreScore,
+  		StoreGrade, StoreAddr, StoreCategori, StoreFood,
   		FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
   		StoreClose, StoreHit, StoreUp
+  		from StoreInfo2
 		where StoreNo=#{no}
   	</select>
   	
   	<update id = "MemberUpdateResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
   		update StoreInfo2
-		set StoreName=#{StoreName}, StoreAddr1=#{StoreAddr1}, StoreAddr2=#{StoreAddr2},
-		StoreCategori=#{StoreCategori}, StoreFood=#{StoreFood}, StoreCall=#{StoreCall},
-		StoreDate=date_format(now(), '%Y-%m-%d'), StoreContent=#{StoreContent}
+		set StoreName=#{StoreName}, StoreAddr=#{StoreAddr}, StoreCategori=#{StoreCategori}, StoreFood=#{StoreFood},
+		FoodWeather=#{FoodWeather},	StoreCost=#{StoreCost}, StoreCall=#{StoreCall}, StoreDate=date_format(now(), '%Y-%m-%d'),
+		StoreParking=#{StoreParking}, StoreHours=#{StoreHours}, StoreBTime=#{StoreBTime}, StoreClose=#{StoreClose}
 		where StoreNo=#{StoreNo};
   	</update>
   	
@@ -123,7 +125,7 @@
 		values(#{no})
   	</insert>
   	<select id = "StoreViewList" resultType = "com.bitcamp.TFDTO.ViewListDTO" parameterMap="hashmap">
-  		select v.StoreNo as StoreNo, StoreName, StoreAddr1, StoreAddr2
+  		select v.StoreNo as StoreNo, StoreName, StoreAddr
 		from StoreInfo2 s inner join StoreView v on s.StoreNo = v.StoreNo
   	</select>
   	
