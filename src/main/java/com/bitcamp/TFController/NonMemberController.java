@@ -47,8 +47,8 @@ public class NonMemberController {
 	//회원가입 처리
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String registerPOST(UserInfoDTO userDTO, RedirectAttributes redirectAttributes) throws Exception{
-		String hashedPw = BCrypt.hashpw(userDTO.getUserPwd(), BCrypt.gensalt());
-		userDTO.setUserPwd(hashedPw);
+		String hashedPw = BCrypt.hashpw(userDTO.getUserPw(), BCrypt.gensalt());
+		userDTO.setUserPw(hashedPw);
 		nonmemberservice.register(userDTO);
 		redirectAttributes.addFlashAttribute("msg","registered");
 		
