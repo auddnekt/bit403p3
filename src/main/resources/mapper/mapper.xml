@@ -142,7 +142,6 @@
   		)
   	</insert>
   	
-=======
    
      <select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         select StoreNo, StoreName, StoreGrade, (select avg(StoreCount) from ReviewList2 Where StoreNo=#{no})as StoreScore, StoreAddr, StoreCategori, StoreFood,
@@ -200,6 +199,4 @@
       group by StoreName
      </select>
 
-
->>>>>>> branch 'master' of https://github.com/auddnekt/bit403p3.git
   </mapper>
