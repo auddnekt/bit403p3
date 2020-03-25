@@ -81,6 +81,7 @@
 		where StoreNo=#{no}
   	</select>
   	
+  	
   	<update id = "MemberUpdateResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
   		update StoreInfo2
 		set StoreName=#{StoreName}, StoreAddr1=#{StoreAddr1}, StoreAddr2=#{StoreAddr2},
