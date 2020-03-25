@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form method="post" action = "${pageContext.request.contextPath}/memberupdateresult">
+		<input type="hidden" name = "StoreNo" id = "StoreNo" value = "${dto.storeNo}"><br>
 		<label for = "StoreName">가게 이름</label>
 		<input type="text" name = "StoreName" id = "StoreName" value = "${dto.storeName}"><br>
-
 		<input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
 		<input type="text" name = "StoreAddr" id="sample3_address" placeholder="주소"><br>
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
