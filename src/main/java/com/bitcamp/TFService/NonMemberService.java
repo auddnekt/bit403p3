@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.UserInfoDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 
 
@@ -36,5 +37,7 @@ public interface NonMemberService {
 	void view(int no);
 
 	List<ViewListDTO> storeviewlist();
+	
+	void register(UserInfoDTO userDTO) throws Exception;
 
 }

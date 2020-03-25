@@ -127,5 +127,19 @@
 		from StoreInfo2 s inner join StoreView v on s.StoreNo = v.StoreNo
   	</select>
   	
-
+  	<insert id="register">
+  		insert into tf_user(
+  		user_name
+  		,user_id
+  		,user_pw
+  		,user_email
+  		,user_nickname
+  		) values (
+  			#{userId}
+  			,#{userPw}
+  			,#{userName}
+  			,#{userEmail}
+  		)
+  	</insert>
+  	
   </mapper>

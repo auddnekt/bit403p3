@@ -1,19 +1,20 @@
 package com.bitcamp.TFController;
-
-
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitcamp.TFDTO.MakePage;
 import com.bitcamp.TFDTO.ReviewListDTO;
@@ -32,10 +33,34 @@ public class NonMemberController {
 	@Resource
 	public NonMemberService nonmemberservice;
 	
-	@RequestMapping("login")
+	@Inject
+	public NonMemberController(NonMemberService nonMemberService) {
+		this.nonmemberservice = nonMemberService;
+	}
+	
+	//회원가입 페이지
+	@RequestMapping(value="/register",method=RequestMethod.GET)
+	public String registerGET() throws Exception{
+		return "/Back/NonMember/register";
+	}
+	
+	//회원가입 처리
+	@RequestMapping(value="/register",method=RequestMethod.POST)
+	public String registerPOST(UserInfoDTO userDTO, RedirectAttributes redirectAttributes) throws Exception{
+		String hashedPw = BCrypt.hashpw(userDTO.getUserPwd(), BCrypt.gensalt());
+		userDTO.setUserPwd(hashedPw);
+		nonmemberservice.register(userDTO);
+		redirectAttributes.addFlashAttribute("msg","registered");
+		
+		return "/Back/NonMember/Login";
+	}
+	
+	
+	/*@RequestMapping("login")
 	public String login() {
 		return "Back/NonMember/login";
 	}
+	
 	@RequestMapping("/loginresult")
 	public String loginresult(UserInfoDTO dto, HttpSession session) {
 		if(dto.getUserId().equals("aaa") && dto.getUserPwd().equals("123")) {
@@ -45,13 +70,11 @@ public class NonMemberController {
 		else {
 			return "redirect:Back/NonMember/Login";
 		}
-	}
+	}*/
+	
 	
 	@RequestMapping("/main")
 	public String Main() {
-		
-		
-		
 		return "Back/NonMember/Main";
 	}
 	@RequestMapping("/randomrecon")

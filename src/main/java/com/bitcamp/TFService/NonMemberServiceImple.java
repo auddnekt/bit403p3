@@ -3,11 +3,15 @@ package com.bitcamp.TFService;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.UserInfoDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 import com.bitcamp.TFmapper.TFmapper;
 
@@ -16,6 +20,14 @@ public class NonMemberServiceImple implements NonMemberService{
 
 	@Autowired
 	private TFmapper mapper;
+	
+	
+	@Inject
+	private final SqlSession sqlSession;
+	
+	public NonMemberServiceImple(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
 
 	@Override
 	public int SearchCount(String search, String searchtxt) {
@@ -110,5 +122,8 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.StoreViewList();
 	}
 
-	
+	@Override
+	public void register(UserInfoDTO userDTO) throws Exception {
+		sqlSession.insert(mapper + ".register", userDTO);
+	}
 }

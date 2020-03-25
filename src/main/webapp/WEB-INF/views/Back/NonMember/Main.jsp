@@ -12,7 +12,7 @@
 <script>
 $(document).ready(function(){
 	
-	/* $('#btn').on("click", function(){
+	$('#btn').on("click", function(){
 		window.open("${pageContext.request.contextPath}/popup", "fullscreen=no, width=700, height=500").focus();
 	});
 	
@@ -29,8 +29,6 @@ $(document).ready(function(){
 		$("#dialog-background").click(function () {
 			$("#my-dialog2").toggle();
 		});
-		 */
-		
 });
 
 </script>

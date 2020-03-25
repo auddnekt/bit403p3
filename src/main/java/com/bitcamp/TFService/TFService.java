@@ -1,5 +1,8 @@
 package com.bitcamp.TFService;
 
-public interface TFService {
+import com.bitcamp.TFDTO.UserInfoDTO;
 
+public interface TFService {
+	
+	void register(UserInfoDTO userDTO) throws Exception;
 }
