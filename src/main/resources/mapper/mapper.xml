@@ -73,7 +73,6 @@
        #{StoreHours}, #{StoreBTime}, #{StoreClose}, 0, 0);
      </insert>
 
-<<<<<<< HEAD
 	
   	<select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
   		select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,

@@ -1,4 +1,4 @@
-package com.bitcamp.TFController;
+/*package com.bitcamp.TFController;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +56,7 @@ public class NonMemberController {
 	}
 	
 	
-	/*@RequestMapping("login")
+	@RequestMapping("login")
 	public String login() {
 		return "Back/NonMember/login";
 	}
@@ -70,7 +70,7 @@ public class NonMemberController {
 		else {
 			return "redirect:Back/NonMember/Login";
 		}
-	}*/
+	}
 	
 	
 	@RequestMapping("/main")
@@ -218,4 +218,4 @@ public class NonMemberController {
 				
 		return "Back/NonMember/StoreListView";
 	}
-}
+}*/
