@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <td align="center">
-        <input type="file" name="uploadFile" id="uploadFile" multiple>
+        <input type="file" name="uploadFile" id="uploadFile" multiple maxlength="5">
         <div id="preview"></div>
       </td>
     </tr>
@@ -58,7 +58,7 @@
     $("input[type='file']").change(function(e){
 
       //div 내용 비워주기
-      $('#preview').empty();
+      //$('#preview').empty();
 
       var files = e.target.files;
       var arr =Array.prototype.slice.call(files);
@@ -103,16 +103,18 @@
           fileName = fileName.substring(0,7)+"...";
         }
         
-        //div에 이미지 추가
-        var str = '<div style="display: inline-flex; padding: 10px;"><li>';
-        str += '<span>'+fileName+'</span><br>';
+        
+
         
         //이미지 파일 미리보기
         if(f.type.match('image.*')){
           var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
           reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
-            //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
-            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
+        	//div에 이미지 추가
+        	var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+            str += '<span>'+fileName+'</span><br>';
+            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 /><br>';
+            str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
             str += '</li></div>';
             $(str).appendTo('#preview');
           } 
@@ -120,6 +122,17 @@
         }else{
          alert("이미지가 아닙니다");
         }
+        $(".delBtn").on("click", function(){
+        	$(this).closest("div").detach();
+        })
+        
+        var count = $("li").length;
+        
+        if(count>2){
+        	alert("개수초과");
+        }
+        
+        
       });//arr.forEach
     }
   });
