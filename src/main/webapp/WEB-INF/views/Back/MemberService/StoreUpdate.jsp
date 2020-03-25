@@ -12,7 +12,7 @@
 		<label for = "StoreName">가게 이름</label>
 		<input type="text" name = "StoreName" id = "StoreName" value = "${dto.storeName}"><br>
 		<input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
-		<input type="text" name = "StoreAddr" id="sample3_address" placeholder="주소"><br>
+		<input type="text" name = "StoreAddr" id="sample3_address" value = "${dto.storeAddr}"><br>
 		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 		</div>		

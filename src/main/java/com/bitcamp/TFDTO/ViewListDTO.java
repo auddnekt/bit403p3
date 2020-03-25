@@ -10,6 +10,5 @@ public class ViewListDTO {
 	private int UserNo;
 	private int ViewNo;
 	private String StoreName;
-	private String StoreAddr1;
-	private String StoreAddr2;
+	private String StoreAddr;
 }
