@@ -39,9 +39,12 @@ $(document).ready(function(){
 <body>
 	${dto.storeName} ${dto.storeScore}점 조회수 : ${dto.storeHit} 추천수 : ${dto.storeUp}
 	음식 분류 : ${dto.storeCategori}<br>
-	주소 : ${dto.storeAddr1} ${dto.storeAddr2}<br>
+	주소 : ${dto.storeAddr}<br>
 	작성일 : ${dto.storeDate}<br>
-	내용 : ${dto.storeContent}<br>
+	가격대 : ${dto.storeCost}<br>
+	주차가능 : ${dto.storeParking}<br>
+	영업시간 : ${dto.storeHours}<br>
+	브레이크타임 : ${dto.storeBTime}<br>
 	
 	<a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a>
 	<a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a><br>

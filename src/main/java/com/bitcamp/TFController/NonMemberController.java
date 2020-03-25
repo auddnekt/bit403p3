@@ -177,7 +177,6 @@ public class NonMemberController {
 	public String memberUpdateResult(StoreListDTO dto) {
 		nonmemberservice.updateresult(dto);
 		return "redirect:/membersearch";
-		
 	}
 	
 	@RequestMapping("/memberdelete/{no}")

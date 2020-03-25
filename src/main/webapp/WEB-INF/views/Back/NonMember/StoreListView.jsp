@@ -10,7 +10,7 @@
 <body>
 	<c:forEach var = "dto" items = "${dto }">
 		<a href = "${pageContext.request.contextPath }/memberdetail/${dto.storeNo}">
-		${dto.storeName }</a> ${dto.storeAddr1} ${dto.storeAddr2}<br>
+		${dto.storeName }</a> ${dto.storeAddr}<br>
 		<hr>
 	</c:forEach>
 </body>
