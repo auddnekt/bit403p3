@@ -37,7 +37,5 @@ public interface NonMemberService {
 	void view(int no);
 
 	List<ViewListDTO> storeviewlist();
-	
-	void register(UserInfoDTO userDTO) throws Exception;
 
 }

@@ -22,12 +22,12 @@ public class NonMemberServiceImple implements NonMemberService{
 	private TFmapper mapper;
 	
 	
-	@Inject
+	/*@Inject
 	private final SqlSession sqlSession;
 	
 	public NonMemberServiceImple(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
-	}
+	}*/
 
 	@Override
 	public int SearchCount(String search, String searchtxt) {
@@ -122,8 +122,4 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.StoreViewList();
 	}
 
-	@Override
-	public void register(UserInfoDTO userDTO) throws Exception {
-		sqlSession.insert(mapper + ".register", userDTO);
-	}
 }

@@ -1,4 +1,4 @@
-/*package com.bitcamp.TFController;
+package com.bitcamp.TFController;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,44 +33,7 @@ public class NonMemberController {
 	@Resource
 	public NonMemberService nonmemberservice;
 	
-	@Inject
-	public NonMemberController(NonMemberService nonMemberService) {
-		this.nonmemberservice = nonMemberService;
-	}
-	
-	//회원가입 페이지
-	@RequestMapping(value="/register",method=RequestMethod.GET)
-	public String registerGET() throws Exception{
-		return "/Back/NonMember/register";
-	}
-	
-	//회원가입 처리
-	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String registerPOST(UserInfoDTO userDTO, RedirectAttributes redirectAttributes) throws Exception{
-		String hashedPw = BCrypt.hashpw(userDTO.getUserPw(), BCrypt.gensalt());
-		userDTO.setUserPw(hashedPw);
-		nonmemberservice.register(userDTO);
-		redirectAttributes.addFlashAttribute("msg","registered");
-		
-		return "/Back/NonMember/Login";
-	}
-	
-	
-	@RequestMapping("login")
-	public String login() {
-		return "Back/NonMember/login";
-	}
-	
-	@RequestMapping("/loginresult")
-	public String loginresult(UserInfoDTO dto, HttpSession session) {
-		if(dto.getUserId().equals("aaa") && dto.getUserPwd().equals("123")) {
-			session.setAttribute("id", dto.getUserId());
-			return "Back/NonMember/Main";
-		}
-		else {
-			return "redirect:Back/NonMember/Login";
-		}
-	}
+
 	
 	
 	@RequestMapping("/main")
@@ -218,4 +181,4 @@ public class NonMemberController {
 				
 		return "Back/NonMember/StoreListView";
 	}
-}*/
+}
