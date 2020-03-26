@@ -65,19 +65,18 @@
      </select>
      
      <insert id = "MamberInsertResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-        insert into StoreInfo2(StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        insert into StoreInfo2(StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
          FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp)
+        StoreClose, StoreHit, StoreUp, StoreImg)
       values(#{StoreName}, "member", #{StoreAddr}, #{StoreCategori}, #{StoreFood}, #{FoodWeather},
-       #{StoreCost}, #{StoreCall}, date_format(now(), '%Y-%m-%d'), #{StoreParking},
-       #{StoreHours}, #{StoreBTime}, #{StoreClose}, 0, 0);
+       #{StoreCost}, #{StoreCall}, date_format(now(), '%Y-%m-%d'), #{StoreParking}, #{StoreHours}, #{StoreBTime}, #{StoreClose}, 0, 0, #{StoreImg});
      </insert>
   	
    
      <select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         select StoreNo, StoreName, StoreGrade, (select avg(StoreCount) from ReviewList2 Where StoreNo=#{no})as StoreScore, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
+        StoreClose, StoreHit, StoreUp, StoreImg
         from StoreInfo2
      	where StoreNo=#{no}
      </select>

@@ -9,7 +9,7 @@
 
 </head>
 <body>
-	<form method="post" action = "${pageContext.request.contextPath}/memberinsertresult">
+	<form method="post" action = "${pageContext.request.contextPath}/memberinsertresult" enctype="multipart/form-data">
 		<label for = "StoreName">가게 이름</label>
 		<input type="text" name = "StoreName" id = "StoreName"><br>
 
@@ -37,19 +37,16 @@
 		<label for = "StoreClose">휴일</label>
 		<input type="text" name = "StoreClose" id = "StoreClose"><br>
 		<input type="submit" value = "전송">
-		<h1>첨부파일 미리보기</h1>
+
   <hr>
-  <table border="1">
-    <tr>
-      <th align="center" bgcolor="orange" width="500px">첨부파일</th>
-    </tr>
-    <tr>
-      <td align="center">
-        <input type="file" name="uploadFile" id="uploadFile" multiple maxlength="5">
+
+      <div>첨부파일</div>
+
+        <input type="file" name="file" id="StoreImg" multiple maxlength="5">
         <div id="preview"></div>
-      </td>
-    </tr>
-  </table>
+
+  
+  <%=request.getRealPath("/") %>
 
 	</form>
 	
@@ -69,8 +66,9 @@
           return false;
         }
       }
-      
       preview(arr);
+      
+      
       
       
     });//file change
@@ -126,14 +124,17 @@
         	$(this).closest("div").detach();
         })
         
-        var count = $("li").length;
-        
-        if(count>2){
-        	alert("개수초과");
-        }
         
         
-      });//arr.forEach
+        
+      })//arr.forEach
+      
+      var count = $("li").length;      
+      if(count>1){
+      	alert("개수초과");
+      	$("#preview").find("div").last().detach();
+      }
+      
     }
   });
   </script>

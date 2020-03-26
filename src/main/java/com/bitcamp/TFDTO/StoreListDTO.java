@@ -25,6 +25,6 @@ public class StoreListDTO {
 	private String StoreUp;
 	private String StoreImg;
 	private int UserNo;
-	private String image;
+	private String StoreImage;
 	private int CodeNo;
 }

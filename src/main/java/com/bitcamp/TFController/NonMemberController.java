@@ -1,4 +1,6 @@
 package com.bitcamp.TFController;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bitcamp.TFDTO.MakePage;
@@ -22,6 +25,7 @@ import com.bitcamp.TFDTO.StoreListDTO;
 import com.bitcamp.TFDTO.UserInfoDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 import com.bitcamp.TFService.NonMemberService;
+import com.bitcamp.TFUtils.UploadFileUtils;
 import com.mysql.cj.log.Log;
 
 import org.apache.log4j.Logger; 
@@ -33,6 +37,8 @@ public class NonMemberController {
 	@Resource
 	public NonMemberService nonmemberservice;
 	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 
 	
 	
@@ -105,8 +111,20 @@ public class NonMemberController {
 	}
 	
 	@RequestMapping("/memberinsertresult")
-	public String memberInsert(StoreListDTO dto) {
-		
+	public String memberInsert(StoreListDTO dto, MultipartFile file) throws IOException, Exception {
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		}
+		else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+
+		dto.setStoreImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+//		dto.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		nonmemberservice.insertresult(dto);
 		
 		return "redirect:/membersearch";

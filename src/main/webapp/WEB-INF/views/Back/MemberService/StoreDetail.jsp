@@ -45,6 +45,7 @@ $(document).ready(function(){
 	주차가능 : ${dto.storeParking}<br>
 	영업시간 : ${dto.storeHours}<br>
 	브레이크타임 : ${dto.storeBTime}<br>
+	이미지 : <img src = "${dto.storeImg }"><br>
 	
 	<a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a>
 	<a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a><br>
