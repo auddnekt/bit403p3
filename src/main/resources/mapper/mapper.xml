@@ -21,6 +21,15 @@
         </where>
 
      </select>
+
+     <select id = "MainBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
+        StoreClose, StoreHit, StoreUp
+        from StoreInfo2
+      	order by StoreUp desc, StoreNo limit 4 offset 0
+      	
+     </select>
      
       <select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
@@ -31,7 +40,7 @@
         <where>
            <if test = "search=='' and searchtxt!=''">
               and StoreName like CONCAT('%',#{searchtxt},'%') or StoreAddr like CONCAT('%',#{searchtxt},'%') or
-              StoreAddr2 like CONCAT('%',#{searchtxt},'%') or StoreCategori like CONCAT('%',#{searchtxt},'%')
+              StoreCategori like CONCAT('%',#{searchtxt},'%')
            </if>
            <if test= "search =='StoreAddr' and searchtxt !=''" >
               and StoreAddr like CONCAT('%',#{searchtxt},'%')

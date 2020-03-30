@@ -122,4 +122,9 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.StoreViewList();
 	}
 
+	@Override
+	public List<StoreListDTO> MainBestSearch() {
+		return mapper.MainBestSearch();
+	}
+
 }

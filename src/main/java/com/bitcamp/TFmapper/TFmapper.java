@@ -40,4 +40,6 @@ public interface TFmapper {
 
 	List<ViewListDTO> StoreViewList();
 
+	List<StoreListDTO> MainBestSearch();
+
 }

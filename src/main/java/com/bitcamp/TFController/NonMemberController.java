@@ -2,22 +2,19 @@ package com.bitcamp.TFController;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.bitcamp.TFDTO.MakePage;
 import com.bitcamp.TFDTO.ReviewListDTO;
@@ -29,7 +26,6 @@ import com.bitcamp.TFUtils.UploadFileUtils;
 import com.mysql.cj.log.Log;
 
 import org.apache.log4j.Logger; 
-
 
 @Controller
 public class NonMemberController {
@@ -43,9 +39,18 @@ public class NonMemberController {
 	
 	
 	@RequestMapping("/main")
-	public String Main() {
+	public String Main(@RequestParam(required=false, defaultValue="1") int currpage,
+			  		   @RequestParam(required=false, defaultValue="") String search,
+			  		   @RequestParam(required=false, defaultValue="") String searchtxt, Model model) {
+		
+		List<StoreListDTO> MainBestSearch = nonmemberservice.MainBestSearch();
+		
+		model.addAttribute("MainBestSearch", MainBestSearch);
+						
 		return "Back/NonMember/Main";
+		
 	}
+	
 	@RequestMapping("/randomrecon")
 	public String RandomReco() {
 		return "Back/NonMember/RandomReco";
