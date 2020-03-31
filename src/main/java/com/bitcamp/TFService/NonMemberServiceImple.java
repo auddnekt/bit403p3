@@ -129,4 +129,9 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.MemberBestSearch();
 	}
 
+	@Override
+	public int replyCount(int no) {
+		return mapper.ReplyCount(no);
+	}
+
 }

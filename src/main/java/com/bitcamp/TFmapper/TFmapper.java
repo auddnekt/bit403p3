@@ -44,4 +44,6 @@ public interface TFmapper {
 
 	List<StoreListDTO> MemberBestSearch();
 
+	int ReplyCount(int no);
+
 }

@@ -94,7 +94,7 @@
   	
    
      <select id = "MemberDetail" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-        select StoreNo, StoreName, StoreGrade, (select avg(StoreCount) from ReviewList2 Where StoreNo=#{no})as StoreScore, StoreAddr, StoreCategori, StoreFood,
+        select StoreNo, StoreName, StoreGrade, round((select avg(StoreCount) from ReviewList2 Where StoreNo=#{no}), 1)as StoreScore, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
         StoreClose, StoreHit, StoreUp, StoreImg
         from StoreInfo2
@@ -131,7 +131,7 @@
      
      <insert id = "ReplyInsert" parameterType="com.bitcamp.TFDTO.ReviewListDTO">
         insert into ReviewList2(StoreReviewDate, StoreReviewContent, StoreCount, StoreNo)
-      values(date_format(now(), '%Y-%m-%d'), #{StoreReviewContent}, #{StoreCount}, #{StoreNo});
+        values(date_format(now(), '%Y-%m-%d'), #{StoreReviewContent}, #{StoreCount}, #{StoreNo});
      </insert>
      
      <delete id="ReplyDelete" parameterType="int">
@@ -147,6 +147,12 @@
       select v.StoreNo as StoreNo, StoreName, StoreAddr
       from StoreInfo2 s inner join StoreView v on s.StoreNo = v.StoreNo
       group by StoreName
+     </select>
+     
+     <select id = "ReplyCount" resultType="int" parameterMap="hashmap">
+        select count(*)
+		from ReviewList2
+		where StoreNo=#{no};
      </select>
 
   </mapper>

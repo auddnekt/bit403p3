@@ -933,3 +933,522 @@ img {
 
 
 
+        .RestaurantReviewList{
+            border-style: 5px solid black;
+            width: 50%;
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-tap-highlight-color: transparent;
+            display: -webkit-flex;
+            -webkit-flex-direction: column;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+            padding: 20px 10px 0;
+            background-color: #EAEAEA;
+            margin:20px auto;
+        }
+        .RestaurantReviewList__Header{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            font-size: 100%;
+            display: -webkit-flex;
+            margin-bottom: 14px;
+        }
+        .RestaurantReviewList__Title{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 1.2;
+            color: #ff792a;
+        }
+        
+        .RestaurantReviewList__RestaurantName{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            -webkit-box-direction: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 1.2;
+            color: #ff792a;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            display: inline;
+            word-break: break-all;
+        }
+        
+        .RestaurantReviewList__RestaurantNameSuffixDesktop{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 1.2;
+            color: #ff792a;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            display: none;
+        }
+        
+        .RestaurantReviewList__RestaurantNameSuffixMobile{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 1.2;
+            color: #ff792a;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+        }
+        
+        .RestaurantReviewList__AllCount{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            color: #ff792a;
+        }
+        
+        .RestaurantReviewList__ReviewList{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            display: -webkit-flex;
+            -webkit-flex-direction: column;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+        }
+        
+        .RestaurantReviewItem{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            position: relative;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        
+        .RestaurantReviewItem__Link{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-flex-direction: row;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: horizontal;
+            display: block;
+            padding: 9px 50px 13px 37px;
+            text-decoration: none;
+        }
+        
+        .RestaurantReviewItem__User{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-flex-direction: column;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+            -webkit-flex-basis: initial;
+            display: inline;
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .RestaurantReviewItem__UserPictureWrap{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            margin-bottom: 5px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #dbdbdb;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 30px;
+            height: 30px;
+        }
+        
+                
+        .RestaurantReviewItem__UserPicture loaded{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: none;
+            vertical-align: top;
+            color: rgba(255,255,255,0);
+            text-indent: -9999px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: opacity .3s;
+            opacity: 1;
+        }
+        
+        .RestaurantReviewItem__UserNickName{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            list-style: none;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            line-height: 1.3;
+            text-align: center;
+            word-break: break-all;
+            display: inline;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #000000;
+            font-weight: bold;
+        }
+        
+        .RestaurantReviewItem__UserStat{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            -webkit-justify-content: center;
+            -webkit-box-pack: center;
+            display: none;
+        }
+        
+        .RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            margin-right: 2px;
+            font-size: 10px;
+            color: #CBCBCB;
+        }
+        
+        .RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Follower{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            display: -webkit-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            font-size: 10px;
+            color: #CBCBCB;
+            margin-right: 0;
+        }
+        
+        .RestaurantReviewItem__HolicBadge{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            -webkit-box-direction: normal;
+            font-weight: bold;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0 auto;
+            background-image: url(https://mp-seoul-image-develop-s3.mangoplate.com/web/resources/2018022864551sprites_mobile.png?fit=around|*:*&crop=*:*;*,*&output-format=png&output-quality=80);
+            background-position: -573px -512px;
+            position: absolute;
+            top: 45px;
+            left: -4px;
+            width: 35px;
+            height: 21px;
+        }
+        
+        .RestaurantReviewItem__ReviewContent{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-flex-direction: column;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+            display: inline;
+            width: auto;
+        }
+        .RestaurantReviewItem__ReviewContent:hover{
+            text-decoration: none;
+        }
+        
+        .RestaurantReviewItem__ReviewTextWrap{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-flex-direction: column-reverse;
+            -webkit-box-direction: reverse;
+            -webkit-box-orient: vertical;
+            display: inline;
+        }
+        
+        .RestaurantReviewItem__ReviewText{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            list-style: none;
+            -webkit-box-direction: reverse;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-box-ordinal-group: 3;
+            -webkit-order: 2;
+            word-break: break-all;
+            color: #000000;
+            display: inline;
+            font-size: 14px;
+            line-height: 1.5;
+            text-decoration: none;
+        }
+        .RestaurantReviewItem__ReviewText:hover{
+            text-decoration: none;
+        }
+        
+        .RestaurantReviewItem__ReviewDate{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            -webkit-box-direction: reverse;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            -webkit-box-ordinal-group: 4;
+            -webkit-order: 3;
+            color: #9B9B9B;
+            display: block;
+            font-size: 11px;
+            line-height: 2;
+        }
+        
+        .RestaurantReviewItem__PictureList{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            display: -webkit-flex;
+            margin-top: 10px;
+        }
+        
+        .RestaurantReviewItem__PictureItem{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            list-style: none;
+            margin-right: 0;
+        }
+        
+        .RestaurantReviewItem__PictureButton{
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 0;
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            position: relative;
+            background-color: #dbdbdb;
+        }
+        
+        .RestaurantReviewItem__Picture loaded{
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            -webkit-box-direction: normal;
+            list-style: none;
+            cursor: pointer;
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: none;
+            vertical-align: top;
+            color: rgba(255,255,255,0);
+            text-indent: -9999px;
+            object-fit: cover;
+            background-color: #E9E9E9;
+            background-size: cover;
+            width: 44px;
+            height: 44px;
+            transition: opacity .3s;
+            opacity: 1;
+        }
+        
+        .RestaurantReviewItem__Rating{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            font-size: 100%;
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            display: -webkit-flex;
+            -webkit-flex-direction: column;
+            -webkit-box-direction: normal;
+            -webkit-box-orient: vertical;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            margin-left: auto;
+            position: absolute;
+            top: 10px;
+            right: 4px;
+        }
+        
+        .RestaurantReviewItem__Rating--Recommend{
+            background-image: url(https://mp-seoul-image-develop-s3.mangoplate.com/web/resources/201802286455…esktop.png?fit=around|*:*&crop=*:*;*,*&output-format=png&output-quality=80);
+            background-position: -714px -866px;
+            width: 44px;
+            height: 44px;
+        }
+        
+        .RestaurantReviewItem__RatingText{
+            font-family: "SpoqaHanSans", "Noto Sans SC", "APPLE SD Gothic NEO", "sans-serif";
+            line-height: 100%;
+            -webkit-text-size-adjust: 100%;
+            word-break: keep-all;
+            list-style: none;
+            -webkit-box-direction: normal;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            border: 0 none;
+            color: #ff792a;
+            font-size: 12px;
+        }
+
+
+

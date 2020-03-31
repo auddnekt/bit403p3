@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -13,9 +12,9 @@
 
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
-
+   
     <!-- Theme CSS -->
-             
+     
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/review.css">
     <title>What is eat today?</title>
 </head>
 
@@ -108,7 +107,7 @@
         <!-- Content -->
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-md-10 col-lg-8" align="center">
+                <div class="col-md-10 col-lg-8 " align="center">
                     <div class="banner-content" >
                         <!-- Preheading -->
                               <div class="input-group">
@@ -154,151 +153,64 @@
     <!-- FEATURES
     ================================================== -->
     <section class="section" id="feature" >
-         <div class="detailicon">
-         <a href="${pageContext.request.contextPath }/replyinsert/${dto.storeNo}" class="write">
-          <i class="fas fa-pen">리뷰작성</i>
-        </a>
-         <a href="#" class="recomend">
-          <i class="far fa-star">추천</i>
-        </a>
-        </div>
-        <hr>
-        <div class="container">
-         
-          <div class="col-md-12">
-           <div class="col-lg-7">
-                    <div class="foodimg">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="pasta">
-                    </div>  
-            </div>      
-        <!-- / .container -->
-      
-        <div class="icon">
-                           <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
-                           <i class="fas fa-star">${dto.storeUp}</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                         </div>
-                          <p class="detailscore">${dto.storeScore}</p>
-                           <p class="detailstore">${dto.storeName}</p>
-                           
-                             <p class="detailcontent">주소 : ${dto.storeAddr}</p>
-                             <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
-                             <p class="detailcontent">음식종류 : ${dto.storeCategori}</p>
-                             <p class="detailcontent">영업시간 : ${dto.storeHours}</p>
-                            <p class="detailcontent">가격대 : ${dto.storeCost}</p>
-                             <p class="detailcontent">쉬는시간 : ${dto.storeBTime}</p>
-                             <p class="detailcontent">웹사이트 : <a href="www.pestamare.com">www.pestamare.com</a></p>                         
-           </div>
-
-		   
-			 <nav style="clear:both" aria-label="Page navigation">
-            
-            <ul class="pagination">
-                       <!-- 현재 페이지 -->
-            <li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a></li>
-            <li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
-           
-            </ul>
-            </nav>
-		       
-        </div>
-        
-        
-        <br><hr><br>
-        <div class="container">
-        <div class="col-md-12" align="center">
-        <h2 class="lg-title mb-2">
-                        <b>가게위치</b>
+       <div class="container">
+           <div class="row justify-content-center mb-4">
+                <div class="col-md-8 col-lg-8 text-center">
+                    <!-- Heading -->
+                    <h2 class="lg-title mb-2">
+                        <b>리뷰작성</b>
                     </h2>
                     <!-- Subheading -->
                     <p class="mb-5">
-                        Store Location
+                        Review Creation Page
                     </p>
-        <!-- * 카카오맵 - 지도퍼가기 -->
-        <!-- 1. 지도 노드 -->
-        <div id="daumRoughmapContainer1585030517334" class="root_daum_roughmap root_daum_roughmap_landing" align="center"></div>
-
-        <!--
-            2. 설치 스크립트
-            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
-        -->
-        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-        <!-- 3. 실행 스크립트 -->
-        <script charset="UTF-8">
-            new daum.roughmap.Lander({
-                "timestamp" : "1585030517334",
-                "key" : "xnai",
-                "mapWidth" : "800",
-                "mapHeight" : "360"
-            }).render();
-        </script>
+                </div>
             </div>
+            <!-- / .row -->
+
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="${pageContext.request.contextPath }/replyinsertresult" method="post" id="main_contact_form" class="contact_form">
+                        <!-- form message -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                        Your message was sent successfully.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end message -->
+                            
+                           	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${no}">    
+	                        <div class="row">
+	                            <div class="col-lg-12">
+	                                <div class="form-group">
+	                                    <textarea name="StoreReviewContent" name="StoreReviewContent" id="StoreReviewContent" cols="30" rows="12" class="form-control" placeholder="솔직한 리뷰를 입력해주세요~^^" accesskey=""required="required" ></textarea>
+	                                </div>
+	                            </div>
+	                            
+	                            <div class="col-sm-2 imgUp">
+	                            <div class="imagePreview"></div>
+	                            <label class="btn btn-primary">
+	                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+	                            </label>
+	                            </div>
+	                            <i class="fa fa-plus imgAdd"></i>
+	                            <div class="col-lg-12">
+	                                <div class="submit text-center">
+	                                   <input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소"></a>&nbsp;&nbsp;
+	                                   <input name="submit" type="submit" class="btn btn-primary btn-lg" value="리뷰완료"></a>
+	                                </div>
+	                            </div>
+	                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        <!-- / .container -->
         </div>
-        
-        <section class="RestaurantReviewList">
-            <header class="RestaurantReviewList__Header">
-              <h2 class="RestaurantReviewList__Title">
-                <span class="RestaurantReviewList__RestaurantName">${dto.storeName }</span><span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span><span class="RestaurantReviewList__RestaurantNameSuffixMobile">음식점의 리뷰</span>
-              <span class="RestaurantReviewList__AllCount">(${ReplyCount }개의 리플)</span></h2>
-
-              
-            </header>
-
-            <ul class="RestaurantReviewList__ReviewList">
-			<c:forEach var = "reply" items = "${reply }">
-            <li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-		<!--   <a class="RestaurantReviewItem__Link" href="/reviews/NzI0MzYy" target="_blank"> -->
-			    <div class="RestaurantReviewItem__User">
-			      <!--<div class="RestaurantReviewItem__UserPictureWrap">
-			        <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-			      </div>-->
-			      
-			      <span class="RestaurantReviewItem__UserNickName">모진수</span>
-			
-			      <ul class="RestaurantReviewItem__UserStat">
-			        <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review">402</li>
-			        <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Follower">57</li>
-			      </ul>
-			      
-			<!--      <i class="RestaurantReviewItem__HolicBadge"></i>-->
-			    </div>
-			
-			    <div class="RestaurantReviewItem__ReviewContent">
-			      <div class="RestaurantReviewItem__ReviewTextWrap">
-			
-			        <p class="RestaurantReviewItem__ReviewText">
-			         	${reply.storeReviewContent}
-			        </p>
-			
-			        
-			        <span class="RestaurantReviewItem__ReviewDate">${reply.storeReviewDate}</span>
-			      </div>
-			      
-			      <ul class="RestaurantReviewItem__PictureList">
-			      <li class="RestaurantReviewItem__PictureItem">
-			        <button class="RestaurantReviewItem__PictureButton" data-index="0">
-			          <img style="padding-bottom: 10px;" class="RestaurantReviewItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" alt="review picture" src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-			          
-			        </button>
-			      </li>
-			    </ul>
-			    </div>
-			
-			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Recommend">
-			      <span style="font-size: 150%;" class="RestaurantReviewItem__RatingText">${reply.storeCount}점</span>
-			    </div>
-		
-		<!--   </a> -->
-		
-			</li>
-			</c:forEach>
-		</ul>
-
-            
-          </section>
     </section>
-
     
     <!-- FOOTER
     ================================================== -->
@@ -306,7 +218,7 @@
         <!--Content -->
         <div class="container">
             <div class="row align-self-center">
-                <div class="col-lg-4 col-md-10">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
                         <!-- Brand -->
                         <a href="#" class="footer-brand text-white">
@@ -375,6 +287,7 @@
     <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
+     <script src="${pageContext.request.contextPath}/resources/assets/js/review.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
      
@@ -383,4 +296,4 @@
 
 </body>
 
-</html></html>
+</html>

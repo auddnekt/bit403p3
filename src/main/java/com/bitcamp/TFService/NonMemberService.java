@@ -42,4 +42,7 @@ public interface NonMemberService {
 
 	List<StoreListDTO> MemberBestSearch();
 
+	int replyCount(int no);
+
+
 }

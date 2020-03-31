@@ -147,6 +147,9 @@ public class NonMemberController {
 		List<ReviewListDTO> reply = nonmemberservice.replylist(no);
 		model.addAttribute("reply", reply);
 		
+		int ReplyCount = nonmemberservice.replyCount(no);
+		model.addAttribute("ReplyCount", ReplyCount);
+		
 		return "Back/MemberService/StoreDetail";
 	}
 	
@@ -181,8 +184,18 @@ public class NonMemberController {
 		return "Back/NonMember/RandomReco";
 	}
 	
-	@RequestMapping("/replyinsert")
-	public String replyInsert(ReviewListDTO dto) {
+	
+	@RequestMapping("/replyinsert/{no}")
+	public String replyInsert(@PathVariable int no, Model model) {
+		
+		model.addAttribute("no", no);
+				
+		return "Back/MemberService/ReviewInsert";
+	}
+	
+	
+	@RequestMapping("/replyinsertresult")
+	public String replyInsertResult(ReviewListDTO dto) {
 		
 		nonmemberservice.replyinsert(dto);
 		int no = dto.getStoreNo();
