@@ -42,4 +42,6 @@ public interface TFmapper {
 
 	List<StoreListDTO> MainBestSearch();
 
+	List<StoreListDTO> MemberBestSearch();
+
 }

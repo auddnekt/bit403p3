@@ -39,14 +39,14 @@ public class NonMemberController {
 	
 	
 	@RequestMapping("/main")
-	public String Main(@RequestParam(required=false, defaultValue="1") int currpage,
-			  		   @RequestParam(required=false, defaultValue="") String search,
-			  		   @RequestParam(required=false, defaultValue="") String searchtxt, Model model) {
+	public String Main(Model model) {
 		
 		List<StoreListDTO> MainBestSearch = nonmemberservice.MainBestSearch();
-		
 		model.addAttribute("MainBestSearch", MainBestSearch);
-						
+		
+		List<StoreListDTO> MemberBestSearch = nonmemberservice.MemberBestSearch();
+		model.addAttribute("MemberBestSearch", MemberBestSearch);
+			
 		return "Back/NonMember/Main";
 		
 	}
@@ -69,7 +69,7 @@ public class NonMemberController {
 	{
 		
 		int totalCount = nonmemberservice.SearchCount(search, searchtxt);
-		int pageSize=10;
+		int pageSize=6;
 		int blockSize=5;
 		
 		
@@ -94,7 +94,7 @@ public class NonMemberController {
 
 		
 		int totalCount = nonmemberservice.MemberCount(search, searchtxt);
-		int pageSize=10;
+		int pageSize=6;
 		int blockSize=5;
 		
 		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);

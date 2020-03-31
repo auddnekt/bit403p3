@@ -4,70 +4,319 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta charset=UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta name="description" content="Coral - Onepage portfolio Template">
+    <meta name="author" content="esrat">
 
-$(document).ready(function(){
- 	$("#5btn").one("click", function(){
-		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 5>";
-		$("#rep").append(count);
-		})
-	$("#4btn").one("click", function(){
-		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 4>";
-		$("#rep").append(count);
-		})
-	$("#3btn").one("click", function(){
-		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 3>";
-		$("#rep").append(count);
-		})
-	$("#2btn").one("click", function(){
-		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 2>";
-		$("#rep").append(count);
-		})
-	$("#1btn").one("click", function(){
-		let count = "<input type = 'hidden' name = 'StoreCount' id = 'StoreCount' value = 1>";
-		$("#rep").append(count);
-		}) 
+    <!-- Fontawseom Icon CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
 
-});
-
-</script>
+    <!-- Theme CSS -->
+             
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
+    
+    <title>What is eat today?</title>
 </head>
-<body>
-	${dto.storeName} ${dto.storeScore}점 조회수 : ${dto.storeHit} 추천수 : ${dto.storeUp}
-	음식 분류 : ${dto.storeCategori}<br>
-	주소 : ${dto.storeAddr}<br>
-	작성일 : ${dto.storeDate}<br>
-	가격대 : ${dto.storeCost}<br>
-	주차가능 : ${dto.storeParking}<br>
-	영업시간 : ${dto.storeHours}<br>
-	브레이크타임 : ${dto.storeBTime}<br>
-	이미지 : <img src = "${dto.storeImg }"><br>
-	
-	<a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a>
-	<a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a><br>
-	
-	<c:forEach var = "reply" items = "${reply }">
-<%-- 	<c:if test=${reply!=0 }> --%>	
-	        ${reply.storeReviewContent}<br>
-	              작성 날짜 : ${reply.storeReviewDate}
-	        <a href = "${pageContext.request.contextPath }/replydelete/${reply.storeReviewNo}?rno=${reply.storeNo }">삭제</a><br>
 
-<%--     </c:if> --%>
-	</c:forEach>  
-	평점<input type = "button" id = "5btn" value = "5점">
-	<input type = "button" id = "4btn" value = "4점">
-	<input type = "button" id = "3btn" value = "3점">
-	<input type = "button" id = "2btn" value = "2점">
-	<input type = "button" id = "1btn" value = "1점">
-	<form id = "rep" method = "post" action = "${pageContext.request.contextPath }/replyinsert">
-		<label for = "ReviewContent">댓글</label>
-		<input type = "text" name = 'StoreReviewContent' id = "StoreReviewContent"><br>
-		<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${dto.storeNo}"><br>
-		<input type = "submit" value = "전송">
-	</form>
+<body id="page-top">
+
+    <!-- NAVBAR
+    ================================================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
+                <font color=lightgray size=6><b>오늘</b></font>
+                <font color=skyblue size=6><b>뭐</b></font>
+                <font color=orange size=6><b>먹지?</b></font>
+            </a>
+            
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon-bar">
+                    <i class="fa fa-bars"></i>
+                </span>
+            </button>
+
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="index.html">
+                            HOME
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            BEST 맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            오늘날씨 추천맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            회원추천 맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                            공지사항
+                        </a>
+                    </li>
+
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="login.html">
+                            로그인
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="join.html">
+                            회원가입
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- / .navbar-collapse -->
+        </div>
+        <!-- / .container -->
+    </nav>
+
+    <!-- HERO
+    ================================================== -->
+    <section class="section section-top section-full">
+
+        <!-- Cover -->
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
+
+        <!-- Overlay -->
+        <div class="bg-overlay"></div>
+        
+        <!-- Content -->
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-10 col-lg-8" align="center">
+                    <div class="banner-content" >
+                        <!-- Preheading -->
+                              <div class="input-group">
+                                  <input type="text" class="form-control"  placeholder="검색 키워드를 입력하세요!" >
+                                  
+                                  <span class="input-group-btn">
+                                  </span>
+                                  <button class="btn btn-primary">
+                                        <font size=3><b>검색</b></font>
+                                    </button>
+                                </div>
+                                
+                        <!-- Heading -->
+                        <!--<h1 class="text-white text-center mb-4 display-4 font-weight-bold">
+                            I am a UI/UX Designer <br>& Developer
+                        </h1>--!>
+
+                        <!-- Subheading -->
+                        <p class="lead text-white text-center mb-5">
+                            
+                        </p>
+
+                        <!-- Button -->
+                        <p class="text-center mb-0" >
+                            <a href="#" target="_blank" class="btn btn-primary ">
+                                <font size=4>Random 추천맛집</font>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- / .row -->
+            
+        </div>
+        <!-- / .container -->
+    </section>
+
+    <!-- SECTIONS
+    ================================================== -->
+    <!-- PAGES
+    ================================================== -->
+
+    <!-- FEATURES
+    ================================================== -->
+    <section class="section" id="feature" >
+         <div class="detailicon">
+         <a href="#" class="write">
+          <i class="fas fa-pen">리뷰작성</i>
+        </a>
+         <a href="#" class="recomend">
+          <i class="far fa-star">추천</i>
+        </a>
+        </div>
+        <hr>
+        <div class="container">
+         
+          <div class="col-md-12">
+           <div class="col-lg-7">
+                    <div class="foodimg">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="pasta">
+                    </div>  
+            </div>      
+        <!-- / .container -->
+      
+        <div class="icon">
+                           <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
+                           <i class="fas fa-star">${dto.storeUp}</i>&nbsp&nbsp
+                           <i class="fas fa-pen">10</i>
+                         </div>
+                          <p class="detailscore">${dto.storeScore}</p>
+                           <p class="detailstore">${dto.storeName}</p>
+                           
+                             <p class="detailcontent">주소 : ${dto.storeAddr}</p>
+                             <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
+                             <p class="detailcontent">음식종류 : ${dto.storeCategori}</p>
+                             <p class="detailcontent">영업시간 : ${dto.storeHours}</p>
+                            <p class="detailcontent">가격대 : ${dto.storeCost}</p>
+                             <p class="detailcontent">쉬는시간 : ${dto.storeBTime}</p>
+                             <p class="detailcontent">웹사이트 : <a href="www.pestamare.com">www.pestamare.com</a></p>                         
+           </div>
+
+		   
+			 <nav style="clear:both" aria-label="Page navigation">
+            
+            <ul class="pagination">
+                       <!-- 현재 페이지 -->
+            <li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a></li>
+            <li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
+           
+            </ul>
+            </nav>
+		       
+        </div>
+        
+        <br><hr><br>
+        <div class="container">
+        <div class="col-md-12" align="center">
+        <h2 class="lg-title mb-2">
+                        <b>가게위치</b>
+                    </h2>
+                    <!-- Subheading -->
+                    <p class="mb-5">
+                        Store Location
+                    </p>
+        <!-- * 카카오맵 - 지도퍼가기 -->
+        <!-- 1. 지도 노드 -->
+        <div id="daumRoughmapContainer1585030517334" class="root_daum_roughmap root_daum_roughmap_landing" align="center"></div>
+
+        <!--
+            2. 설치 스크립트
+            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+        -->
+        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+        <!-- 3. 실행 스크립트 -->
+        <script charset="UTF-8">
+            new daum.roughmap.Lander({
+                "timestamp" : "1585030517334",
+                "key" : "xnai",
+                "mapWidth" : "800",
+                "mapHeight" : "360"
+            }).render();
+        </script>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER
+    ================================================== -->
+    <footer class="top-padding bg-dark">
+        <!--Content -->
+        <div class="container">
+            <div class="row align-self-center">
+                <div class="col-lg-4 col-md-10">
+                    <div class="footer-widget">
+                        <!-- Brand -->
+                        <a href="#" class="footer-brand text-white">
+                           <font color=lightgray size=6><b>오늘</b></font>
+                            <font color=skyblue size=6><b>뭐</b></font>
+                            <font color=orange size=6><b>먹지?</b></font>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 ml-lg-auto col-md-2">
+
+                    <!-- Links -->
+                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
+                        <li>
+                            <a href="#" class="text-white">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white">
+                                Address
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white">
+                                Creator
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-5">
+
+                    <!-- Links -->
+                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
+                        <li>
+                            <i class="fa fa-mobile"></i> 
+                            02-1234-5678
+                        </li>
+                        <li>
+                            <i class="fa fa-location-arrow"></i>
+                            서울 서초구 강남대로 459
+                        </li>
+                        <li>
+                            <i class="fa fa-globe"></i> Kim HyunJin , Koo MyungWoo
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- / .row -->
+
+            <div class="row justify-content-md-center footer-copy">
+                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
+                    <p class="lead text-white-50">&copy; Copyright 
+                     What should We Eat Today? Co.Ltd.All rights reserved. </p>
+                </div>
+            </div>
+        </div>
+        <!-- / .container -->
+    </footer>
+
+    <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Global JS -->
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
+     
+    <!-- Theme JS -->
+    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
+
 </body>
-</html>
+
+</html></html>

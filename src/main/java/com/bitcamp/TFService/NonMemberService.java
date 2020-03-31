@@ -40,4 +40,6 @@ public interface NonMemberService {
 
 	List<StoreListDTO> MainBestSearch();
 
+	List<StoreListDTO> MemberBestSearch();
+
 }

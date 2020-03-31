@@ -52,11 +52,8 @@ public class NonMemberServiceImple implements NonMemberService{
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("search", search);
 		hm.put("searchtxt", searchtxt);
-		System.out.println(search+' '+searchtxt+" service");
 		return mapper.MemberCount(hm);
 	}
-
-
 
 	@Override
 	public List<StoreListDTO> MemberSearch(String search, String searchtxt, int endRow) {
@@ -125,6 +122,11 @@ public class NonMemberServiceImple implements NonMemberService{
 	@Override
 	public List<StoreListDTO> MainBestSearch() {
 		return mapper.MainBestSearch();
+	}
+
+	@Override
+	public List<StoreListDTO> MemberBestSearch() {
+		return mapper.MemberBestSearch();
 	}
 
 }

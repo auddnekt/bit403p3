@@ -4,6 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.bitcamp.TFmapper.TFmapper">
      <parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
+     
+     <select id = "MainBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
+        StoreClose, StoreHit, StoreUp
+        from StoreInfo2
+      	order by StoreUp desc, StoreNo limit 4 offset 0
+      	
+     </select>
+     <select id = "MemberBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
+        StoreClose, StoreHit, StoreUp
+        from StoreInfo2
+      	order by StoreUp desc, StoreNo limit 3 offset 0
+      	
+     </select>
+     
      <select id = "SearchCount" resultType="int" parameterMap="hashmap">
         select count(distinct StoreName)
         from StoreInfo
@@ -22,14 +40,7 @@
 
      </select>
 
-     <select id = "MainBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
-        FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
-        from StoreInfo2
-      	order by StoreUp desc, StoreNo limit 4 offset 0
-      	
-     </select>
+     
      
       <select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
@@ -50,7 +61,7 @@
            </if>
         </where>
            group by StoreName
-           <![CDATA[order by StoreNo limit 10 offset #{endRow}]]>
+           <![CDATA[order by StoreNo limit 6 offset #{endRow}]]>
         
      </select>
    <select id = "MemberCount" resultType="int" parameterMap="hashmap">
@@ -63,13 +74,13 @@
      
      <select id = "MemberSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
-        select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        select StoreNo, StoreName, StoreGrade, (select avg(StoreCount) from ReviewList2 Where StoreNo=#{no})as StoreScore, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
+        StoreClose, StoreHit, StoreUp, StoreImg
         from StoreInfo2
-      where StoreGrade = 'member'
+        where StoreGrade = 'member'
 
-        <![CDATA[order by StoreNo limit 10 offset #{endRow}]]>
+        <![CDATA[order by StoreNo limit 6 offset #{endRow}]]>
         
      </select>
      

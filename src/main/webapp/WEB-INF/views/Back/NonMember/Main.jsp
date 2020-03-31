@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<html lang="en">
 
-<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -358,7 +356,7 @@
                         Good Restaurants To Recommendable Restaurants
                     </p>
                    <p align="right">
-                   <a href="list.html">회원추천 맛집 더보기</a>
+                   <a href="${pageContext.request.contextPath}/membersearch">회원추천 맛집 더보기</a>
                    </p>
                 </div>
                 
@@ -366,55 +364,24 @@
             <!-- / .row -->
 
             <div class="row justify-content-center">
+            <c:forEach var = "Member" items="${MemberBestSearch }">
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
                     <div class="portfolio-block">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
 
                         <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
+                           <i class="fas fa-eye">${Member.storeHit }</i>&nbsp&nbsp
+                           <i class="fas fa-star">${Member.storeUp }</i>&nbsp&nbsp
+                           <i class="fas fa-pen">${Member.storeHit }</i>
                             <p class="score">4.0</p>
-                            <span class="work-cat">페스타마레</span>
+                            <span class="work-cat">${Member.storeName }</span>
                         </div>
                         <div class="overlay-content">
                             <a href="#"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pizza.jpg" alt="portfolio">
-
-                         <div class="icon">
-                           <i class="fas fa-eye">50</i>&nbsp&nbsp
-                           <i class="fas fa-star">70</i>&nbsp&nbsp
-                           <i class="fas fa-pen">20</i>
-                            <p class="score">4.3</p>
-                            <span class="work-cat">피자말레오</span>
-                        </div>
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/koreansoup.jpg" alt="portfolio">
-
-                         <div class="icon">
-                           <i class="fas fa-eye">20</i>&nbsp&nbsp
-                           <i class="fas fa-star">50</i>&nbsp&nbsp
-                           <i class="fas fa-pen">11</i>
-                            <p class="score">3.8</p>
-                            <span class="work-cat">기사식당</span>
-                        </div>
-                        
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
+            </c:forEach>
             </div>
         </div>
     </section>
