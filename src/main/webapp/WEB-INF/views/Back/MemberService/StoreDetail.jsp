@@ -183,11 +183,12 @@
                            
                              <p class="detailcontent">주소 : ${dto.storeAddr}</p>
                              <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
-                             <p class="detailcontent">음식종류 : ${dto.storeCategori}</p>
+                             <p class="detailcontent">대표메뉴 : ${dto.storeFood}</p>
                              <p class="detailcontent">영업시간 : ${dto.storeHours}</p>
-                            <p class="detailcontent">가격대 : ${dto.storeCost}</p>
+                             <p class="detailcontent">가격대 : ${dto.storeCost}</p>
+                             <p class="detailcontent">주차유무 : ${dto.storeParking}</p>
                              <p class="detailcontent">쉬는시간 : ${dto.storeBTime}</p>
-                             <p class="detailcontent">웹사이트 : <a href="www.pestamare.com">www.pestamare.com</a></p>                         
+                             <p class="detailcontent">휴일 : ${dto.storeClose }</p>                         
            </div>
 
 		   

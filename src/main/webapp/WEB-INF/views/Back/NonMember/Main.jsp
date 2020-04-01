@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!--
+메인 필요부분
+카루셀 foreach적용문제
+날씨 api
+날씨페이지 foreach적용문제
+
+  -->
+
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -53,6 +61,23 @@
 	});
 
 </script>
+<style>
+	.item_no1{
+		position: absolute;
+	    top : 50%;
+	    left: 50%;
+	    transform : translate(-50%, -50%);
+	    color: #007bff;
+	    font-weight: bolder;
+	    font-size:300%;
+	}
+	
+	.item_no1:hover {
+		color: #007bff;
+		text-decoration: none;
+	}
+	
+</style>
 </head>
 
 <body id="page-top">
@@ -204,7 +229,7 @@
                     </h2>
                         
                     <!-- Subheading -->
-                    <p class="mb-1">
+                    <p class="mb-1" style="font-size:20px;">
                       This is a Screen Showing The Best Restaurants.
                     </p>
         
@@ -212,9 +237,9 @@
             </div>
             <!-- / .row -->
                 <div class="container" align="center">
-             <b></b><p align="right"><a href="#">BEST맛집 더보기</a></p>
+             <b></b><p align="right"><a href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">BEST맛집 더보기</a></p>
              
-              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 70%;">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -224,13 +249,14 @@
                 </ol>
 
                 <!-- Wrapper for slides -->
-                
-                <div class="carousel-inner" role="listbox">
-                  <div class="item active">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/pizza.jpg"  
-                    alt="pizza" style="width:100%"></a>
+               
+                <div class="carousel-inner" role="listbox" >
+<%--                 <c:forEach var = "Member" items="${MemberBestSearch }"> --%>
+                  <div class="item active" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
+                    <a class="item_no1" href="#">파스타파스타</a>
+                    
                   </div>
-
+<%-- 				</c:forEach> --%>
                   <div class="item" align="center">
                     <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/nuddle.jpg"
                       alt="nuddle" style="width:100%"></a>
@@ -272,7 +298,7 @@
                     <h2 class="lg-title mb-2" align="center">
                         <b>오늘날씨 추천맛집</b>
                     </h2>
-                    <p class="mb-5" align="center">
+                    <p class="mb-5" align="center" style="font-size:20px;">
                     Today's Recommended Restaurants
                     </p>
          </div>
@@ -352,7 +378,7 @@
                     </h2>
 
                     <!-- Subheading -->
-                    <p class="mb-4">
+                    <p class="mb-4" style="font-size:20px;">
                         Good Restaurants To Recommendable Restaurants
                     </p>
                    <p align="right">
@@ -377,7 +403,7 @@
                             <span class="work-cat">${Member.storeName }</span>
                         </div>
                         <div class="overlay-content">
-                            <a href="#"><i class="fa fa-link"></i></a>
+                            <a href="${pageContext.request.contextPath }/memberdetail/${Member.storeNo}"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>

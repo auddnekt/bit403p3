@@ -3,145 +3,446 @@
 <!DOCTYPE>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Coral - Onepage portfolio Template">
+    <meta name="author" content="esrat">
+    
+    <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Fontawseom Icon CSS -->
+    
+   
+    <!-- Theme CSS -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/review.css">
+            
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
+    <title>What is eat today?</title>
+    
+    <style>
+        .control-label{
+            margin:10px;
+            font-size: 16px;
+        }
+        .form-control{
+            font-size: 16px;
+        }
+    </style>
 </head>
-<body>
-	<form method="post" action = "${pageContext.request.contextPath}/memberinsertresult" enctype="multipart/form-data">
-		<label for = "StoreName">가게 이름</label>
-		<input type="text" name = "StoreName" id = "StoreName"><br>
 
-		<input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
-		<input type="text" name = "StoreAddr" id="sample3_address" placeholder="주소"><br>
-		<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-		</div>		
-		<label for = "StoreCategori">음식종류</label>
-		<input type="text" name = "StoreCategori" id = "StoreCategori"><br>
-		<label for = "StoreFood">대표메뉴</label>
-		<input type="text" name = "StoreFood" id = "StoreFood"><br>
-		<label for = "FoodWeather">추천날씨</label>
-		<input type="text" name = "StoreWeather" id = "StoreWeather" placeholder="공란도 가능"><br>
-		<label for = "StoreCall">전화번호</label>
-		<input type="text" name = "StoreCall" id = "StoreCall"><br>
-		<label for = "StoreCost">가격대</label>
-		<input type="text" name = "StoreCost" id = "StoreCost"><br>
-		<label for = "StoreParking">주차</label>
-		<input type="text" name = "StoreParking" id = "StoreParking"><br>
-		<label for = "StoreHours">영업시간</label>
-		<input type="text" name = "StoreHours" id = "StoreHours"><br>
-		<label for = "StoreBTime">브레이크타임</label>
-		<input type="text" name = "StoreBTime" id = "StoreBTime"><br>
-		<label for = "StoreClose">휴일</label>
-		<input type="text" name = "StoreClose" id = "StoreClose"><br>
-		<input type="submit" value = "전송">
+<body id="page-top">
 
-  <hr>
+    <!-- NAVBAR
+    ================================================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+        <div class="container">
 
-      <div>첨부파일</div>
+            <!-- Brand -->
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
+                <font color=lightgray size=6><b>오늘</b></font>
+                <font color=skyblue size=6><b>뭐</b></font>
+                <font color=orange size=6><b>먹지?</b></font>
+            </a>
+            
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon-bar">
+                    <i class="fa fa-bars"></i>
+                </span>
+            </button>
 
-        <input type="file" name="file" id="StoreImg" multiple maxlength="5">
-        <div id="preview"></div>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="index.html">
+                            HOME
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            BEST 맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            오늘날씨 추천맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="#">
+                            회원추천 맛집
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                            공지사항
+                        </a>
+                    </li>
 
-  
-  <%=request.getRealPath("/") %>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="login.html">
+                            로그인
+                        </a>
+                    </li>
+                    <li class="nav-item ml">
+                        <a class="nav-link js-scroll-trigger" href="join.html">
+                            회원가입
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- / .navbar-collapse -->
+        </div>
+        <!-- / .container -->
+    </nav>
 
-	</form>
-	
-<script type="text/javascript">
-  $(document).ready(function (e){
-    $("input[type='file']").change(function(e){
+    <!-- HERO
+    ================================================== -->
+    <section class="section section-top section-full">
 
-      //div 내용 비워주기
-      //$('#preview').empty();
+        <!-- Cover -->
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
 
-      var files = e.target.files;
-      var arr =Array.prototype.slice.call(files);
-      
-      //업로드 가능 파일인지 체크
-      for(var i=0;i<files.length;i++){
-        if(!checkExtension(files[i].name,files[i].size)){
-          return false;
-        }
-      }
-      preview(arr);
-      
-      
-      
-      
-    });//file change
+        <!-- Overlay -->
+        <div class="bg-overlay"></div>
+        
+        <!-- Content -->
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-10 col-lg-8 " align="center">
+                    <div class="banner-content" >
+                        <!-- Preheading -->
+                              <div class="input-group">
+                                  <input type="text" class="form-control"  placeholder="검색 키워드를 입력하세요!" >
+                                  
+                                  <span class="input-group-btn">
+                                  </span>
+                                  <button class="btn btn-primary">
+                                        <font size=3><b>검색</b></font>
+                                    </button>
+                                </div>
+                                
+                        <!-- Heading -->
+                        <!--<h1 class="text-white text-center mb-4 display-4 font-weight-bold">
+                            I am a UI/UX Designer <br>& Developer
+                        </h1>--!>
+
+                        <!-- Subheading -->
+                        <p class="lead text-white text-center mb-5">
+                            
+                        </p>
+
+                        <!-- Button -->
+                        <p class="text-center mb-0" >
+                            <a href="#" target="_blank" class="btn btn-primary ">
+                                <font size=4>Random 추천맛집</font>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- / .row -->
+            
+        </div>
+        <!-- / .container -->
+    </section>
+
+    <!-- SECTIONS
+    ================================================== -->
+    <!-- PAGES
+    ================================================== -->
+
+    <!-- FEATURES
+    ================================================== -->
+    <section class="section" id="feature" >
+       <div class="container">
+           <div class="row justify-content-center mb-4">
+                <div class="col-md-8 col-lg-8 text-center">
+                    <!-- Heading -->
+                    <h2 class="lg-title mb-2">
+                        <b>추천 음식점 등록</b>
+                    </h2>
+                    <!-- Subheading -->
+                    <p class="mb-5" style="font-size: 20px;">
+                        Review Creation Page
+                    </p>
+                </div>
+            </div>
+            <!-- / .row -->
+
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="${pageContext.request.contextPath}/memberinsertresult" method="post" id="main_contact_form"
+                     class="contact_form" enctype="multipart/form-data">
+                        <!-- form message -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                        Your message was sent successfully.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end message -->
+                            
+
     
-    function checkExtension(fileName,fileSize){
+            <!-- 본문 들어가는 부분 -->
+                
+ 
+ 
 
-      var regex = new RegExp("(.*?)\.(jpeg|gif|png\)$");
-      var maxSize = 20971520;  //20MB
-      
-      if(fileSize >= maxSize){
-        alert('파일 사이즈 초과');
-        $("input[type='file']").val("");  //파일 초기화
-        return false;
-      }
-      
-      if(!regex.test(fileName)){
-        alert('JPEG,GIF,PNG 파일만 업로드 가능합니다.');
-        $("input[type='file']").val("");  //파일 초기화
-        return false;
-      }
-      return true;
-    }
+                
+                
+                <!--<div class="form-group" id="divId">
+                    <label for="inputId" class="col-lg-2 control-label">상호명</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="상호명" maxlength="30">
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label for="StoreName" class="col-lg-2 control-label">음식점 이름</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="StoreName" id="StoreName" placeholder="음식점 이름">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- <label for="StoreAddr" class="col-lg-2 control-label" style="margin: ">주소</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="StoreAddr" name="StoreAddr" placeholder="주소">
+                    </div> -->
+                    <label for="StoreAddr" class="col-lg-2 control-label" style="margin: ">주소</label>
+                    <div class="col-lg-10">
+	                    <input style="margin-bottom: 20px; padding: 0px;" type="button" onclick="sample3_execDaumPostcode()" class="btn btn-primary btn-lg" value="주소 찾기"><br>
+						<input type="text" class="form-control" name = "StoreAddr" id="sample3_address" placeholder="주소"><br>
+						<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+					</div>
+					</div>	
+                    
+                </div>
+                <div class="form-group">
+                    <label for="StoreCategori" class="col-lg-2 control-label">음식점 종류</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" name="StoreCategori" id="StoreCategori">
+                            <option value="한식">한식</option>
+                            <option value="중국식">중국식</option>
+                            <option value="일식">일식</option>
+                            <option value="경양식">경양식</option>
+                            <option value="회">회</option>
+                            <option value="카페">카페</option>
+                            <option value="냉면">냉면</option>
+                            <option value="분식">분식</option>
+                            <option value="뷔페">뷔페</option>
+                            <option value="외국음식">외국음식</option>
+                            <option value="치킨">치킨</option>
+                            <option value="패스트푸드">패스트푸드</option>
+                            <option value="호프">호프</option>
+                            <option value="레스토랑">레스토랑</option>
+                            <option value="탕">탕</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">대표 메뉴</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control onlyHangul" name="StoreFood" id="StoreFood" data-rule-required="true" placeholder="대표 메뉴" maxlength="15">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="FoodWeather" class="col-lg-2 control-label">추천날씨</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" name="FoodWeather" id="FoodWeather">
+                            <option value="맑음">맑음</option>
+                            <option value="흐림">흐림</option>
+                            <option value="비">비</option>
+                            <option value="눈">눈</option>
+                            <option value="더움">더움</option>
+                            <option value="추움">추움</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="StoreCall" class="col-lg-2 control-label">전화번호</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="StoreCall" id="StoreCall" placeholder="전화번호">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StoreCost" class="col-lg-2 control-label">가격대</label>
+                    <div class="col-lg-10">
+                        <input type="tel" class="form-control onlyNumber" name="StoreCost" id="StoreCost" placeholder="가격대">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StoreParking" class="col-lg-2 control-label">주차유무</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" name="StoreParking" id="StoreParking">
+                            <option value="O">O</option>
+                            <option value="X">X</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StoreHours" class="col-lg-2 control-label">영업시간</label>
+                    <div class="col-lg-10">
+                        <input type="tel" class="form-control onlyNumber" name="StoreHours" id="StoreHours" placeholder="영업시간">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StoreBTime" class="col-lg-2 control-label">쉬는시간</label>
+                    <div class="col-lg-10">
+                        <input type="tel" class="form-control onlyNumber" name="StoreBTime" id="StoreBTime" placeholder="브레이크타임">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StoreClose" class="col-lg-2 control-label">휴일</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" name="StoreClose" id="StoreClose">
+                            <option value="월요일">월요일</option>
+                            <option value="화요일">화요일</option>
+                            <option value="수요일">수요일</option>
+                            <option value="목요일">목요일</option>
+                            <option value="금요일">금요일</option>
+                            <option value="토요일">토요일</option>
+                            <option value="일요일">일요일</option>
+                        </select>
+                    </div>
+                </div>
+                <!--<div class="col-sm-2 imgUp">
+                            <div class="imagePreview"></div>
+                            <label class="btn btn-primary">
+                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            </label>
+                            </div>
+                            <i class="fa fa-plus imgAdd"></i>
+                <div class="col-lg-12">
+                                <div class="submit text-center">
+                                   <a href="#"><input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소"></a>&nbsp;&nbsp;
+                                    <a href="#"><input name="submit" type="submit" class="btn btn-primary btn-lg" value="작성완료"></a>
+                                </div>
+                            </div>-->
+               <div class="col-lg-12">
+	                            <div class="submit text-center">
+	                               <input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소"></a>&nbsp;&nbsp;
+	                               <input name="submit" type="submit" class="btn btn-primary btn-lg" value="작성완료"></a>
+	                            </div>
+	                        </div>
+                    </form>
+                </div>
+            </div>
+        <!-- / .container -->
+        </div>
+    </section>
     
-    function preview(arr){
-      arr.forEach(function(f){
-        
-        //파일명이 길면 파일명...으로 처리
-        var fileName = f.name;
-        if(fileName.length > 10){
-          fileName = fileName.substring(0,7)+"...";
-        }
-        
-        
+    <!-- FOOTER
+    ================================================== -->
+    <footer class="top-padding bg-dark">
+        <!--Content -->
+        <div class="container">
+            <div class="row align-self-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget">
+                        <!-- Brand -->
+                        <a href="#" class="footer-brand text-white">
+                           <font color=lightgray size=6><b>오늘</b></font>
+                            <font color=skyblue size=6><b>뭐</b></font>
+                            <font color=orange size=6><b>먹지?</b></font>
+                        </a>
+                    </div>
+                </div>
 
-        
-        //이미지 파일 미리보기
-        if(f.type.match('image.*')){
-          var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
-          reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
-        	//div에 이미지 추가
-        	var str = '<div style="display: inline-flex; padding: 10px;"><li>';
-            str += '<span>'+fileName+'</span><br>';
-            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 /><br>';
-            str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
-            str += '</li></div>';
-            $(str).appendTo('#preview');
-          } 
-          reader.readAsDataURL(f);
-        }else{
-         alert("이미지가 아닙니다");
-        }
-        $(".delBtn").on("click", function(){
-        	$(this).closest("div").detach();
-        })
-        
-        
-        
-        
-      })//arr.forEach
-      
-      var count = $("li").length;      
-      if(count>1){
-      	alert("개수초과");
-      	$("#preview").find("div").last().detach();
-      }
-      
-    }
-  });
-  </script>
+                <div class="col-lg-2 ml-lg-auto col-md-2">
 
+                    <!-- Links -->
+                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
+                        <li>
+                            <a href="#" class="text-white">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white">
+                                Address
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-white">
+                                Creator
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-5">
 
+                    <!-- Links -->
+                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
+                        <li>
+                            <i class="fa fa-mobile"></i> 
+                            02-1234-5678
+                        </li>
+                        <li>
+                            <i class="fa fa-location-arrow"></i>
+                            서울 서초구 강남대로 459
+                        </li>
+                        <li>
+                            <i class="fa fa-globe"></i> Kim HyunJin , Koo MyungWoo
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- / .row -->
 
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <div class="row justify-content-md-center footer-copy">
+                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
+                    <p class="lead text-white-50">&copy; Copyright 
+                     What should We Eat Today? Co.Ltd.All rights reserved. </p>
+                </div>
+            </div>
+        </div>
+        <!-- / .container -->
+    </footer>
+
+    <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Global JS -->
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+     <script src="${pageContext.request.contextPath}/resources/assets/js/review.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
+     
+    <!-- Theme JS -->
+    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
+    
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
     // 우편번호 찾기 찾기 화면을 넣을 element
     var element_wrap = document.getElementById('wrap');
@@ -217,5 +518,7 @@
         element_wrap.style.display = 'block';
     }
 </script>
+
 </body>
+
 </html>

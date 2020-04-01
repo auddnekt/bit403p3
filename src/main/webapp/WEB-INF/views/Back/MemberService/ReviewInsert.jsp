@@ -24,6 +24,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/review.css">
     <title>What is eat today?</title>
+    
+    <style>
+    	.control-label{
+    		padding-top: 10px;
+    	}
+    
+    	.form-control{
+    		margin-bottom: 10px;
+    	}
+    </style>
 </head>
 
 <body id="page-top">
@@ -182,13 +192,36 @@
                             </div>
                             <!-- end message -->
                             
-                           	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${no}">    
+                           	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${no}">
+                           	<!-- <div class="form-group">
+				                    <label for="StoreHours" class="col-lg-2 control-label">평점</label>
+				                    <div class="col-lg-10">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="5점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="4점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="3점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="2점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="1점">
+				                    </div>
+				                </div> -->
+				            <div class="form-group">
+			                    <label for="StoreCount" class="col-lg-2 control-label">평점</label>
+			                    <div class="col-lg-10">
+			                        <select class="form-control" name="StoreCount" id="StoreCount">
+			                            <option value=5>굉장히 맛있어요! 또오고 싶을정도로 강추합니다! "5점"</option>
+			                            <option value=4>꽤 맛있습니다 입맛에 괜찮네요. "4점"</option>
+			                            <option value=3>음 그저 그렇네요. 한번 올정도는 되는거 같습니다. "3점"</option>
+			                            <option value=2>좀 별로네요. 다시 오기에는 생각을 좀 해봐야 되겠습니다. "2점"</option>
+			                            <option value=1>너무 맛없습니다. 다시는 안오겠습니다! "1점"</option>
+			                        </select>
+			                    </div>
+			                </div>    
 	                        <div class="row">
 	                            <div class="col-lg-12">
 	                                <div class="form-group">
 	                                    <textarea name="StoreReviewContent" name="StoreReviewContent" id="StoreReviewContent" cols="30" rows="12" class="form-control" placeholder="솔직한 리뷰를 입력해주세요~^^" accesskey=""required="required" ></textarea>
 	                                </div>
 	                            </div>
+	                            
 	                            
 	                            <div class="col-sm-2 imgUp">
 	                            <div class="imagePreview"></div>

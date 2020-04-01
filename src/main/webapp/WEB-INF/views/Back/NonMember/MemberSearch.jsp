@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<!-- 리플 개수 나타내기 -->
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -163,7 +163,7 @@
                 <div class="col-md-8 col-lg-8 text-center">
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>맛집 리스트</b>
+                        <b>회원추천 맛집 리스트</b>
                     </h2>
                     <!-- Subheading -->
                     <p class="mb-5">

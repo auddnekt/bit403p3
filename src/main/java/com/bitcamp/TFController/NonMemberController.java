@@ -37,6 +37,17 @@ public class NonMemberController {
 	private String uploadPath;
 
 	
+	@RequestMapping("/header")
+	public String header() {
+		return "Back/NonMember/Header";
+		
+	}
+	@RequestMapping("/footer")
+	public String footer() {
+		return "Back/NonMember/Footer";
+		
+	}
+	
 	
 	@RequestMapping("/main")
 	public String Main(Model model) {
@@ -116,8 +127,8 @@ public class NonMemberController {
 	}
 	
 	@RequestMapping("/memberinsertresult")
-	public String memberInsert(StoreListDTO dto, MultipartFile file) throws IOException, Exception {
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+	public String memberInsert(StoreListDTO dto/*, MultipartFile file*/)/* throws IOException, Exception */{
+		/*String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 
@@ -129,7 +140,7 @@ public class NonMemberController {
 		}
 
 		dto.setStoreImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-//		dto.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+//		dto.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);*/
 		nonmemberservice.insertresult(dto);
 		
 		return "redirect:/membersearch";
