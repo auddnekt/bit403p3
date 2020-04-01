@@ -57,12 +57,12 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">
                             BEST 맛집
                         </a>
                     </li>
@@ -163,11 +163,12 @@
                 <div class="col-md-8 col-lg-8 text-center">
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>회원추천 맛집 리스트</b>
+                        <b>회원 추천 맛집 리스트</b>
                     </h2>
                     <!-- Subheading -->
-                    <p class="mb-5">
-                       a list of delicious restaurants
+                    <p class="mb-5" style="font-size:20px;">
+                       a list of recommended restaurants<br>
+                        for members 
                     </p>
                 </div>
             </div>
@@ -320,18 +321,18 @@
        <nav aria-label="Page navigation">
          <ul class="pagination">
  		   <c:if test="${page.prev }">
-			  <li><a href="storesearch?currpage=${page.startBlock-1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">«</span></a></li>
+			  <li><a href="membersearch?currpage=${page.startBlock-1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">«</span></a></li>
 		   </c:if>
 		<c:forEach var = "index" begin="${page.startBlock }" end="${page.endBlock }">
 		   <c:if test = "${index  != page.currPage }">
-			 <li><a href="storesearch?currpage=${index }&search=${search }&searchtxt=${searchtxt }">${index }</a></li>
+			 <li><a href="membersearch?currpage=${index }&search=${search }&searchtxt=${searchtxt }">${index }</a></li>
 		   </c:if>
 		<c:if test = "${index  == page.currPage }">
 			<li class="active"><a href="#"><c:out value = "${index }"/></a></li>
 		</c:if>
 		</c:forEach>	
 			<c:if test="${page.next }">
-				<li><a href="storesearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
+				<li><a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
 			</c:if>
 			<li style="margin-left:91.5%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
          </ul>

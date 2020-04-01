@@ -168,10 +168,10 @@
                 <div class="col-md-8 col-lg-8 text-center">
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>리뷰작성</b>
+                        <b>리뷰 작성</b>
                     </h2>
                     <!-- Subheading -->
-                    <p class="mb-5">
+                    <p class="mb-5" style="font-size: 20px;">
                         Review Creation Page
                     </p>
                 </div>
@@ -207,11 +207,11 @@
 			                    <label for="StoreCount" class="col-lg-2 control-label">평점</label>
 			                    <div class="col-lg-10">
 			                        <select class="form-control" name="StoreCount" id="StoreCount">
-			                            <option value=5>굉장히 맛있어요! 또오고 싶을정도로 강추합니다! "5점"</option>
-			                            <option value=4>꽤 맛있습니다 입맛에 괜찮네요. "4점"</option>
+			                            <option value=5>굉장히 맛있어요! 또 오고 싶을정도로 강추 합니다! "5점"</option>
+			                            <option value=4>꽤 맛있습니다 입맛에 괜찮네요. 추천드립니다. "4점"</option>
 			                            <option value=3>음 그저 그렇네요. 한번 올정도는 되는거 같습니다. "3점"</option>
 			                            <option value=2>좀 별로네요. 다시 오기에는 생각을 좀 해봐야 되겠습니다. "2점"</option>
-			                            <option value=1>너무 맛없습니다. 다시는 안오겠습니다! "1점"</option>
+			                            <option value=1>너무 맛없습니다. 다시는 안오겠습니다 "1점"</option>
 			                        </select>
 			                    </div>
 			                </div>    

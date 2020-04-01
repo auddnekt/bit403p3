@@ -187,7 +187,7 @@
                     </h2>
                     <!-- Subheading -->
                     <p class="mb-5" style="font-size: 20px;">
-                        Review Creation Page
+                        Recommended restaurant registration
                     </p>
                 </div>
             </div>

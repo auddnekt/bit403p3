@@ -183,11 +183,11 @@
                 <div class="col-md-8 col-lg-8 text-center">
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>추천 음식점 수정</b>
+                        <b>음식점 정보 수정</b>
                     </h2>
                     <!-- Subheading -->
                     <p class="mb-5" style="font-size: 20px;">
-                        Review Creation Page
+                        Edit restaurant information
                     </p>
                 </div>
             </div>

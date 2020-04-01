@@ -134,4 +134,14 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.ReplyCount(no);
 	}
 
+	@Override
+	public int storehit(int no) {
+		return mapper.StoreHit(no);		
+	}
+
+	@Override
+	public void storeup(int no) {
+		mapper.StoreUp(no);		
+	}
+
 }

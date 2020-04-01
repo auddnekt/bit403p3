@@ -46,4 +46,8 @@ public interface TFmapper {
 
 	int ReplyCount(int no);
 
+	int StoreHit(int no);
+
+	void StoreUp(int no);
+
 }

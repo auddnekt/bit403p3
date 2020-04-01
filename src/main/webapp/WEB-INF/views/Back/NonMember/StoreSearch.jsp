@@ -59,7 +59,7 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
                             HOME
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/membersearch">
                             회원추천 맛집
                         </a>
                     </li>
@@ -168,7 +168,7 @@
                         <b>맛집 검색 결과</b>
                     </h2>
                     <!-- Subheading -->
-                    <p class="mb-5">
+                    <p class="mb-5" style="font-size:20px;">
                        a list of delicious restaurants
                     </p>
                 </div>

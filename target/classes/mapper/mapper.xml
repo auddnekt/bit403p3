@@ -154,5 +154,19 @@
 		from ReviewList2
 		where StoreNo=#{no};
      </select>
+     
+     <update id = "StoreHit" parameterType="com.bitcamp.TFDTO.StoreListDTO">
+     	update StoreInfo2
+		set
+		StoreHit=StoreHit+1
+		where StoreNo=#{no};
+     </update>
+     
+     <update id = "StoreUp" parameterType="com.bitcamp.TFDTO.StoreListDTO">
+     	update StoreInfo2
+     	set
+     	StoreUp=StoreUp+1
+     	where StoreNo=#{no}
+     </update>
 
   </mapper>

@@ -44,5 +44,9 @@ public interface NonMemberService {
 
 	int replyCount(int no);
 
+	int storehit(int no);
+
+	void storeup(int no);
+
 
 }

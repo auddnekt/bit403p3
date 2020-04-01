@@ -149,6 +149,7 @@ public class NonMemberController {
 	@RequestMapping("/memberdetail/{no}")
 	public String memberDetail(@PathVariable int no, Model model) {
 		
+		nonmemberservice.storehit(no);
 		StoreListDTO dto = nonmemberservice.detail(no);
 		model.addAttribute("dto", dto);
 		
@@ -160,6 +161,14 @@ public class NonMemberController {
 		
 		int ReplyCount = nonmemberservice.replyCount(no);
 		model.addAttribute("ReplyCount", ReplyCount);
+		
+		return "Back/MemberService/StoreDetail";
+	}
+	
+	@RequestMapping("/storeup/{no}")
+	public String storeUp(@PathVariable int no, Model model) {
+		
+		nonmemberservice.storeup(no);
 		
 		return "Back/MemberService/StoreDetail";
 	}

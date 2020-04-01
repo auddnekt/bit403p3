@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
+<!-- 추천 비동기처리하기
+	리플 수정하기
+ -->
 <html>
 <head>
     <!-- Required meta tags -->
@@ -26,6 +29,23 @@
     
     <title>What is eat today?</title>
 </head>
+<script>
+	$(document).ready(function(){
+		$(".fa-star").on("click", function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/storeup/${dto.storeNo}",
+				type:"get",
+				data : {
+					no:${dto.storeNo}
+					/* ,id:'${id}' = session*/
+				},
+				success : function(){
+					location.href = "${pageContext.request.contextPath}/memberdetail/${dto.storeNo}"
+				},
+			})
+		})
+	});
+</script>
 
 <body id="page-top">
 
@@ -212,7 +232,7 @@
                         <b>가게위치</b>
                     </h2>
                     <!-- Subheading -->
-                    <p class="mb-5">
+                    <p class="mb-5" style="font-size:20px;">
                         Store Location
                     </p>
         <!-- * 카카오맵 - 지도퍼가기 -->
