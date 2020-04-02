@@ -43,17 +43,30 @@
 				url:"${pageContext.request.contextPath}/storeup/${dto.storeNo}",
 				type:"get",
 				data : {
-					no:${dto.storeNo}
+					no: ${dto.storeNo};
 					/* ,id:'${id}' = session*/
 				},
 				success : function(){
-					var up =${dto.storeUp};
-					up=up+1;
-					/* location.href = "${pageContext.request.contextPath}/memberdetail/${dto.storeNo}" */
-					alert("추천완료");
+					replyCount();
 				},
 			})
 		})
+		
+		function replyCount(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/storeup/${dto.storeNo}",
+				type:"get",
+				data : {
+					no: ${dto.storeNo};
+					/* ,id:'${id}' = session*/
+				},
+				success : function(count){
+					$(".fa-up").html(count);
+				},
+			})
+		}
+		
+		replyCount();
 		
 
 	});
@@ -207,7 +220,7 @@
       
         <div class="icon">
                            <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
-                           <i class="fas fa-star">${dto.storeUp}</i>&nbsp&nbsp
+                           <i class="fas fa-star fa-up">${dto.storeUp}</i>&nbsp&nbsp
                            <i class="fas fa-pen">${ReplyCount }</i>
                          </div>
                           <p class="detailscore">${dto.storeScore}</p>
