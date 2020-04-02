@@ -11,6 +11,9 @@
 카루셀 foreach적용문제
 날씨 api
 날씨페이지 foreach적용문제
+모달창 수정
+최근 본목록
+Best 리뷰 수정
 
   -->
 
@@ -47,7 +50,7 @@
 		
 		
 		$(function(){
-			$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
+			$("#btn-open-dialog,#dialog-background,#-close-dialog").click(function () {
 				$("#my-dialog1, #dialog-background").toggle();
 			});
 			$("#btn2").click(function () {
@@ -67,13 +70,13 @@
 	    top : 50%;
 	    left: 50%;
 	    transform : translate(-50%, -50%);
-	    color: #007bff;
+	    color: white;
 	    font-weight: bolder;
 	    font-size:300%;
 	}
 	
 	.item_no1:hover {
-		color: #007bff;
+		color: white;
 		text-decoration: none;
 	}
 	
@@ -178,7 +181,7 @@
                              </form>  
                                 <%-- <form method="post" action="storesearch?currpage${page.startBlock }">
 									<input type = "text" class="form-control" name = "searchtxt">
-									<span class="input-group-btn">
+									<span class="input-group-">
                                     </span>
 									<input type = "submit" value = "검색">
 									<input type = "hidden" name = "search" value="">
@@ -398,8 +401,11 @@
                         <div class="icon">
                            <i class="fas fa-eye">${Member.storeHit }</i>&nbsp&nbsp
                            <i class="fas fa-star">${Member.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${Member.storeHit }</i>
-                            <p class="score">4.0</p>
+                           <i class="fas fa-pen">${Member.replyCount }</i>
+                         <c:if test="${Member.storeScore == null }">
+                         	<p class="score">0.0</p>
+                         </c:if>
+                         	<p class="score">${Member.storeScore }</p>
                             <span class="work-cat">${Member.storeName }</span>
                         </div>
                         <div class="overlay-content">
@@ -434,7 +440,7 @@
                         No Need to worry about pricing plan. You may have your own custom pricing plan .
                     </p>
 
-                    <a href="#contact" class="btn btn-primary">Contact Now</a>
+                    <a href="#contact" class=" btn-primary">Contact Now</a>
                     <p class="text-primary mt-3">*Pricing plan may vary to work load</p>
                 </div>
 

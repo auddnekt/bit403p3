@@ -48,5 +48,9 @@ public interface NonMemberService {
 
 	void storeup(int no);
 
+	ReviewListDTO replydetail(int no);
+
+	void replyupdateresult(ReviewListDTO dto);
+
 
 }

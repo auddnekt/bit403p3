@@ -9,15 +9,17 @@
       	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
         StoreClose, StoreHit, StoreUp
-        from StoreInfo2
+        from StoreInfo
       	order by StoreUp desc, StoreNo limit 4 offset 0
       	
      </select>
      <select id = "MemberBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+      	select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
-        from StoreInfo2
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo2 s
+        where StoreGrade = 'member'
       	order by StoreUp desc, StoreNo limit 3 offset 0
       	
      </select>
@@ -74,10 +76,11 @@
      
      <select id = "MemberSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
-        select StoreNo, StoreName, StoreGrade, (select avg(StoreCount) from ReviewList2 Where StoreNo=#{no})as StoreScore, StoreAddr, StoreCategori, StoreFood,
+        select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp, StoreImg
-        from StoreInfo2
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo2 s
         where StoreGrade = 'member'
 
         <![CDATA[order by StoreNo limit 6 offset #{endRow}]]>
@@ -167,6 +170,22 @@
      	set
      	StoreUp=StoreUp+1
      	where StoreNo=#{no}
+     </update>
+     
+     <select id = "ReplyDetail" resultType = "com.bitcamp.TFDTO.ReviewListDTO" parameterMap="hashmap">
+        select StoreReviewNo, StoreReviewDate,
+        StoreReviewContent, StoreCount, StoreNo
+        from ReviewList2
+     	where StoreReviewNo=#{no}
+     </select>
+
+     <update id = "ReplyUpdateResult" parameterType="com.bitcamp.TFDTO.ReviewListDTO">
+      update ReviewList2
+      set
+      StoreReviewContent=#{StoreReviewContent},
+      StoreCount=#{StoreCount}, StoreReviewDate=date_format(now(), '%Y-%m-%d')
+      where StoreReviewNo=#{StoreReviewNo};
+
      </update>
 
   </mapper>

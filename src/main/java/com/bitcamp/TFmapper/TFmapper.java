@@ -50,4 +50,8 @@ public interface TFmapper {
 
 	void StoreUp(int no);
 
+	ReviewListDTO ReplyDetail(int no);
+
+	void ReplyUpdateResult(ReviewListDTO dto);
+
 }

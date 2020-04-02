@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!--  -->
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -17,9 +12,9 @@
 
     <!-- Fontawseom Icon CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
-
+   
     <!-- Theme CSS -->
-             
+     
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -27,8 +22,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/review.css">
     <title>What is eat today?</title>
+    
+    <style>
+    	.control-label{
+    		padding-top: 10px;
+    	}
+    
+    	.form-control{
+    		margin-bottom: 10px;
+    	}
+    </style>
 </head>
 
 <body id="page-top">
@@ -39,7 +44,7 @@
         <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
                 <font color=lightgray size=6><b>오늘</b></font>
                 <font color=skyblue size=6><b>뭐</b></font>
                 <font color=orange size=6><b>먹지?</b></font>
@@ -57,12 +62,12 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+                        <a class="nav-link js-scroll-trigger" href="index.html">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">
+                        <a class="nav-link js-scroll-trigger" href="#">
                             BEST 맛집
                         </a>
                     </li>
@@ -159,192 +164,86 @@
     ================================================== -->
     <section class="section" id="feature" >
        <div class="container">
-          <div class="row justify-content-center mb-4">
+           <div class="row justify-content-center mb-4">
                 <div class="col-md-8 col-lg-8 text-center">
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>회원 추천 맛집 리스트</b>
+                        <b>리뷰 수정</b>
                     </h2>
                     <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
-                       a list of recommended restaurants<br>
-                        for members 
+                    <p class="mb-5" style="font-size: 20px;">
+                        Review Creation Page
                     </p>
                 </div>
             </div>
-           <div class="row justify-content-center">
-              <c:forEach var = "Store" items = "${StoreSearch }">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
+            <!-- / .row -->
 
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">${Store.storeHit }</i>&nbsp&nbsp
-                           <i class="fas fa-star">${Store.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${Store.replyCount }</i>
-                         </div>
-                         <c:if test="${Store.storeScore == null }">
-                         	<p class="score">0.0</p>
-                         </c:if>
-                          <p class="score">${Store.storeScore }</p>
-                           <p class="work-cat">${Store.storeName }</p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="${pageContext.request.contextPath }/replyupdateresult" method="post" id="main_contact_form" class="contact_form">
+                        <!-- form message -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                        Your message was sent successfully.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end message -->
                             
-                        </div>
-                        <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${Store.storeNo}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>   
-             </c:forEach>
-                
-                 <!-- <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="assets/img/pizza.jpg" alt="portfolio">
-
-                         <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                         </div>
-                           <p class="score">4.3</p>
-                           <p class="work-cat">피자말레오</p>
-                        </div>
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
+                           	<input type = "hidden" name = 'StoreReviewNo' id = 'StoreReviewNo' value = "${dto.storeReviewNo}">
+                           	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${dto.storeNo}">
+                           	<!-- <div class="form-group">
+				                    <label for="StoreHours" class="col-lg-2 control-label">평점</label>
+				                    <div class="col-lg-10">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="5점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="4점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="3점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="2점">
+				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="1점">
+				                    </div>
+				                </div> -->
+				            <div class="form-group">
+			                    <label for="StoreCount" class="col-lg-2 control-label">평점</label>
+			                    <div class="col-lg-10">
+			                        <select class="form-control" name="StoreCount" id="StoreCount">
+			                            <option value=5>굉장히 맛있어요! 또 오고 싶을정도로 강추 합니다! "5점"</option>
+			                            <option value=4>꽤 맛있습니다 입맛에 괜찮네요. 추천드립니다. "4점"</option>
+			                            <option value=3>음 그저 그렇네요. 한번 올정도는 되는거 같습니다. "3점"</option>
+			                            <option value=2>좀 별로네요. 다시 오기에는 생각을 좀 해봐야 되겠습니다. "2점"</option>
+			                            <option value=1>너무 맛없습니다. 다시는 안오겠습니다 "1점"</option>
+			                        </select>
+			                    </div>
+			                </div>    
+	                        <div class="row">
+	                            <div class="col-lg-12">
+	                                <div class="form-group">
+	                                    <textarea name="StoreReviewContent" name="StoreReviewContent" id="StoreReviewContent" cols="30" rows="12" class="form-control" placeholder="솔직한 리뷰를 입력해주세요~^^" accesskey=""required="required" >${dto.storeReviewContent }</textarea>
+	                                </div>
+	                            </div>
+	                            
+	                            
+	                            <div class="col-sm-2 imgUp">
+	                            <div class="imagePreview"></div>
+	                            <label class="btn btn-primary">
+	                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+	                            </label>
+	                            </div>
+	                            <i class="fa fa-plus imgAdd"></i>
+	                            <div class="col-lg-12">
+	                                <div class="submit text-center">
+	                                   <input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소">&nbsp;&nbsp;
+	                                   <input name="submit" type="submit" class="btn btn-primary btn-lg" value="수정완료">
+	                                </div>
+	                            </div>
+	                        </div>
+                        
+                    </form>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="assets/img/koreansoup.jpg" alt="portfolio">
-
-                         <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                         </div>
-                           <p class="score">4.0</p>
-                           <p class="work-cat" >페스타마레</p>
-                        </div>
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
-            
-            <!-- <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="assets/img/nuddle.jpg" alt="portfolio">
-
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                         </div>
-                          <p class="score">3.9</p>
-                           <p class="work-cat">국수명가</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="#"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="assets/img/sushi.jpg" alt="portfolio">
-
-                         <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                           
-                         </div>
-                          <p class="score">3.5</p>
-                          <p class="work-cat" >스시킹</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="assets/img/koreansoup.jpg" alt="portfolio">
-
-                         <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
-                         </div>
-                          <p class="score">3.4</p>
-                           <p class="work-cat">기사식당</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="single-portfolio.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            
-<!--             <nav aria-label="Page navigation">
-            
-            <ul class="pagination">
-            disabled가 있으면 마우스 커서가 금지표시로 바뀐다.
-            <li class=disabled>
-            <a href="#" aria-label="Previous">
-            <span aria-hidden="true">«</span>
-            </a>
-            </li>
-            현재 페이지
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li>
-            <a href="#" aria-label="Next">
-            <span aria-hidden="true">»</span>
-            </a>
-            </li>
-            </ul>
-            </nav>
-        / .container -->
-       <nav aria-label="Page navigation">
-         <ul class="pagination">
- 		   <c:if test="${page.prev }">
-			  <li><a href="membersearch?currpage=${page.startBlock-1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">«</span></a></li>
-		   </c:if>
-		<c:forEach var = "index" begin="${page.startBlock }" end="${page.endBlock }">
-		   <c:if test = "${index  != page.currPage }">
-			 <li><a href="membersearch?currpage=${index }&search=${search }&searchtxt=${searchtxt }">${index }</a></li>
-		   </c:if>
-		<c:if test = "${index  == page.currPage }">
-			<li class="active"><a href="#"><c:out value = "${index }"/></a></li>
-		</c:if>
-		</c:forEach>	
-			<c:if test="${page.next }">
-				<li><a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
-			</c:if>
-			<li style="margin-left:91.5%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
-         </ul>
-         
-      </nav>
-        	
+        <!-- / .container -->
         </div>
-        
-        
     </section>
     
     <!-- FOOTER
@@ -422,6 +321,7 @@
     <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
+     <script src="${pageContext.request.contextPath}/resources/assets/js/review.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
      

@@ -149,16 +149,20 @@ public class NonMemberController {
 	@RequestMapping("/memberdetail/{no}")
 	public String memberDetail(@PathVariable int no, Model model) {
 		
+		/*조회수와 디테일 데이터*/
 		nonmemberservice.storehit(no);
 		StoreListDTO dto = nonmemberservice.detail(no);
 		model.addAttribute("dto", dto);
 		
+		/*최근 본 목록*/
 		nonmemberservice.view(no);
 		model.addAttribute("no", no);
 		
+		/*리플 리스트*/
 		List<ReviewListDTO> reply = nonmemberservice.replylist(no);
 		model.addAttribute("reply", reply);
 		
+		/*리플 갯수*/
 		int ReplyCount = nonmemberservice.replyCount(no);
 		model.addAttribute("ReplyCount", ReplyCount);
 		
@@ -213,6 +217,15 @@ public class NonMemberController {
 		return "Back/MemberService/ReviewInsert";
 	}
 	
+	@RequestMapping("/replydetail/{no}")
+	public String replyDetail(@PathVariable int no, Model model) {
+		
+		ReviewListDTO dto = nonmemberservice.replydetail(no);
+		model.addAttribute("dto", dto);
+				
+		return "Back/NonMember/ReviewDetail";
+	}
+	
 	
 	@RequestMapping("/replyinsertresult")
 	public String replyInsertResult(ReviewListDTO dto) {
@@ -220,6 +233,22 @@ public class NonMemberController {
 		nonmemberservice.replyinsert(dto);
 		int no = dto.getStoreNo();
 		
+		return "redirect:/memberdetail/"+no;
+	}
+	
+	@RequestMapping("/replyupdate/{no}")
+	public String replyUpdate(@PathVariable int no, Model model) {
+		
+		ReviewListDTO dto = nonmemberservice.replydetail(no);
+		model.addAttribute("dto", dto);
+		
+		return "Back/MemberService/ReviewUpdate";
+	}
+	
+	@RequestMapping("/replyupdateresult")
+	public String replyUpdateResult(ReviewListDTO dto) {
+		nonmemberservice.replyupdateresult(dto);
+		int no = dto.getStoreNo();
 		return "redirect:/memberdetail/"+no;
 	}
 	

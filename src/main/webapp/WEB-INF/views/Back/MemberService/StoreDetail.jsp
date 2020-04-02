@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <!-- 추천 비동기처리하기
-	리플 수정하기
+	리플 모달창 조작
+	지도 api 적용
+	삭제버튼
  -->
 <html>
 <head>
@@ -28,6 +30,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
     
     <title>What is eat today?</title>
+    
+    <!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    
 </head>
 <script>
 	$(document).ready(function(){
@@ -40,10 +47,15 @@
 					/* ,id:'${id}' = session*/
 				},
 				success : function(){
-					location.href = "${pageContext.request.contextPath}/memberdetail/${dto.storeNo}"
+					var up =${dto.storeUp};
+					up=up+1;
+					/* location.href = "${pageContext.request.contextPath}/memberdetail/${dto.storeNo}" */
+					alert("추천완료");
 				},
 			})
 		})
+		
+
 	});
 </script>
 
@@ -196,7 +208,7 @@
         <div class="icon">
                            <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
                            <i class="fas fa-star">${dto.storeUp}</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
+                           <i class="fas fa-pen">${ReplyCount }</i>
                          </div>
                           <p class="detailscore">${dto.storeScore}</p>
                            <p class="detailstore">${dto.storeName}</p>
@@ -269,7 +281,7 @@
             <ul class="RestaurantReviewList__ReviewList">
 			<c:forEach var = "reply" items = "${reply }">
             <li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-		<!--   <a class="RestaurantReviewItem__Link" href="/reviews/NzI0MzYy" target="_blank"> -->
+		   <a class="RestaurantReviewItem__Link" href="${pageContext.request.contextPath }/replydetail/${reply.storeReviewNo}">
 			    <div class="RestaurantReviewItem__User">
 			      <!--<div class="RestaurantReviewItem__UserPictureWrap">
 			        <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
@@ -310,7 +322,7 @@
 			      <span style="font-size: 150%;" class="RestaurantReviewItem__RatingText">${reply.storeCount}점</span>
 			    </div>
 		
-		<!--   </a> -->
+			   </a>
 		
 			</li>
 			</c:forEach>

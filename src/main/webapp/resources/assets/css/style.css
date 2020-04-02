@@ -1449,6 +1449,10 @@ img {
             color: #ff792a;
             font-size: 12px;
         }
+        
+        a:hover{
+        	text-decoration: none;
+        }
 
 
 

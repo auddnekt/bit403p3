@@ -144,4 +144,14 @@ public class NonMemberServiceImple implements NonMemberService{
 		mapper.StoreUp(no);		
 	}
 
+	@Override
+	public ReviewListDTO replydetail(int no) {
+		return mapper.ReplyDetail(no);
+	}
+
+	@Override
+	public void replyupdateresult(ReviewListDTO dto) {
+		mapper.ReplyUpdateResult(dto);
+	}
+
 }

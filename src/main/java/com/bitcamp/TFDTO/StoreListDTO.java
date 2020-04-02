@@ -23,6 +23,7 @@ public class StoreListDTO {
 	private String StoreScore;
 	private String StoreHit;
 	private String StoreUp;
+	private String ReplyCount;
 	private String StoreImg;
 	private int UserNo;
 	private String StoreImage;
