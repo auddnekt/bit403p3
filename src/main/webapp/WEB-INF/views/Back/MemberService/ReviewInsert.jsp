@@ -37,8 +37,8 @@
 </head>
 
 <body id="page-top">
-
-    <!-- NAVBAR
+<jsp:include page="/header" ></jsp:include>
+<%--     <!-- NAVBAR
     ================================================= -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
@@ -153,7 +153,7 @@
             
         </div>
         <!-- / .container -->
-    </section>
+    </section> --%>
 
     <!-- SECTIONS
     ================================================== -->
@@ -193,6 +193,7 @@
                             <!-- end message -->
                             
                            	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${no}">
+                           	 
                            	<!-- <div class="form-group">
 				                    <label for="StoreHours" class="col-lg-2 control-label">평점</label>
 				                    <div class="col-lg-10">
@@ -203,7 +204,15 @@
 				                        <input type="button" class="btn btn-primary btn-count" name="StoreHours" id="StoreHours" value="1점">
 				                    </div>
 				                </div> -->
+
+                            <div class="form-group">
+			                    <label for="UserNickName" class="col-lg-2 control-label">닉네임</label>
+			                    <div class="col-lg-10">
+			                        <input type="text" class="form-control" name="UserNickName" id="UserNickName" value = "${sessionScope.userNickName} " readonly >
+			                    </div>
+			                </div>
 				            <div class="form-group">
+				            
 			                    <label for="StoreCount" class="col-lg-2 control-label">평점</label>
 			                    <div class="col-lg-10">
 			                        <select class="form-control" name="StoreCount" id="StoreCount">
@@ -244,16 +253,16 @@
         <!-- / .container -->
         </div>
     </section>
-    
+    <jsp:include page="/footer" ></jsp:include>
     <!-- FOOTER
     ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
+<!--     <footer class="top-padding bg-dark">
+        Content
         <div class="container">
             <div class="row align-self-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        <!-- Brand -->
+                        Brand
                         <a href="#" class="footer-brand text-white">
                            <font color=lightgray size=6><b>오늘</b></font>
                             <font color=skyblue size=6><b>뭐</b></font>
@@ -264,7 +273,7 @@
 
                 <div class="col-lg-2 ml-lg-auto col-md-2">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <a href="#" class="text-white">
@@ -285,7 +294,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <i class="fa fa-mobile"></i> 
@@ -301,7 +310,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- / .row -->
+            / .row
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
@@ -310,8 +319,8 @@
                 </div>
             </div>
         </div>
-        <!-- / .container -->
-    </footer>
+        / .container
+    </footer> -->
 
     <!-- JAVASCRIPT
     ================================================== -->

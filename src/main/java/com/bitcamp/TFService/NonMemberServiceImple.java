@@ -9,12 +9,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.TFController.NonMemberController;
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.UserDTO;
 import com.bitcamp.TFDTO.UserInfoDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 import com.bitcamp.TFmapper.TFmapper;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service("nonmemberservice")
 public class NonMemberServiceImple implements NonMemberService{
 
@@ -70,8 +75,12 @@ public class NonMemberServiceImple implements NonMemberService{
 	}
 
 	@Override
-	public StoreListDTO detail(int no) {
-		return mapper.MemberDetail(no);
+	public StoreListDTO detail(String userid, int no) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("userid", userid);
+		hm.put("no", no);
+				
+		return mapper.MemberDetail(hm);
 	}
 
 	@Override
@@ -140,11 +149,6 @@ public class NonMemberServiceImple implements NonMemberService{
 	}
 
 	@Override
-	public void storeup(int no) {
-		mapper.StoreUp(no);		
-	}
-
-	@Override
 	public ReviewListDTO replydetail(int no) {
 		return mapper.ReplyDetail(no);
 	}
@@ -154,4 +158,82 @@ public class NonMemberServiceImple implements NonMemberService{
 		mapper.ReplyUpdateResult(dto);
 	}
 
+	@Override
+	public List<StoreListDTO> WeatherBestSearch(String weather) {
+		return mapper.WeatherBestSearch(weather);
+	}
+
+	@Override
+	public UserDTO login(String userId, String userPw) {
+
+		UserDTO dto = new UserDTO();
+		dto.setUserId(userId);
+		dto.setUserPw(userPw);
+		return mapper.login(dto);
+	
+	}
+
+	@Override
+	public void userjoin(UserDTO dto) {
+		
+		mapper.userjoin(dto);	
+	}
+
+	@Override
+	public int idCheck(String userId) {
+		
+		int result=mapper.idCheck(userId);
+			
+		return result;
+	}
+	
+	@Override
+	public void storeup(int storeno, String userid) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("userid", userid);
+		hm.put("storeno", storeno);
+		
+		mapper.StoreUp(hm);
+	}
+	
+	@Override
+	public void storeupcount(int storeno) {
+		mapper.StoreUpCount(storeno);
+		
+	}
+
+	@Override
+	public void storedown(String userid) {
+		
+		log.info("param data2-1...."+userid);
+		mapper.Storedown(userid);	
+		
+	}
+
+	@Override
+	public void storedowncount(int storeno) {
+		log.info("param data2-2...."+storeno);
+		mapper.StoredownCount(storeno);
+		
+	}
+
+	@Override
+	public int storetotalupcount(int storeno) {
+		return mapper.StoretotalupCount(storeno);
+	}
+
+	@Override
+	public int storeupaction(String userid, int storeno) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("userid", userid);
+		hm.put("storeno", storeno);
+		
+		return mapper.StoreUpAction(hm);
+	}
+
+	@Override
+	public List<StoreListDTO> MemberBest() {
+		return mapper.MemberBest();
+	}
+	
 }

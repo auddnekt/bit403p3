@@ -1,46 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!--  -->
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="Coral - Onepage portfolio Template">
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
+     <link href="${pageContext.request.contextPath}/resources/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
              
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
       
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
+      
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet" />
     
     <title>What is eat today?</title>
+
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
-
 <body id="page-top">
-   <jsp:include page= "/header" ></jsp:include>
-
-    <!-- NAVBAR
-    ================================================= -->
-<%--     <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
-        <div class="container">
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+     <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
                 <font color=lightgray size=6><b>오늘</b></font>
                 <font color=skyblue size=6><b>뭐</b></font>
                 <font color=orange size=6><b>먹지?</b></font>
@@ -58,12 +54,12 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+                        <a class="nav-link js-scroll-trigger" href="index.html">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">
+                        <a class="nav-link js-scroll-trigger" href="#">
                             BEST 맛집
                         </a>
                     </li>
@@ -105,7 +101,7 @@
     <section class="section section-top section-full">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -135,7 +131,6 @@
                         <p class="lead text-white text-center mb-5">
                             
                         </p>
-
                         <!-- Button -->
                         <p class="text-center mb-0" >
                             <a href="#" target="_blank" class="btn btn-primary ">
@@ -149,135 +144,71 @@
             
         </div>
         <!-- / .container -->
-    </section> --%>
-
-    <!-- SECTIONS
-    ================================================== -->
-    <!-- PAGES
-    ================================================== -->
-
-    <!-- FEATURES
-    ================================================== -->
-    <section class="section" id="feature" >
-       <div class="container">
-          <div class="row justify-content-center mb-4">
-                <div class="col-md-8 col-lg-8 text-center">
-                    <!-- Heading -->
-                    <h2 class="lg-title mb-2">
-                        <b>회원 추천 맛집 베스트</b>
-                    </h2>
-                    <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
-                       a list of recommended restaurants<br>
-                        for members 
-                    </p>
-                </div>
-            </div>
-           <div class="row justify-content-center">
-              <c:forEach var = "MemberBest" items = "${MemberBest }">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
-
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">${MemberBest.storeHit }</i>&nbsp&nbsp
-                           <i class="fas fa-star">${MemberBest.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${MemberBest.replyCount }</i>
-                         </div>
-                         <c:if test="${MemberBest.storeScore == null }">
-                         	<p class="score">0.0</p>
-                         </c:if>
-                          <p class="score">${MemberBest.storeScore }</p>
-                           <p class="work-cat">${MemberBest.storeName }</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${MemberBest.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>   
-             </c:forEach>
-                
- 
-            </div>
-            <br>
-            
-            
-            <div class="row justify-content-center mb-4">
-                <div class="col-md-8 col-lg-8 text-center">
-                    <!-- Heading -->
-                    <h2 class="lg-title mb-2">
-                        <b>회원 추천 맛집 리스트</b>
-                    </h2>
-                    <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
-                       a list of recommended restaurants<br>
-                        for members 
-                    </p>
-                </div>
-            </div>
-           <div class="row justify-content-center">
-              <c:forEach var = "Store" items = "${StoreSearch }">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
-
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">${Store.storeHit }</i>&nbsp&nbsp
-                           <i class="fas fa-star">${Store.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${Store.replyCount }</i>
-                         </div>
-                         <c:if test="${Store.storeScore == null }">
-                         	<p class="score">0.0</p>
-                         </c:if>
-                          <p class="score">${Store.storeScore }</p>
-                           <p class="work-cat">${Store.storeName }</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${Store.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>   
-             </c:forEach>
-                
- 
-            </div>
-            
-
-       <nav aria-label="Page navigation">
-         <ul class="pagination">
- 		   <c:if test="${page.prev }">
-			  <li><a href="membersearch?currpage=${page.startBlock-1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">«</span></a></li>
-		   </c:if>
-		<c:forEach var = "index" begin="${page.startBlock }" end="${page.endBlock }">
-		   <c:if test = "${index  != page.currPage }">
-			 <li><a href="membersearch?currpage=${index }&search=${search }&searchtxt=${searchtxt }">${index }</a></li>
-		   </c:if>
-		<c:if test = "${index  == page.currPage }">
-			<li class="active"><a href="#"><c:out value = "${index }"/></a></li>
-		</c:if>
-		</c:forEach>	
-			<c:if test="${page.next }">
-				<li><a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
-			</c:if>
-			<% if(session.getAttribute("userId")!=null){  %>
-						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
-			<% } %>
-			
-			
-         </ul>
-         
-      </nav>
-        	
-        </div>
-        
-        
     </section>
-    
-    <!-- FOOTER
+<!-- header
+    ================================================== -->
+	<section class="section" id="feature" >
+       <div class="container">
+           <div class="row justify-content-center mb-4">
+                <div class="col-md-8 col-lg-8 text-center">
+                    <!-- Heading -->
+                    <h2 class="lg-title mb-2">
+                        <b>공지사항 수정</b>
+                    </h2>
+                    <!-- Subheading -->
+                    <p class="mb-5">
+                        Notice Modify Page
+                    </p>
+                </div>
+            </div>
+            <!-- / .row -->
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form method="post" action = "${pageContext.request.contextPath}/noticeupdateresult">
+                        <!-- form message -->
+                        
+                            <!-- end message -->
+                        <input type = "hidden" name = "NoticeNo" id = "NoticeNo" value = "${dto.noticeNo}"><br>    
+                        <div class="row">
+                           
+                               <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" name="NoticeTitle" id="NoticeTitle" cols="30" rows="1" class="form-control"
+                                    value = "${dto.noticeTitle}" accesskey=""required="required" placeholder="제목을 입력해주세요" >
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <textarea name="NoticeContent" id="NoticeContent" cols="30" rows="12" class="form-control" 
+                                      accesskey=""required="required" placeholder="내용을 입력해주세요">${dto.noticeTitle}</textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-2 imgUp">
+                            <div class="imagePreview"></div>
+                            <label class="btn btn-primary">
+                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            </label>
+                            </div>
+                            <i class="fa fa-plus imgAdd"></i>
+                            <div class="col-lg-12">
+                                <div class="submit text-center">
+                                
+                                  <input name="reset" type="button" class="btn btn-danger btn-lg" value="취소"onClick="history.go(-1)">&nbsp;&nbsp;
+                                    <input type="submit" class="btn btn-primary btn-lg" value="수정완료">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <!-- / .container -->
+        </div>
+    </section>
+
+<!-- FOOTER
     ================================================== -->
     <footer class="top-padding bg-dark">
         <!--Content -->
@@ -348,16 +279,14 @@
     <!-- JAVASCRIPT
     ================================================== -->
     <!-- Global JS -->
-    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/ajax-contact.js"></script>
      
     <!-- Theme JS -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
-
+    <script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
 </body>
-
 </html>

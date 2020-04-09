@@ -52,10 +52,10 @@
 </head>
 
 <body id="page-top">
-
+	<jsp:include page="/header" ></jsp:include>
     <!-- NAVBAR
     ================================================= -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+    <%-- <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
 
             <!-- Brand -->
@@ -168,7 +168,7 @@
             
         </div>
         <!-- / .container -->
-    </section>
+    </section> --%>
 
     <!-- SECTIONS
     ================================================== -->
@@ -223,6 +223,13 @@
                         <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="상호명" maxlength="30">
                     </div>
                 </div>-->
+                
+                <div class="form-group">
+			                    <label for="UserNickName" class="col-lg-2 control-label">닉네임</label>
+			                    <div class="col-lg-10">
+			                        <input type="text" class="form-control" name="UserNickName" id="UserNickName" value = "${sessionScope.userNickName} " readonly >
+			                    </div>
+			                </div>
                 <div class="form-group">
                     <label for="StoreName" class="col-lg-2 control-label">음식점 이름</label>
                     <div class="col-lg-10">
@@ -334,41 +341,39 @@
                         </select>
                     </div>
                 </div>
-                <!--<div class="col-sm-2 imgUp">
-                            <div class="imagePreview"></div>
+                <div class="row" style = "clear: both; padding : 15px;">
+                <div class="col-sm-2 imgUp">
+                            <div class="imagePreview"><img src="" /></div>
                             <label class="btn btn-primary">
-                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            UPLOAD<input type="file" name = "file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                             </label>
                             </div>
                             <i class="fa fa-plus imgAdd"></i>
-                <div class="col-lg-12">
-                                <div class="submit text-center">
-                                   <a href="#"><input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소"></a>&nbsp;&nbsp;
-                                    <a href="#"><input name="submit" type="submit" class="btn btn-primary btn-lg" value="작성완료"></a>
-                                </div>
-                            </div>-->
+                
                <div class="col-lg-12">
 	                            <div class="submit text-center">
 	                               <input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소"></a>&nbsp;&nbsp;
 	                               <input name="submit" type="submit" class="btn btn-primary btn-lg" value="작성완료"></a>
 	                            </div>
 	                        </div>
+	                        <%=request.getRealPath("/") %>
+	                    </div>
                     </form>
                 </div>
             </div>
         <!-- / .container -->
         </div>
     </section>
-    
+    <jsp:include page="/footer" ></jsp:include>
     <!-- FOOTER
     ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
+    <!-- <footer class="top-padding bg-dark">
+        Content
         <div class="container">
             <div class="row align-self-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        <!-- Brand -->
+                        Brand
                         <a href="#" class="footer-brand text-white">
                            <font color=lightgray size=6><b>오늘</b></font>
                             <font color=skyblue size=6><b>뭐</b></font>
@@ -379,7 +384,7 @@
 
                 <div class="col-lg-2 ml-lg-auto col-md-2">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <a href="#" class="text-white">
@@ -400,7 +405,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <i class="fa fa-mobile"></i> 
@@ -416,7 +421,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- / .row -->
+            / .row
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
@@ -425,8 +430,8 @@
                 </div>
             </div>
         </div>
-        <!-- / .container -->
-    </footer>
+        / .container
+    </footer> -->
 
     <!-- JAVASCRIPT
     ================================================== -->
@@ -444,6 +449,20 @@
     
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+	
+	<!--이미지-->
+	$(".uploadFile img").change(function(){
+		   if(this.files && this.files[0]) {
+		    var reader = new FileReader;
+		    reader.onload = function(data) {
+		     $(".imagePreview img").attr("src", data.target.result).width(500);        
+		    }
+		    reader.readAsDataURL(this.files[0]);
+		   }
+	});
+	
+	
+	
     // 우편번호 찾기 찾기 화면을 넣을 element
     var element_wrap = document.getElementById('wrap');
 

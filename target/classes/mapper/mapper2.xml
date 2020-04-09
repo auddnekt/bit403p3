@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bitcamp.TFmapper.TFmapper2">
+	<parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
+	<resultMap type="com.bitcamp.TFDTO.NoticeListDTO" id="dto"></resultMap>
+	
+	<select id="NoticeList" resultMap="dto">
+     select NoticeNo
+     		,NoticeTitle
+     		,NoticeContent
+     		,NoticeWriter
+     		,date_format(now(), '%Y-%m-%d') as InsertTime
+     from tf_notice
+     </select>
+     
+      <insert id = "NoticeInsert" parameterType="com.bitcamp.TFDTO.NoticeListDTO">
+        insert into tf_notice(NoticeNo,NoticeTitle,NoticeContent,NoticeWriter,InsertTime)
+        values(0,#{NoticeTitle}, #{NoticeContent}, #{NoticeWriter},date_format(now(), '%Y-%m-%d'))
+     </insert>
+     
+      <delete id="NoticeDelete" parameterType="int">
+        delete from tf_notice
+      where NoticeNo=#{NoticeNo};
+     </delete>
+     
+     <update id = "NoticeUpdate" parameterType="com.bitcamp.TFDTO.NoticeListDTO">
+      update tf_notice
+      set
+      		 NoticeTitle=#{NoticeTitle}
+      		 ,NoticeContent=#{NoticeContent}
+      where 
+      		NoticeNo=#{NoticeNo};
+     </update>
+     
+     <select id = "NoticeDetail" resultMap = "dto" parameterType="int">
+        select NoticeNo
+        		,NoticeTitle
+        		,NoticeContent
+        		,NoticeWriter
+        		,date_format(now(), '%Y-%m-%d') as InsertTime
+        from tf_notice
+     	where NoticeNo=#{NoticeNo};
+     </select>
+           
+  </mapper>

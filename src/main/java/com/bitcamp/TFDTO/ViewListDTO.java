@@ -11,4 +11,9 @@ public class ViewListDTO {
 	private int ViewNo;
 	private String StoreName;
 	private String StoreAddr;
+	
+	private String id;
+	private String main;
+	private String description;
+	private String icon;
 }

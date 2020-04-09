@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class StoreListDTO {
 	private int StoreNo;
+	private String UserNickName;
 	private String StoreName;
 	private String StoreGrade;
 	private String StoreCategori;
@@ -26,6 +27,7 @@ public class StoreListDTO {
 	private String ReplyCount;
 	private String StoreImg;
 	private int UserNo;
-	private String StoreImage;
 	private int CodeNo;
+	private int StoreUpActive;
+	
 }

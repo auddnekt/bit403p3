@@ -4,7 +4,6 @@
 <!DOCTYPE>
 <!-- 추천 비동기처리하기
 	리플 모달창 조작
-	지도 api 적용
 	삭제버튼
  -->
 <html>
@@ -31,52 +30,132 @@
     
     <title>What is eat today?</title>
     
+    <!-- map api -->
+    <script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d1ca6d6385e68c28b0db55333705fbba&libraries=services,clusterer,drawing"></script>
+	
+    
     <!-- jQuery Modal -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     
 </head>
 <script>
-	$(document).ready(function(){
-		$(".fa-star").on("click", function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/storeup/${dto.storeNo}",
-				type:"get",
-				data : {
-					no: ${dto.storeNo};
-					/* ,id:'${id}' = session*/
-				},
-				success : function(){
-					replyCount();
-				},
-			})
-		})
-		
-		function replyCount(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/storeup/${dto.storeNo}",
-				type:"get",
-				data : {
-					no: ${dto.storeNo};
-					/* ,id:'${id}' = session*/
-				},
-				success : function(count){
-					$(".fa-up").html(count);
-				},
-			})
-		}
-		
-		replyCount();
-		
+$(document).ready(function(){
+	
+	getLocation();
+	
+	var upDown = "up";
 
+	$(".recomend").on("click", function(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/storeup",
+			type:"GET",
+			data : {
+				 storeno: ${dto.storeNo},
+				 userid	: '${sessionScope.userId}',
+				 upDown : upDown
+			}
+			,
+			success : function(data){
+
+				if(data == 1) {
+					$(".recomend").html("<i class='far fa-star fa-starup' style='color: #8C8C8C' id='b'>추천</i>")
+					alert("추천을 취소하였습니다");
+				} else {
+					alert("추천 하였습니다");
+					$(".recomend").html("<i class='far fa-star fa-starup' style='color: #4374D9' id='a'>추천</i>")
+				}
+				var action = data;
+				
+				
+				/* $(".fa-up").html(action); */
+
+				$.ajax({
+					url:"${pageContext.request.contextPath}/storeupcount",
+					type:"GET",
+					data : {
+						 storeno: ${dto.storeNo},
+						 userid	: '${sessionScope.userId}',
+						 upDown : action
+					}
+					,
+					success : function(data){
+						$(".fa-up").html(data);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				});
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
 	});
+});
+	
+	
+	/* 지도 api */
+	function getLocation() {
+
+		var mapContainer = document.getElementById('StoreMap'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표 
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	
+	var addr = "${dto.storeAddr}";
+	
+	geocoder.addressSearch(addr, function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dto.storeName}</div>'
+	        });
+	        infowindow.open(map, marker);
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});
+	};
+	getLocation();
 </script>
+<style>
+	.detailcontent{
+		/* margin-top: -10px; */
+		line-height: 1.4;
+	}
+	.fa-starup:hover {
+	color : #4374D9;
+	}
+</style>
 
 <body id="page-top">
-
+	<jsp:include page="/header" ></jsp:include>
     <!-- NAVBAR
     ================================================= -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+   <%--  <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
 
             <!-- Brand -->
@@ -189,7 +268,7 @@
             
         </div>
         <!-- / .container -->
-    </section>
+    </section> --%>
 
     <!-- SECTIONS
     ================================================== -->
@@ -200,12 +279,22 @@
     ================================================== -->
     <section class="section" id="feature" >
          <div class="detailicon">
-         <a href="${pageContext.request.contextPath }/replyinsert/${dto.storeNo}" class="write">
-          <i class="fas fa-pen">리뷰작성</i>
-        </a>
-         <a href="#" class="recomend">
-          <i class="far fa-star">추천</i>
-        </a>
+         
+        <% if(session.getAttribute("userId")!=null){  %>
+			<a href="${pageContext.request.contextPath }/replyinsert/${dto.storeNo}" class="write">
+	          <i class="fas fa-pen">${storeUpAction }리뷰작성</i>
+	        </a>
+	        
+	        <a href="javascript:void(0);" class="recomend">
+	        	<c:if test="${StoreUpAction == 0 }">
+	        		<i class="far fa-star fa-starup" style="color: #8C8C8C" id="a">추천</i>
+	        	</c:if>
+	        	<c:if test="${StoreUpAction == 1 }">
+	        		<i class="far fa-star fa-starup" style="color: #4374D9" id="a">추천</i>
+	        	</c:if>
+	        </a>
+		<% } %>
+
         </div>
         <hr>
         <div class="container">
@@ -222,10 +311,14 @@
                            <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
                            <i class="fas fa-star fa-up">${dto.storeUp}</i>&nbsp&nbsp
                            <i class="fas fa-pen">${ReplyCount }</i>
-                         </div>
-                          <p class="detailscore">${dto.storeScore}</p>
-                           <p class="detailstore">${dto.storeName}</p>
                            
+                         </div>
+                          <c:if test="${dto.storeScore == null }">
+                         	<p class="detailscore">0.0</p>
+                         </c:if>
+                         <p class="detailscore">${dto.storeScore }</p>
+                           <p class="detailstore">${dto.storeName}</p>
+                           	 <p class="detailcontent">작성자 : ${dto.userNickName}${sessionScope.userNickName }</p>
                              <p class="detailcontent">주소 : ${dto.storeAddr}</p>
                              <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
                              <p class="detailcontent">대표메뉴 : ${dto.storeFood}</p>
@@ -241,9 +334,15 @@
             
             <ul class="pagination">
                        <!-- 현재 페이지 -->
-            <li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}">수정</a></li>
-            <li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
-           
+				<c:if test="${sessionScope.userNickName == dto.userNickName}">
+		            <li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}?userid=${sessionScope.userId}">수정</a></li>
+		            <li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
+	            </c:if>
+	            	<li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}?userid=${sessionScope.userId}">수정</a></li>
+		       		<li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
+		       	<%-- <% if(session.getAttribute("userNickName").equals(%>${dto.userNickName }<%)){  %>
+						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
+				<% } %> --%>
             </ul>
             </nav>
 		       
@@ -252,36 +351,23 @@
         
         <br><hr><br>
         <div class="container">
-        <div class="col-md-12" align="center">
-        <h2 class="lg-title mb-2">
-                        <b>가게위치</b>
-                    </h2>
-                    <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
+        	<div class="col-md-12" align="center">
+       			 <h2 class="lg-title mb-2">
+                    <b>가게위치</b>
+                 </h2>
+                 <!-- Subheading -->
+                 <p class="mb-5" style="font-size:20px;">
                         Store Location
-                    </p>
-        <!-- * 카카오맵 - 지도퍼가기 -->
-        <!-- 1. 지도 노드 -->
-        <div id="daumRoughmapContainer1585030517334" class="root_daum_roughmap root_daum_roughmap_landing" align="center"></div>
-
-        <!--
-            2. 설치 스크립트
-            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
-        -->
-        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-        <!-- 3. 실행 스크립트 -->
-        <script charset="UTF-8">
-            new daum.roughmap.Lander({
-                "timestamp" : "1585030517334",
-                "key" : "xnai",
-                "mapWidth" : "800",
-                "mapHeight" : "360"
-            }).render();
-        </script>
+                 </p>
+                 
+                 <div id="StoreMap" style="width:1000px;height:400px;">아아아</div>
+        
             </div>
         </div>
         
+        
+       	<img src = "${dto.storeImg}">
+       	
         <section class="RestaurantReviewList">
             <header class="RestaurantReviewList__Header">
               <h2 class="RestaurantReviewList__Title">
@@ -300,7 +386,7 @@
 			        <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
 			      </div>-->
 			      
-			      <span class="RestaurantReviewItem__UserNickName">모진수</span>
+			      <span class="RestaurantReviewItem__UserNickName">${reply.userNickName }</span>
 			
 			      <ul class="RestaurantReviewItem__UserStat">
 			        <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review">402</li>
@@ -345,16 +431,16 @@
           </section>
     </section>
 
-    
+    <jsp:include page="/footer" ></jsp:include>
     <!-- FOOTER
     ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
+    <!-- <footer class="top-padding bg-dark">
+        Content
         <div class="container">
             <div class="row align-self-center">
                 <div class="col-lg-4 col-md-10">
                     <div class="footer-widget">
-                        <!-- Brand -->
+                        Brand
                         <a href="#" class="footer-brand text-white">
                            <font color=lightgray size=6><b>오늘</b></font>
                             <font color=skyblue size=6><b>뭐</b></font>
@@ -365,7 +451,7 @@
 
                 <div class="col-lg-2 ml-lg-auto col-md-2">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <a href="#" class="text-white">
@@ -386,7 +472,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <i class="fa fa-mobile"></i> 
@@ -402,7 +488,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- / .row -->
+            / .row
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
@@ -411,8 +497,8 @@
                 </div>
             </div>
         </div>
-        <!-- / .container -->
-    </footer>
+        / .container
+    </footer> -->
 
     <!-- JAVASCRIPT
     ================================================== -->

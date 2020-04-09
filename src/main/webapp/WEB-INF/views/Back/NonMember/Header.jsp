@@ -39,7 +39,7 @@
 		
 		
 		$(function(){
-			$("#btn-open-dialog,#dialog-background,#btn-close-dialog").click(function () {
+			$("#btn-open-dialog,#dialog-background,#-close-dialog").click(function () {
 				$("#my-dialog1, #dialog-background").toggle();
 			});
 			$("#btn2").click(function () {
@@ -53,11 +53,30 @@
 	});
 
 </script>
+<style>
+	.item_no1{
+		position: absolute;
+	    top : 50%;
+	    left: 50%;
+	    transform : translate(-50%, -50%);
+	    color: white;
+	    font-weight: bolder;
+	    font-size:300%;
+	}
+	
+	.item_no1:hover {
+		color: white;
+		text-decoration: none;
+	}
+	
+</style>
 </head>
 
 <body id="page-top">
 
-    <!-- NAVBAR
+<%-- <c:out value = "${sessionScope.userId} "/> --%>
+
+   <!-- NAVBAR
     ================================================= -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
@@ -81,12 +100,12 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#page-top">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#feature">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/storesearch">
                             BEST 맛집
                         </a>
                     </li>
@@ -96,20 +115,25 @@
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/membersearch">
                             회원추천 맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/noticelist">
                             공지사항
                         </a>
                     </li>
 
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
-                            로그인
-                        </a>
+                        <% if(session.getAttribute("userId")==null){  %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/login">
+							로그인
+						</a>
+						<% }else{ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
+						</a>
+					<% } %>	
                     </li>
                     <li class="nav-item ml">
                         <a class="nav-link js-scroll-trigger" href="join.html">
@@ -122,7 +146,7 @@
         </div>
         <!-- / .container -->
     </nav>
-
+	<%-- <jsp:include page="/header" ></jsp:include> --%>
     <!-- HERO
     ================================================== -->
     <section class="section section-top section-full">
@@ -153,7 +177,7 @@
                              </form>  
                                 <%-- <form method="post" action="storesearch?currpage${page.startBlock }">
 									<input type = "text" class="form-control" name = "searchtxt">
-									<span class="input-group-btn">
+									<span class="input-group-">
                                     </span>
 									<input type = "submit" value = "검색">
 									<input type = "hidden" name = "search" value="">

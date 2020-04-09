@@ -74,7 +74,7 @@
                            	<input type = "hidden" name = 'StoreNo' id = 'StoreNo' value = "${dto.storeNo}">
 
 				            <div class="form-group">
-			                    <P class="col-lg-2 control-label">아무개<P>
+			                    <P class="col-lg-2 control-label">${dto.userNickName}<P>
 			                    <span style="font-size: 100%;" class="RestaurantReviewItem__RatingText">${dto.storeCount}점</span>
 			                    <br>
 			                    <br>

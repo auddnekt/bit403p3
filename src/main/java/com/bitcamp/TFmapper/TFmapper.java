@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
+import com.bitcamp.TFDTO.UserDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 
 @Mapper
@@ -22,7 +23,7 @@ public interface TFmapper {
 
 	public void MamberInsertResult(StoreListDTO dto);
 
-	StoreListDTO MemberDetail(int no);
+	StoreListDTO MemberDetail(HashMap<String, Object> hm);
 
 	public void MemberUpdateResult(StoreListDTO dto);
 
@@ -48,10 +49,33 @@ public interface TFmapper {
 
 	int StoreHit(int no);
 
-	void StoreUp(int no);
-
 	ReviewListDTO ReplyDetail(int no);
 
 	void ReplyUpdateResult(ReviewListDTO dto);
 
+	List<StoreListDTO> WeatherBestSearch(String weather);
+	
+	UserDTO login(UserDTO dto);
+
+	public void userjoin(UserDTO dto);
+
+	int idCheck(String userId);
+	
+	void StoreUp(int no, String userid);
+
+	int StoreUpCount(int no);
+
+	void Storedown(String userid);
+
+	void StoredownCount(int storeno);
+
+	int StoretotalupCount(int storeno);
+
+	int StoreUpAction(HashMap<String, Object> hm);
+
+	void StoreUp(HashMap<String, Object> hm);
+
+	List<StoreListDTO> MemberBest();
+
+	
 }

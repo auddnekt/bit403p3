@@ -8,9 +8,6 @@
 <title>Insert title here</title>
 <!--
 메인 필요부분
-카루셀 foreach적용문제
-날씨 api
-날씨페이지 foreach적용문제
 모달창 수정
 최근 본목록
 Best 리뷰 수정
@@ -85,7 +82,9 @@ Best 리뷰 수정
 
 <body id="page-top">
 
-    <!-- NAVBAR
+<%-- <c:out value = "${sessionScope.userId} "/> --%>
+
+   <!-- NAVBAR
     ================================================= -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
@@ -129,18 +128,23 @@ Best 리뷰 수정
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/noticelist">
                             공지사항
                         </a>
                     </li>
 
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
-                            로그인
-                        </a>
+                    <% if(session.getAttribute("userId")==null){  %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/login">
+							로그인
+						</a>
+						<% }else{ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
+						</a>
+					<% } %>	            
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
                             회원가입
                         </a>
                     </li>
@@ -150,7 +154,7 @@ Best 리뷰 수정
         </div>
         <!-- / .container -->
     </nav>
-
+	<%-- <jsp:include page="/header" ></jsp:include> --%>
     <!-- HERO
     ================================================== -->
     <section class="section section-top section-full">
@@ -256,23 +260,20 @@ Best 리뷰 수정
                 <div class="carousel-inner" role="listbox" >
 <%--                 <c:forEach var = "Member" items="${MemberBestSearch }"> --%>
                   <div class="item active" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#">파스타파스타</a>
+                    <a class="item_no1" href="#">${MainBestSearch[0].storeName }</a>
                     
                   </div>
 <%-- 				</c:forEach> --%>
-                  <div class="item" align="center">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/nuddle.jpg"
-                      alt="nuddle" style="width:100%"></a>
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
+                    <a class="item_no1" href="#">${MainBestSearch[1].storeName }</a>
                   </div>
 
-                  <div class="item" align="center">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg"
-                   alt="pasta" style="width:100%"></a>
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
+                    <a class="item_no1" href="#">${MainBestSearch[2].storeName }</a>
                   </div>
-                  
-                  <div class="item" align="center">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/koreansoup.jpg"
-                   alt="koreansoup" style="width:100%"></a>
+                    
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
+                    <a class="item_no1" href="#">${MainBestSearch[3].storeName }</a>
                   </div>
                 </div>
 
@@ -299,14 +300,14 @@ Best 리뷰 수정
         <!-- Heading -->
         <div>
                     <h2 class="lg-title mb-2" align="center">
-                        <b>오늘날씨 추천맛집</b>
+                        <b>${weather}날씨 추천맛집</b>
                     </h2>
                     <p class="mb-5" align="center" style="font-size:20px;">
                     Today's Recommended Restaurants
                     </p>
          </div>
                    <div class="container">
-                       <p align="right"><a href="list.html">오늘날씨 추천맛집 더보기</a></p>
+                       <p align="right"><a href="list.html">${weather}날씨 추천맛집 더보기</a></p>
                     </div>
         <div class="container">
             <div class="row ">
@@ -324,7 +325,7 @@ Best 리뷰 수정
                            <i class="fas fa-pen">10</i>
                         </div>
                          <h2 class="display-5">
-                          <a href="#"> 롤링파스타</a>
+                          <a href="#"> ${WeatherBestSearch[0].storeName }</a>
                           <p class="score">4.0</p>
                         </h2>
                            
@@ -346,7 +347,7 @@ Best 리뷰 수정
                            <i class="fas fa-pen">10</i>
                         </div>
                         <h2 class="display-5">
-                            <a href="#">핏제리아오</a>
+                            <a href="#">${WeatherBestSearch[1].storeName }</a>
                             <p class="score">4.0</p></a>
                         </h2>
                         
@@ -409,7 +410,7 @@ Best 리뷰 수정
                             <span class="work-cat">${Member.storeName }</span>
                         </div>
                         <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${Member.storeNo}"><i class="fa fa-link"></i></a>
+                            <a href="${pageContext.request.contextPath }/memberdetail/${Member.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>
@@ -577,13 +578,15 @@ Best 리뷰 수정
 
     <!-- FOOTER
     ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
+    <jsp:include page="/footer" ></jsp:include>
+    
+   <!--  <footer class="top-padding bg-dark">
+        Content
         <div class="container">
             <div class="row align-self-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        <!-- Brand -->
+                        Brand
                         <a href="#" class="footer-brand text-white">
                            <font color=lightgray size=6><b>오늘</b></font>
                             <font color=skyblue size=6><b>뭐</b></font>
@@ -594,7 +597,7 @@ Best 리뷰 수정
 
                 <div class="col-lg-2 ml-lg-auto col-md-2">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <a href="#" class="text-white">
@@ -615,7 +618,7 @@ Best 리뷰 수정
                 </div>
                 <div class="col-lg-4 col-md-5">
 
-                    <!-- Links -->
+                    Links
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <i class="fa fa-mobile"></i> 
@@ -631,7 +634,7 @@ Best 리뷰 수정
                     </ul>
                 </div>
             </div>
-            <!-- / .row -->
+            / .row
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
@@ -640,7 +643,7 @@ Best 리뷰 수정
                 </div>
             </div>
         </div>
-        <!-- / .container -->
+        / .container -->
     </footer>
 
     <!-- JAVASCRIPT

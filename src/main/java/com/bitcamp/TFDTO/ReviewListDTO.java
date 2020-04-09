@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class ReviewListDTO {
 	private int StoreReviewNo;
+	private String UserNickName;
 	private String StoreReviewDate;
 	private String StoreReviewContent;
 	private int StoreCount;

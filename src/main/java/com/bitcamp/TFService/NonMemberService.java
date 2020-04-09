@@ -2,9 +2,10 @@ package com.bitcamp.TFService;
 
 import java.util.List;
 
+
 import com.bitcamp.TFDTO.ReviewListDTO;
 import com.bitcamp.TFDTO.StoreListDTO;
-import com.bitcamp.TFDTO.UserInfoDTO;
+import com.bitcamp.TFDTO.UserDTO;
 import com.bitcamp.TFDTO.ViewListDTO;
 
 
@@ -20,7 +21,7 @@ public interface NonMemberService {
 	
 	void insertresult(StoreListDTO dto);
 
-	StoreListDTO detail(int no);
+	StoreListDTO detail(String userid, int no);
 
 	void updateresult(StoreListDTO dto);
 
@@ -46,11 +47,30 @@ public interface NonMemberService {
 
 	int storehit(int no);
 
-	void storeup(int no);
-
 	ReviewListDTO replydetail(int no);
 
 	void replyupdateresult(ReviewListDTO dto);
 
+	List<StoreListDTO> WeatherBestSearch(String weather);
+
+	UserDTO login(String userId, String userPw);
+
+	void userjoin(UserDTO dto);
+
+	int idCheck(String userId);
+	
+	void storeup(int no, String userid);
+
+	void storeupcount(int no);
+
+	void storedown(String userid);
+
+	void storedowncount(int storeno);
+
+	int storetotalupcount(int storeno);
+
+	int storeupaction(String userid, int storeno);
+
+	List<StoreListDTO> MemberBest();
 
 }

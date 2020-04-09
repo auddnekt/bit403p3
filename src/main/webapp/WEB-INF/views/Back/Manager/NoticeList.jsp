@@ -1,46 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!--  -->
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Required meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="Coral - Onepage portfolio Template">
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
+     <link href="${pageContext.request.contextPath}/resources/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
              
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
       
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
+      
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet" />
     
     <title>What is eat today?</title>
+
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#btnWrite").click(function(){
+			location.href="${path}/controller/noticeinsert";	
+		});
+	});
+</script>
+
 </head>
-
 <body id="page-top">
-   <jsp:include page= "/header" ></jsp:include>
-
-    <!-- NAVBAR
-    ================================================= -->
-<%--     <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
-        <div class="container">
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+     <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
                 <font color=lightgray size=6><b>오늘</b></font>
                 <font color=skyblue size=6><b>뭐</b></font>
                 <font color=orange size=6><b>먹지?</b></font>
@@ -58,12 +61,12 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main">
+                        <a class="nav-link js-scroll-trigger" href="index.html">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">
+                        <a class="nav-link js-scroll-trigger" href="#">
                             BEST 맛집
                         </a>
                     </li>
@@ -105,7 +108,7 @@
     <section class="section section-top section-full">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -135,7 +138,6 @@
                         <p class="lead text-white text-center mb-5">
                             
                         </p>
-
                         <!-- Button -->
                         <p class="text-center mb-0" >
                             <a href="#" target="_blank" class="btn btn-primary ">
@@ -149,135 +151,63 @@
             
         </div>
         <!-- / .container -->
-    </section> --%>
-
-    <!-- SECTIONS
-    ================================================== -->
-    <!-- PAGES
-    ================================================== -->
-
-    <!-- FEATURES
-    ================================================== -->
-    <section class="section" id="feature" >
-       <div class="container">
-          <div class="row justify-content-center mb-4">
-                <div class="col-md-8 col-lg-8 text-center">
-                    <!-- Heading -->
-                    <h2 class="lg-title mb-2">
-                        <b>회원 추천 맛집 베스트</b>
-                    </h2>
-                    <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
-                       a list of recommended restaurants<br>
-                        for members 
-                    </p>
-                </div>
-            </div>
-           <div class="row justify-content-center">
-              <c:forEach var = "MemberBest" items = "${MemberBest }">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
-
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">${MemberBest.storeHit }</i>&nbsp&nbsp
-                           <i class="fas fa-star">${MemberBest.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${MemberBest.replyCount }</i>
-                         </div>
-                         <c:if test="${MemberBest.storeScore == null }">
-                         	<p class="score">0.0</p>
-                         </c:if>
-                          <p class="score">${MemberBest.storeScore }</p>
-                           <p class="work-cat">${MemberBest.storeName }</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${MemberBest.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>   
-             </c:forEach>
-                
- 
-            </div>
-            <br>
-            
-            
-            <div class="row justify-content-center mb-4">
-                <div class="col-md-8 col-lg-8 text-center">
-                    <!-- Heading -->
-                    <h2 class="lg-title mb-2">
-                        <b>회원 추천 맛집 리스트</b>
-                    </h2>
-                    <!-- Subheading -->
-                    <p class="mb-5" style="font-size:20px;">
-                       a list of recommended restaurants<br>
-                        for members 
-                    </p>
-                </div>
-            </div>
-           <div class="row justify-content-center">
-              <c:forEach var = "Store" items = "${StoreSearch }">
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
-                    <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
-
-                        <div class="portfolio-content">
-                          <div class="icon">
-                           <i class="fas fa-eye">${Store.storeHit }</i>&nbsp&nbsp
-                           <i class="fas fa-star">${Store.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${Store.replyCount }</i>
-                         </div>
-                         <c:if test="${Store.storeScore == null }">
-                         	<p class="score">0.0</p>
-                         </c:if>
-                          <p class="score">${Store.storeScore }</p>
-                           <p class="work-cat">${Store.storeName }</p>
-                            
-                        </div>
-                        <div class="overlay-content">
-                            <a href="${pageContext.request.contextPath }/memberdetail/${Store.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                </div>   
-             </c:forEach>
-                
- 
-            </div>
-            
-
-       <nav aria-label="Page navigation">
-         <ul class="pagination">
- 		   <c:if test="${page.prev }">
-			  <li><a href="membersearch?currpage=${page.startBlock-1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">«</span></a></li>
-		   </c:if>
-		<c:forEach var = "index" begin="${page.startBlock }" end="${page.endBlock }">
-		   <c:if test = "${index  != page.currPage }">
-			 <li><a href="membersearch?currpage=${index }&search=${search }&searchtxt=${searchtxt }">${index }</a></li>
-		   </c:if>
-		<c:if test = "${index  == page.currPage }">
-			<li class="active"><a href="#"><c:out value = "${index }"/></a></li>
-		</c:if>
-		</c:forEach>	
-			<c:if test="${page.next }">
-				<li><a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
-			</c:if>
-			<% if(session.getAttribute("userId")!=null){  %>
-						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
-			<% } %>
-			
-			
-         </ul>
-         
-      </nav>
-        	
-        </div>
-        
-        
     </section>
+<!-- header
+    ================================================== -->
     
-    <!-- FOOTER
+<section class="section" id="feature">
+        <div class="container">
+            <div class="row justify-content-center mb-6">
+                <div class="col-md-10 col-lg-8 text-center">
+
+                    <!-- Heading -->
+                    <h2 class="lg-title mb-2">
+                        <b>공지사항</b>
+                    </h2>
+                        
+                    <!-- Subheading -->
+                    <p class="mb-1">
+                       What should We Eat Today? Notice
+                    </p>
+                    <div class="mb-4" align="right">
+					<button type="button" id="btnWrite" class="btn btn-primary btn-lg">글작성</button>
+					</div>
+					
+              	</div>
+            </div>
+          </div>
+<c:forEach var="row" items="${dto}">
+
+<div class="container" align="center">
+                 <!--Accordion wrapper-->
+<ul class="fnq">
+        <li class="f_question1">
+            <ul class="clearfix">
+                <li></li>
+                <li><h3><c:out value="${row.insertTime}"/></h3></li>
+                <li><h1><c:out value="${row.noticeTitle}"/></h1></li>
+                <li><i class="fa fa-angle-double-up"></i></li>
+            </ul>
+            <hr>
+            <div class="f_q_link"></div>
+        </li>
+        <li class="f_answer1">
+            <ul class="clearfix">
+                <li></li>
+                <center><li><c:out value="${row.noticeContent}"/></li></center>
+                <p align="right">
+                <a href ="${pageContext.request.contextPath }/noticeupdate/${row.noticeNo}">수정</a>
+				<a href ="${pageContext.request.contextPath }/noticedelete/${row.noticeNo}">삭제</a>
+				</p>
+            </ul>
+        </li>     
+    </ul>
+ 		<!-- / .container -->
+</div>
+</c:forEach>
+</section>
+
+ <!-- FOOTER
     ================================================== -->
     <footer class="top-padding bg-dark">
         <!--Content -->
@@ -348,16 +278,46 @@
     <!-- JAVASCRIPT
     ================================================== -->
     <!-- Global JS -->
-    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/ajax-contact.js"></script>
      
     <!-- Theme JS -->
-    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
-
+    <script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
+    
+    <script>
+    $(function(){
+        var className =""  //변수를 선언한다.
+          
+         $('.f_q_link').on({    //버튼을
+   
+             click: function(){  //클릭했을때 
+   
+                  className=$(this).parent().next().attr('class').slice(-2); 
+                  //보여줄 li의 class이름을 뒤에서 두자리(on)를 변수에 담는다.
+   
+                 if(className=='on'){  //만약 클래스명이 'on'이면
+   
+                     $(this).parent().next().removeClass('on'); //class'on' 삭제
+   
+                    $(this).prev().children().eq(3).children()
+                    .css({transform:'rotate(0deg)',transition:'all 0.4s',color:'#000'});
+                     //화살표 아이콘의 원래 css로 돌리기
+                 }
+                 else if(className!='on'){  //만약 클래스명이 'on'이 아니면
+   
+                     $(this).parent().next().addClass('on');  //class'on' 추가
+   
+                    $(this).prev().children().eq(3).children()
+                   .css({transform:'rotate(180deg)',transition:'all 0.4s',color:'#7070ea'});  
+                    // 화살표 아이콘 css 수정
+                 }                 
+              }             
+          }); 
+      });    
+    </script>
 </body>
-
 </html>
