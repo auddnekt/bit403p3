@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <!-- Required meta tags -->
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,27 +13,31 @@
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/all.css">
+     <link href="${pageContext.request.contextPath}/resources/assets/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
+             
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+      
+      
+    <link href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" rel="stylesheet" />
     
     <title>What is eat today?</title>
     
   
 </head>
+<jsp:include page="/header"/>
 <body id="page-top">
-<jsp:include page="/header" ></jsp:include>
    <%-- <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
      <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="index.html">
+            <a class="navbar-brand js-scroll-trigger" href="${pageContext.request.contextPath}/main/">
                 <font color=lightgray size=6><b>오늘</b></font>
                 <font color=skyblue size=6><b>뭐</b></font>
                 <font color=orange size=6><b>먹지?</b></font>
@@ -52,7 +55,7 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main/">
                             HOME
                         </a>
                     </li>
@@ -78,12 +81,12 @@
                     </li>
 
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/naverlogin/">
                             로그인
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join/">
                             회원가입
                         </a>
                     </li>
@@ -92,14 +95,14 @@
             <!-- / .navbar-collapse -->
         </div>
         <!-- / .container -->
-    </nav>
+    </nav> --%>
 
     <!-- HERO
     ================================================== -->
-    <section class="section section-top section-full">
+    <%-- <section class="section section-top section-full">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -144,7 +147,7 @@
         </div>
         <!-- / .container -->
     </section> --%>
-    
+   
 	<section class="section" id="login">
         <div class="container">
 	           <div class="row justify-content-center mb-4">
@@ -159,8 +162,9 @@
 	                    </p>
 	                </div>
 	            </div>
+	            
 			    <div class="login-form">
-			    
+			    			    
 			    <form class="loginresultForm" id="loginresultForm" action="loginresult">
 			        <div class="form-group">
 			        	<div class="input-group">
@@ -179,39 +183,35 @@
 			        </div>
 			        
 			       <!-- 비밀번호저장, 비밀번호찾기 -->
-			       <!--  <div class="clearfix">
-			            <label class="pull-left checkbox-inline"><input type="checkbox">비밀번호 저장</label>
-			            <a href="#" class="pull-right" >비밀번호를 잊으셨나요?</a>
+			       <!-- <div class="clearfix">
+			            <a href="#"><label class="pull-left checkbox-inline">비밀번호를 잊으셨나요?</label></a>
 			        </div> -->
 			        
 					<div class="or-seperator"><i>or</i></div>
 			        <p class="text-center">소셜 미디어 계정으로 로그인</p>
-			        <div class="text-center social-btn">
-			            <a href="#" class="btn btn-warning"><i class="fab fa-korvue"></i>&nbsp; KAKAO</a>
-			            <a href="#" class="btn btn-success"><i class="fab fa-neos"></i>&nbsp; NAVER</a>
-						<a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>
+			        <div class="text-center social-btn" id="naver_id_login">
+			            <!-- <a href="#" class="btn btn-warning"><i class="fab fa-korvue"></i>&nbsp; KAKAO</a> -->
+			            <a href="${url}" class="btn btn-success"><i class="fab fa-neos"></i>&nbsp; NAVER</a>
+						<!--<a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>-->
 			        </div>
 			        <br>
 			        <p class="text-center text-muted small">아직 계정이 없으신가요?
 			  		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			   		 <input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/join'" class="joinbtn">
-			    
-			    </form><br>
-			    
+		   	 </form><br>
 			</div>
         <!-- / .container -->
         </div>
     </section>
-    <jsp:include page="/footer" ></jsp:include>
     <!-- FOOTER
     ================================================== -->
-    <!-- <footer class="top-padding bg-dark">
-        Content
+     <footer class="top-padding bg-dark">
+       
         <div class="container">
             <div class="row align-self-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-widget">
-                        Brand
+                       
                         <a href="#" class="footer-brand text-white">
                            <font color=lightgray size=6><b>오늘</b></font>
                             <font color=skyblue size=6><b>뭐</b></font>
@@ -222,7 +222,7 @@
 
                 <div class="col-lg-2 ml-lg-auto col-md-2">
 
-                    Links
+                    
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <a href="#" class="text-white">
@@ -243,7 +243,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
 
-                    Links
+                    
                     <ul class="footer-link list-unstyled ml-0 justify-content-end">
                         <li>
                             <i class="fa fa-mobile"></i> 
@@ -259,7 +259,7 @@
                     </ul>
                 </div>
             </div>
-            / .row
+           
 
             <div class="row justify-content-md-center footer-copy">
                 <div class="col-lg-8 col-md-6 col-sm-6 text-center">
@@ -268,19 +268,19 @@
                 </div>
             </div>
         </div>
-        / .container
-    </footer> -->
+    </footer> 
+     
 
     <!-- JAVASCRIPT
     ================================================== -->
-     <!-- Global JS -->
+    <!-- Global JS -->
     <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
-
+     
     <!-- Theme JS -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
     

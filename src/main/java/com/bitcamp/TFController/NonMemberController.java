@@ -43,6 +43,7 @@ import com.bitcamp.TFUtils.UploadFileUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.Session;
 import com.mysql.cj.log.Log;
 
 import lombok.extern.log4j.Log4j;
@@ -52,6 +53,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException; 
+/*
+ * 
+ * insert mapping
+ * 수정 삭제 if문
+ * 이미지 refresh
+ * 
+ */
+
 
 @Log4j
 @Controller
@@ -85,7 +94,7 @@ public class NonMemberController {
 	
 	@RequestMapping("login")
 	public String login() {
-		return "Back/NonMember/Login";
+		return "Back/NonMember/login";
 	}
 	
 	@RequestMapping("/loginresult")
@@ -104,6 +113,13 @@ public class NonMemberController {
 			session.setAttribute("userId", dto.getUserId());
 			session.setAttribute("userName", dto.getUserName());
 			session.setAttribute("userNickName", dto.getUserNickname());
+			session.setAttribute("userGrade", dto.getUserGrade());
+			
+			System.out.println(dto.getUserId());
+			System.out.println(dto.getUserName());
+			System.out.println(dto.getUserNickname());
+			System.out.println(dto.getUserGrade());
+			System.out.println(dto.getUserNickname().getClass().getName());
 			
 			return "redirect:/main";
 		}else {
@@ -189,10 +205,10 @@ public class NonMemberController {
 	        JSONObject mainArray = (JSONObject) jsonObj.get("main");
 	        double ktemp = Double.parseDouble(mainArray.get("temp").toString());
 	        
-	        if(code==800) {
+	        if(code>=800 && code<=801) {
 	        	weather="맑음";
 	        }
-			else if(code>=801 && code<=804){
+			else if(code>=802 && code<=804){
 				weather="흐림";
 			}
 			else if(code>=600 && code<=622){
@@ -208,7 +224,8 @@ public class NonMemberController {
 	        List<StoreListDTO> WeatherBestSearch = nonmemberservice.WeatherBestSearch(weather);
 			model.addAttribute("WeatherBestSearch", WeatherBestSearch);
 	        
-			System.out.println();
+			List<ReviewListDTO> ReviewList = nonmemberservice.reviewlist();
+			model.addAttribute("ReviewList", ReviewList);
 	        
 	        model.addAttribute("weather", weather);
 	        model.addAttribute("ktemp", ktemp);
@@ -250,8 +267,6 @@ public class NonMemberController {
 		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
 		List<StoreListDTO> StoreSearch = nonmemberservice.StoreSearch(search, searchtxt, page.getEndRow());
 		
-		System.out.println(page.getEndRow()+"!!");
-		
 		model.addAttribute("StoreSearch", StoreSearch);
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
@@ -286,12 +301,44 @@ public class NonMemberController {
 		return "Back/NonMember/MemberSearch";
 	}
 	
+	@RequestMapping("/weathersearch")
+	public String WeatherSearch(@RequestParam(required=false, defaultValue="1") int currpage,
+							   @RequestParam(required=false, defaultValue="") String search,
+							   @RequestParam(required=false, defaultValue="") String searchtxt, Model model)
+	{
+
+		
+		int totalCount = nonmemberservice.WeatherCount(search, searchtxt);
+		int pageSize=6;
+		int blockSize=5;
+		
+		MakePage page = new MakePage(currpage, totalCount, pageSize, blockSize);
+		
+		List<StoreListDTO> WeatherSearch = nonmemberservice.WeatherSearch(search, searchtxt, page.getEndRow());
+		
+		model.addAttribute("WeatherSearch", WeatherSearch);
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("searchtxt", searchtxt);
+		
+		/*List<StoreListDTO> WeatherSearch = nonmemberservice.StoreSearch(search, searchtxt, page.getEndRow());
+		model.addAttribute("WeatherSearch", WeatherSearch);*/
+		
+		return "Back/NonMember/WeatherSearch";
+	}
 	
+	
+/*	@RequestMapping(value = "/storeinsert", method = {RequestMethod.GET})*/
 	@RequestMapping("/storeinsert")
-	public String memberInsert() {
+	public String memberInsert(/*@PathVariable String userid, Model model*/) {
+		
+		/*List<UserDTO> User = nonmemberservice.user(userid);
+		model.addAttribute("User", User);*/
+		
 		return "Back/MemberService/StoreInsert";
 	}
 	
+		
 	@RequestMapping("/memberinsertresult")
 	public String memberInsert(StoreListDTO dto, MultipartFile file) throws IOException, Exception{
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -309,19 +356,25 @@ public class NonMemberController {
 		//dto.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		nonmemberservice.insertresult(dto);
 		
-		
-		return "redirect:/membersearch";
+		String grade = dto.getStoreGrade();
+		System.out.println(grade+"!!!");
+		if(grade.equals("1")) {
+			return "redirect:/storesearch";
+		}
+		else {
+			return "redirect:/membersearch";
+		}
 	}
 	
 	@RequestMapping("/memberdetail/{no}")
-	public String memberDetail(@PathVariable int no, @RequestParam(required=false, defaultValue="") String userid, Model model) {
+	public String memberDetail(@PathVariable int no, @RequestParam(required=false, defaultValue="") String userid, Model model)  {
 		
 		
 		/*조회수와 디테일 데이터*/
 		nonmemberservice.storehit(no);
 		StoreListDTO dto = nonmemberservice.detail(userid, no);
 		model.addAttribute("dto", dto);
-		
+		System.out.println(dto.getUserNickName().getClass().getName());
 			
 		/*최근 본 목록*/
 /*		nonmemberservice.view(no);

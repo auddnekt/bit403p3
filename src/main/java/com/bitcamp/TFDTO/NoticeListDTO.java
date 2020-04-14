@@ -1,16 +1,16 @@
 package com.bitcamp.TFDTO;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@ToString
 public class NoticeListDTO {
 	private int NoticeNo;
 	private String NoticeTitle;
-	private String NoticeDate;
 	private String NoticeContent;
-	private int UserNo;
+	private String InsertTime;
 }

@@ -177,20 +177,23 @@
               <c:forEach var = "Store" items = "${StoreSearch }">
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
                     <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
+                        <img src="${pageContext.request.contextPath}/${Store.storeImg }" style = "width:350px; height: 200px;" alt="portfolio">
 
                         <div class="portfolio-content">
                           <div class="icon">
                            <i class="fas fa-eye">${Store.storeHit }</i>&nbsp&nbsp
                            <i class="fas fa-star">${Store.storeUp }</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
+                           <i class="fas fa-pen">${Store.replyCount }</i>
                          </div>
-                          <p class="score">4.5</p>
+                         <c:if test="${Store.storeScore == null }">
+                         	<p class="score">0.0</p>
+                         </c:if>
+                          <p class="score">${Store.storeScore }</p>
                            <p class="work-cat">${Store.storeName }</p>
                             
                         </div>
                         <div class="overlay-content">
-                            <a href="detail.html"><i class="fa fa-link"></i></a>
+                            <a href="${pageContext.request.contextPath }/memberdetail/${Store.storeNo}?userid=${sessionScope.userId}"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                 </div>   
@@ -336,6 +339,9 @@
 	<c:if test="${page.next }">
 		<li><a href="storesearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
 	</c:if>
+	<% if(session.getAttribute("userGrade")!=null){  %>
+						<li style="margin-left:75%;"><a href="${pageContext.request.contextPath }/storeinsert">작성</a></li>
+			<% } %>
                     </ul>
             </nav>
         	

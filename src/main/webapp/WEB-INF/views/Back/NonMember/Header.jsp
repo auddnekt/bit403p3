@@ -126,19 +126,26 @@
                     </li>
 
                     <li class="nav-item ml">
-                        <% if(session.getAttribute("userId")==null){  %>
-						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/login">
-							로그인
-						</a>
-						<% }else{ %>
-						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
-						</a>
-					<% } %>	
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
-                            회원가입
-                        </a>
+                       <% if(session.getAttribute("userId")==null){  %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/naverlogin">
+			                     로그인
+			                  </a>
+			                  <% }else{ %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
+			                  </a>
+			               <% } %>               
+			                    </li>
+			                    <li class="nav-item ml">
+			                         <% if(session.getAttribute("userId")==null){ %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
+			                     회원가입
+			                  </a>
+			                  <% }else if(session.getAttribute("nickname")!=null){ %>                   
+			                  <a class="nav-link js-scroll-trigger"><c:out value="${sessionScope.nickname}님"/></a>
+			                  
+			                  <% }else if(session.getAttribute("userNickName")!=null){ %>                   
+			                  <a class="nav-link js-scroll-trigger"><c:out value="${sessionScope.userNickName}님"/></a>      
+			               <% } %>   
                     </li>
                 </ul>
             </div>

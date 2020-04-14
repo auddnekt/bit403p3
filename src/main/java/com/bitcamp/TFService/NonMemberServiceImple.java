@@ -235,5 +235,56 @@ public class NonMemberServiceImple implements NonMemberService{
 	public List<StoreListDTO> MemberBest() {
 		return mapper.MemberBest();
 	}
+
+	@Override
+	public int WeatherCount(String search, String searchtxt) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("search", search);
+		hm.put("searchtxt", searchtxt);
+		return mapper.WeatherCount(hm);
+	}
+
+	@Override
+	public List<StoreListDTO> WeatherSearch(String search, String searchtxt, int endRow) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("search",search);
+		hm.put("searchtxt", searchtxt);
+		hm.put("endRow", endRow);
+		return mapper.WeatherSearch(hm);
+	}
+
+	@Override
+	public List<ReviewListDTO> reviewlist() {
+		return mapper.ReviewList();
+	}
+
+	@Override
+	public List<UserDTO> user(String userid) {
+		return mapper.User(userid);
+	}
+	
+	@Override
+	public UserDTO loginN(String userId) {
+
+		UserDTO dto = new UserDTO();
+		dto.setUserId(userId);
+		return mapper.loginN(dto);
+	
+	}
+
+
+	/*@Override
+	public void userRoot(UserDTO dto) {
+		
+		mapper.userroot(dto);
+		
+	}*/
+
+	@Override
+	public void naverjoin(UserDTO dto) {
+		System.out.println("naverjoin탔다");
+		mapper.naverjoin(dto);
+		
+	}
 	
 }

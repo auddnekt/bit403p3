@@ -243,7 +243,7 @@
                     </div> -->
                     <label for="StoreAddr" class="col-lg-2 control-label" style="margin: ">주소</label>
                     <div class="col-lg-10">
-	                    <input style="margin-bottom: 20px; padding: 0px;" type="button" onclick="sample3_execDaumPostcode()" class="btn btn-primary btn-lg" value="주소 찾기"><br>
+	                    <input style="margin-bottom: 20px; padding: 0px; width: 80px; height: 30px; font-size: 15px;" type="button" onclick="sample3_execDaumPostcode()" class="btn btn-primary btn-lg" value="주소 찾기"><br>
 						<input type="text" class="form-control" name = "StoreAddr" id="sample3_address"  value=${dto.storeAddr }><br>
 						<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
@@ -254,17 +254,21 @@
                 <div class="form-group">
                     <label for="StoreCategori" class="col-lg-2 control-label">음식점 종류</label>
                     <div class="col-lg-10">
-                        <select class="form-control" name="StoreCategori" id="StoreCategori">
+                         <select class="form-control" name="StoreCategori" id="StoreCategori">
                             <option value="한식">한식</option>
                             <option value="중국식">중국식</option>
                             <option value="일식">일식</option>
                             <option value="경양식">경양식</option>
+                            <option value="스테이크">스테이크</option>
                             <option value="회">회</option>
                             <option value="카페">카페</option>
+                            <option value="고기">고기</option>
                             <option value="냉면">냉면</option>
                             <option value="분식">분식</option>
                             <option value="뷔페">뷔페</option>
+                            <option value="피자">피자</option>
                             <option value="외국음식">외국음식</option>
+                            <option value="빵">빵</option>
                             <option value="치킨">치킨</option>
                             <option value="패스트푸드">패스트푸드</option>
                             <option value="호프">호프</option>
@@ -338,6 +342,8 @@
                             <option value="금요일">금요일</option>
                             <option value="토요일">토요일</option>
                             <option value="일요일">일요일</option>
+                            <option value="주말">주말</option>
+                            <option value="X">X</option>
                         </select>
                     </div>
                 </div>

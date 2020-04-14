@@ -12,7 +12,7 @@
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-     <link href="${pageContext.request.contextPath}/resources/css/all.css" rel="stylesheet" />
+     <link href="${pageContext.request.contextPath}/resources/assets/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
              
@@ -22,9 +22,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
       
       
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" rel="stylesheet" />
     
     <title>What is eat today?</title>
 
@@ -36,7 +36,7 @@
      <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="index.html">
+            <a class="navbar-brand js-scroll-trigger" href="${pageContext.request.contextPath}/main">
                 <font color=lightgray size=6><b>오늘</b></font>
                 <font color=skyblue size=6><b>뭐</b></font>
                 <font color=orange size=6><b>먹지?</b></font>
@@ -54,40 +54,51 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
+                        <a class="nav-link js-scroll-trigger" href="#page-top">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#feature">
                             BEST 맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#about">
                             오늘날씨 추천맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">
                             회원추천 맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/noticelist">
                             공지사항
                         </a>
                     </li>
 
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
-                            로그인
-                        </a>
+                   <li class="nav-item ml">  
+		            <% if(session.getAttribute("userId")==null){ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/naverlogin">
+							로그인
+						</a>
+						<% }else{ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">
+						로그아웃
+						</a>
+					<% } %>
                     </li>
+                    
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
-                            회원가입
-                        </a>
+                     <% if(session.getAttribute("userId")==null){ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
+							회원가입
+						</a>
+						<% }else{ %>						 
+						<a class="nav-link js-scroll-trigger"><c:out value="${sessionScope.nickname}님"/></a>		
+					<% } %>                                           
                     </li>
                 </ul>
             </div>
@@ -101,7 +112,7 @@
     <section class="section section-top section-full">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -181,18 +192,12 @@
                            
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea name="NoticeContent" id="NoticeContent" cols="30" rows="12" class="form-control" 
-                                      accesskey=""required="required" placeholder="내용을 입력해주세요">${dto.noticeTitle}</textarea>
+                                    <pre><textarea name="NoticeContent" id="NoticeContent" cols="30" rows="12" class="form-control" 
+                                      accesskey=""required="required" placeholder="내용을 입력해주세요">${dto.noticeContent}</textarea></pre>
                                 </div>
                             </div>
                             
-                            <div class="col-sm-2 imgUp">
-                            <div class="imagePreview"></div>
-                            <label class="btn btn-primary">
-                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                            </label>
-                            </div>
-                            <i class="fa fa-plus imgAdd"></i>
+                            
                             <div class="col-lg-12">
                                 <div class="submit text-center">
                                 

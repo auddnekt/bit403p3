@@ -6,35 +6,36 @@
      <parameterMap type="java.util.HashMap" id="hashmap"></parameterMap>
      
      <select id = "MainBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
-      	select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+      	select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
-        from StoreInfo
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
         group by StoreName
-      	order by StoreUp desc, StoreNo limit 4 offset 0
+      	order by StoreScore desc, StoreNo limit 4 offset 0
       	
      </select>
      <select id = "MemberBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
       	select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
-        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
-        from StoreInfo2 s
-        where StoreGrade = 'member'
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
+        where StoreGrade = ''
         group by StoreName
-      	order by StoreUp desc, StoreNo limit 3 offset 0
+      	order by StoreScore desc, StoreNo limit 3 offset 0
       	
      </select>
      
      <select id = "WeatherBestSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
       	select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
-        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
-        from StoreInfo2 s
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
         where FoodWeather = #{weather}
         group by StoreName
-      	order by StoreUp desc, StoreNo limit 2 offset 0
+      	order by StoreScore desc, StoreNo limit 2 offset 0
       	
      </select>
      
@@ -60,10 +61,11 @@
      
       <select id = "StoreSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
-        select StoreNo, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp
-        from StoreInfo
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
         <where>
            <if test = "search=='' and searchtxt!=''">
               and StoreName like CONCAT('%',#{searchtxt},'%') or StoreAddr like CONCAT('%',#{searchtxt},'%') or
@@ -77,25 +79,53 @@
            </if>
         </where>
            group by StoreName
-           <![CDATA[order by StoreNo limit 6 offset #{endRow}]]>
+           <![CDATA[order by StoreNo desc, StoreNo limit 6 offset #{endRow}]]>
         
      </select>
    <select id = "MemberCount" resultType="int" parameterMap="hashmap">
         select count(*)
-        from StoreInfo2
+        from StoreInfo
         <where>
-           and StoreGrade = 'member'
+           and StoreGrade = ''
         </where>
+     </select>
+     
+     <select id = "ReviewList" resultType = "com.bitcamp.TFDTO.ReviewListDTO" parameterMap="hashmap">
+      select StoreReviewNo, UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, StoreNo
+      from ReviewList
+      order by StoreReviewNo desc, StoreReviewNo limit 3 offset 0;
      </select>
      
      <select id = "MemberSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
         
         select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
-        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
-        from StoreInfo2 s
-        where StoreGrade = 'member'
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
+        where StoreGrade = ''
+
+        order by StoreNo desc, StoreNo limit 6 offset #{endRow}
+        
+     </select>
+     
+     <select id = "WeatherCount" resultType="int" parameterMap="hashmap">
+        select count(*)
+        from StoreInfo
+        <where>
+           and FoodWeather = #{searchtxt}
+        </where>
+     </select>
+     
+     <select id = "WeatherSearch" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+        
+        select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
+        
+        where FoodWeather = #{searchtxt}
 
         order by StoreNo desc, StoreNo limit 6 offset #{endRow}
         
@@ -104,21 +134,21 @@
      <select id = "MemberBest" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
       	select  StoreNo, StoreName, s.StoreGrade, StoreAddr, StoreCategori, StoreFood,
         FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList2 r where r.storeNo = s.storeNo)as ReplyCount,
-        round((select avg(StoreCount) from ReviewList2 r where r.storeNo = s.storeNo), 1)as StoreScore
-        from StoreInfo2 s
-        where StoreGrade = 'member'
+        StoreClose, StoreHit, StoreUp, StoreImg, (select count(*) from ReviewList r where r.storeNo = s.storeNo)as ReplyCount,
+        round((select avg(StoreCount) from ReviewList r where r.storeNo = s.storeNo), 1)as StoreScore
+        from StoreInfo s
+        where StoreGrade = ''
         group by StoreName
       	order by StoreScore desc, StoreNo limit 3 offset 0
       	
      </select>
      
      <insert id = "MamberInsertResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-        insert into StoreInfo2(UserNickName, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
+        insert into StoreInfo(UserNickName, StoreName, StoreGrade, StoreAddr, StoreCategori, StoreFood,
          FoodWeather, StoreCost, StoreCall, StoreDate, StoreParking, StoreHours, StoreBTime,
-        StoreClose, StoreHit, StoreUp)
-      values(#{UserNickName}, #{StoreName}, "member", #{StoreAddr}, #{StoreCategori}, #{StoreFood}, #{FoodWeather},
-       #{StoreCost}, #{StoreCall}, date_format(now(), '%Y-%m-%d'), #{StoreParking}, #{StoreHours}, #{StoreBTime}, #{StoreClose}, 0, 0);
+        StoreClose, StoreImg, StoreHit, StoreUp)
+      values(#{UserNickName}, #{StoreName}, #{StoreGrade}, #{StoreAddr}, #{StoreCategori}, #{StoreFood}, #{FoodWeather},
+       #{StoreCost}, #{StoreCall}, date_format(now(), '%Y-%m-%d'), #{StoreParking}, #{StoreHours}, #{StoreBTime}, #{StoreClose}, #{StoreImg}, 0, 0);
 
      </insert>
   	
@@ -129,7 +159,7 @@
         	, UserNickName
         	, StoreName
         	, StoreGrade
-        	, round((select avg(StoreCount) from ReviewList2 Where StoreNo=#{no}), 1)as StoreScore
+        	, round((select avg(StoreCount) from ReviewList Where StoreNo=#{no}), 1)as StoreScore
         	, StoreAddr
         	, StoreCategori
         	, StoreFood
@@ -142,13 +172,13 @@
         	, StoreBTime,
         	StoreClose, StoreHit, StoreUp, StoreImg
 			        
-        from StoreInfo2
+        from StoreInfo
      	where StoreNo=#{no}
 	
      </select>
      
      <update id = "MemberUpdateResult" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-      update StoreInfo2
+      update StoreInfo
       set StoreName=#{StoreName}, StoreAddr=#{StoreAddr}, StoreCategori=#{StoreCategori}, 
       StoreFood=#{StoreFood}, StoreCall=#{StoreCall}, StoreFood=#{StoreFood}, FoodWeather=#{FoodWeather},
       StoreCost=#{StoreCost}, StoreParking=#{StoreParking}, StoreHours=#{StoreHours}, StoreBTime=#{StoreBTime},
@@ -157,7 +187,7 @@
      </update>
      
      <delete id="MemberDelete" parameterType="int">
-        delete from StoreInfo2
+        delete from StoreInfo
       where StoreNo=#{no};
      </delete>
      
@@ -171,17 +201,17 @@
      
      <select id = "ReplyList" resultType = "com.bitcamp.TFDTO.ReviewListDTO" parameterMap="hashmap">
         select StoreReviewNo, UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, StoreNo
-      from ReviewList2
+      from ReviewList
       Where StoreNo=#{no};
      </select>
      
      <insert id = "ReplyInsert" parameterType="com.bitcamp.TFDTO.ReviewListDTO">
-        insert into ReviewList2(UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, StoreNo)
+        insert into ReviewList(UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, StoreNo)
         values(#{UserNickName}, date_format(now(), '%Y-%m-%d'), #{StoreReviewContent}, #{StoreCount}, #{StoreNo});
      </insert>
      
      <delete id="ReplyDelete" parameterType="int">
-        delete from ReviewList2
+        delete from ReviewList
       where StoreReviewNo=#{no}
      </delete>
      
@@ -191,18 +221,18 @@
      </insert>
      <select id = "StoreViewList" resultType = "com.bitcamp.TFDTO.ViewListDTO" parameterMap="hashmap">
       select v.StoreNo as StoreNo, StoreName, StoreAddr
-      from StoreInfo2 s inner join StoreView v on s.StoreNo = v.StoreNo
+      from StoreInfo s inner join StoreView v on s.StoreNo = v.StoreNo
       group by StoreName
      </select>
      
      <select id = "ReplyCount" resultType="int" parameterMap="hashmap">
         select count(*)
-		from ReviewList2
+		from ReviewList
 		where StoreNo=#{no};
      </select>
      
      <update id = "StoreHit" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-     	update StoreInfo2
+     	update StoreInfo
 		set
 		StoreHit=StoreHit+1
 		where StoreNo=#{no};
@@ -212,12 +242,12 @@
      <select id = "ReplyDetail" resultType = "com.bitcamp.TFDTO.ReviewListDTO" parameterMap="hashmap">
         select StoreReviewNo, UserNickName, StoreReviewDate,
         StoreReviewContent, StoreCount, StoreNo
-        from ReviewList2
+        from ReviewList
      	where StoreReviewNo=#{no}
      </select>
 
      <update id = "ReplyUpdateResult" parameterType="com.bitcamp.TFDTO.ReviewListDTO">
-      update ReviewList2
+      update ReviewList
       set
       StoreReviewContent=#{StoreReviewContent},
       StoreCount=#{StoreCount}, StoreReviewDate=date_format(now(), '%Y-%m-%d')
@@ -228,7 +258,7 @@
          
      <select id = "login" resultType ="com.bitcamp.TFDTO.UserDTO">
   	 	select  
-			userNo,		userName, 	userId,  userPw,  userEmail, userNickname
+			userNo,		userName, 	userId,  userPw,  userEmail, userNickname, userGrade
 		from tf_user
 		where userId='${userId}'
 		and userPw='${userPw}'
@@ -253,7 +283,7 @@
      </insert>
 	
 	<update id = "StoreUpCount" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-     	update StoreInfo2
+     	update StoreInfo
 		set
 		StoreUp=StoreUp+1
 		where StoreNo=#{storeno};
@@ -266,7 +296,7 @@
      </delete>
      
      <update id = "StoredownCount" parameterType="com.bitcamp.TFDTO.StoreListDTO">
-     	update StoreInfo2
+     	update StoreInfo
 		set
 		StoreUp=StoreUp-1
 		where StoreNo=#{storeno};
@@ -274,7 +304,7 @@
      
      <select id = "StoretotalupCount" resultType="int" parameterMap="hashmap">
         select StoreUp
-        from StoreInfo2
+        from StoreInfo
         where StoreNo=#{storeno};
      </select>
      
@@ -284,6 +314,25 @@
      	from liketo
      	where userid = #{userid} and storeno = #{storeno}
      </select>
+     
+     <select id = "User" resultType = "com.bitcamp.TFDTO.StoreListDTO" parameterMap="hashmap">
+      	select userNo, userName, userId, userPw, userEmail, userNickname, userGrade, userRoot
+      	from tf_user
+      	where userId = #{userId}
+     </select>
+     
+     <select id = "loginN" resultType ="com.bitcamp.TFDTO.UserDTO">
+  	 	select  
+			userNo,		userName, 	userId,  userPw,  userEmail, userNickname, IFNULL(userGrade,0) as userGrade
+		from tf_user
+		where userId='${userId}'
+  	 </select>
+  	 
+  	 <insert id="naverjoin" parameterType="com.bitcamp.TFDTO.UserDTO">
+		insert into tf_user
+		(userNo,userName,userId,userEmail,userNickname,userRoot)
+		values (${userNo},'${userName}','${userId}','${userEmail}','${userNickname}','naver')
+	</insert>
      
 
   </mapper>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <html>
+<!-- css 수정 -->
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
@@ -10,12 +11,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script>
-	$(document).ready(function(){
+	/* $(document).ready(function(){
 		$("#link").on('click', function(){
 			(".blocker").toggle();
 			(".modal").toggle();
 		})
-	})
+	}) */
 </script>
 
 

@@ -12,7 +12,7 @@
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-     <link href="${pageContext.request.contextPath}/resources/css/all.css" rel="stylesheet" />
+     <link href="${pageContext.request.contextPath}/resources/assets/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
              
@@ -22,9 +22,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
       
       
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" rel="stylesheet" />
     
     <title>What is eat today?</title>
 
@@ -32,119 +32,8 @@
 
 </head>
 <body id="page-top">
-   <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
-     <div class="container">
-
-            <!-- Brand -->
-            <a class="navbar-brand js-scroll-trigger" href="index.html">
-                <font color=lightgray size=6><b>오늘</b></font>
-                <font color=skyblue size=6><b>뭐</b></font>
-                <font color=orange size=6><b>먹지?</b></font>
-            </a>
-            
-            <!-- Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon-bar">
-                    <i class="fa fa-bars"></i>
-                </span>
-            </button>
-
-            <!-- Collapse -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!-- Links -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
-                            HOME
-                        </a>
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
-                            BEST 맛집
-                        </a>
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
-                            오늘날씨 추천맛집
-                        </a>
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
-                            회원추천 맛집
-                        </a>
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="notice.html">
-                            공지사항
-                        </a>
-                    </li>
-
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
-                            로그인
-                        </a>
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
-                            회원가입
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- / .navbar-collapse -->
-        </div>
-        <!-- / .container -->
-    </nav>
-
-    <!-- HERO
-    ================================================== -->
-    <section class="section section-top section-full">
-
-        <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
-
-        <!-- Overlay -->
-        <div class="bg-overlay"></div>
-        
-        <!-- Content -->
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-10 col-lg-8 " align="center">
-                    <div class="banner-content" >
-                        <!-- Preheading -->
-                              <div class="input-group">
-                                  <input type="text" class="form-control"  placeholder="검색 키워드를 입력하세요!" >
-                                  
-                                  <span class="input-group-btn">
-                                  </span>
-                                  <button class="btn btn-primary">
-                                        <font size=3><b>검색</b></font>
-                                    </button>
-                                </div>
-                                
-                        <!-- Heading -->
-                        <!--<h1 class="text-white text-center mb-4 display-4 font-weight-bold">
-                            I am a UI/UX Designer <br>& Developer
-                        </h1>--!>
-
-                        <!-- Subheading -->
-                        <p class="lead text-white text-center mb-5">
-                            
-                        </p>
-                        <!-- Button -->
-                        <p class="text-center mb-0" >
-                            <a href="#" target="_blank" class="btn btn-primary ">
-                                <font size=4>Random 추천맛집</font>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- / .row -->
-            
-        </div>
-        <!-- / .container -->
-    </section>
+	<jsp:include page="/header" ></jsp:include>
+   
 <!-- header
     ================================================== -->
 	<section class="section" id="feature" >
@@ -166,15 +55,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <form method="post" action = "${pageContext.request.contextPath}/noticeinsertresult">
-                        <!-- form message -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                        Your message was sent successfully.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end message -->
+                        
                             
                         <div class="row">
                            
@@ -194,7 +75,7 @@
                             <div class="col-lg-12">
                                 <div class="submit text-center">
                                    <input name="reset" type="button" class="btn btn-danger btn-lg" value="취소"onClick="history.go(-1)">&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="${pageContext.request.contextPath}/noticelist"><input type="button" class="btn btn-primary btn-lg" value="작성완료"></a>
+                                    <a href="${pageContext.request.contextPath}/noticelist"><input type="submit" class="btn btn-primary btn-lg" value="작성완료"></a>
                                 </div>
                             </div>
                         </div>
@@ -205,85 +86,19 @@
         </div>
     </section>
 
-<!-- FOOTER
-    ================================================== -->
-    <footer class="top-padding bg-dark">
-        <!--Content -->
-        <div class="container">
-            <div class="row align-self-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget">
-                        <!-- Brand -->
-                        <a href="#" class="footer-brand text-white">
-                           <font color=lightgray size=6><b>오늘</b></font>
-                            <font color=skyblue size=6><b>뭐</b></font>
-                            <font color=orange size=6><b>먹지?</b></font>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 ml-lg-auto col-md-2">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <a href="#" class="text-white">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Address
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Creator
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-5">
-
-                    <!-- Links -->
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <i class="fa fa-mobile"></i> 
-                            02-1234-5678
-                        </li>
-                        <li>
-                            <i class="fa fa-location-arrow"></i>
-                            서울 서초구 강남대로 459
-                        </li>
-                        <li>
-                            <i class="fa fa-globe"></i> Kim HyunJin , Koo MyungWoo
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- / .row -->
-
-            <div class="row justify-content-md-center footer-copy">
-                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
-                    <p class="lead text-white-50">&copy; Copyright 
-                     What should We Eat Today? Co.Ltd.All rights reserved. </p>
-                </div>
-            </div>
-        </div>
-        <!-- / .container -->
-    </footer>
+	<jsp:include page="/footer" ></jsp:include>
 
     <!-- JAVASCRIPT
     ================================================== -->
     <!-- Global JS -->
-    <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/ajax-contact.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
      
     <!-- Theme JS -->
-    <script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
 </body>
 </html>

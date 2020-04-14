@@ -14,7 +14,7 @@
     <meta name="author" content="esrat">
 
     <!-- Fontawseom Icon CSS -->
-     <link href="${pageContext.request.contextPath}/resources/css/all.css" rel="stylesheet" />
+     <link href="${pageContext.request.contextPath}/resources/assets/css/all.css" rel="stylesheet" />
 
     <!-- Theme CSS -->
              
@@ -24,17 +24,23 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
       
       
-    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" />
-    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" rel="stylesheet" />
 
 
+<style>
+	#icon {
+		margin: 10px;
+		margin-right: 10px;
+	}
+</style>
 
+</head>
 <body id="page-top">
-<jsp:include page="/header" ></jsp:include>
  <!-- NAVBAR
     ================================================= -->
-    <%-- <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-togglable  fixed-top " id="mainNav">
         <div class="container">
 
             <!-- Brand -->
@@ -56,38 +62,44 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="index.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/main/">
                             HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#feature">
                             BEST 맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#about">
                             오늘날씨 추천맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#">
+                        <a class="nav-link js-scroll-trigger" href="#portfolio">
                             회원추천 맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="notice.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/noticelist">
                             공지사항
                         </a>
                     </li>
 
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="login.html">
-                            로그인
-                        </a>
+                    <li class="nav-item ml">  
+		            <% if(session.getAttribute("userId")==null){  %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/login">
+							로그인
+						</a>
+						<% }else{ %>
+						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
+						</a>
+					<% } %>	            
                     </li>
+                    
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="join.html">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
                             회원가입
                         </a>
                     </li>
@@ -103,7 +115,7 @@
     <section class="section section-top section-full">
 
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/img/pasta.jpg);"></div>
+        <div class="bg-cover" style="background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg);"></div>
 
         <!-- Overlay -->
         <div class="bg-overlay"></div>
@@ -147,7 +159,7 @@
             
         </div>
         <!-- / .container -->
-    </section> --%>
+    </section>
     
 <section class="section" id="feature" >
        <div class="container">
@@ -226,7 +238,7 @@
                                     <p class="pt-3">회원가입을 하려면 위 버튼을 눌러주세요.</p>
                                 </div>
                             </div>
-                             <a href="${pageContext.request.contextPath}/login" class="text-center" >로그인</a>
+                             <div ><a href="${pageContext.request.contextPath}/login" class="text-center" >로그인</a></div>
                          </form>
                        </div>
                    </div>
@@ -234,11 +246,10 @@
         <!-- / .container -->
         
     </section>
-    <jsp:include page="/footer" ></jsp:include>
      <!-- FOOTER
-     
     ================================================== -->
-   <!--  <footer class="top-padding bg-dark">
+    <jsp:include page="${pageContext.request.contextPath}/footer"/>
+    <!-- <footer class="top-padding bg-dark">
         Content
         <div class="container">
             <div class="row align-self-center">
@@ -307,15 +318,15 @@
     <!-- JAVASCRIPT
     ================================================== -->
     <!-- Global JS -->
-    <script src="${pageContext.request.contextPath}/resources/libs/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/libs/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/ajax-contact.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
      
     <!-- Theme JS -->
-    <script src="${pageContext.request.contextPath}/resources/js/theme.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
     
     
 <script type="text/javascript">
@@ -339,13 +350,13 @@
 				$('#userPw').focus();
 				return;
 			}
-			
+						
 			if(idx==false){
 				alert("아이디 중복체크를 해주세요.");
 				return;
 			}else{
 				$('#signFrm').submit();
-			}
+			}			
 		});
 		
 		$('#check').click(function(){

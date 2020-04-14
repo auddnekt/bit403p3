@@ -73,4 +73,18 @@ public interface NonMemberService {
 
 	List<StoreListDTO> MemberBest();
 
+	int WeatherCount(String search, String searchtxt);
+
+	List<StoreListDTO> WeatherSearch(String search, String searchtxt, int endRow);
+
+	List<ReviewListDTO> reviewlist();
+
+	List<UserDTO> user(String userid);
+	
+	//void userRoot(UserDTO dto);
+
+	void naverjoin(UserDTO dto);
+
+	UserDTO loginN(String userId);
+
 }

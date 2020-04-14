@@ -9,8 +9,6 @@
 <!--
 메인 필요부분
 모달창 수정
-최근 본목록
-Best 리뷰 수정
 
   -->
 
@@ -41,7 +39,7 @@ Best 리뷰 수정
 	<script>
 	$(document).ready(function(){
 		
-		$('#btn').on("click", function(){
+		/* $('#btn').on("click", function(){
 			window.open("${pageContext.request.contextPath}/popup", "fullscreen=no, width=700, height=500").focus();
 		});
 		
@@ -57,7 +55,7 @@ Best 리뷰 수정
 			});
 			$("#dialog-background").click(function () {
 				$("#my-dialog2").toggle();
-			});
+			}); */
 	});
 
 </script>
@@ -134,19 +132,26 @@ Best 리뷰 수정
                     </li>
 
                     <li class="nav-item ml">
-                    <% if(session.getAttribute("userId")==null){  %>
-						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/login">
-							로그인
-						</a>
-						<% }else{ %>
-						<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
-						</a>
-					<% } %>	            
-                    </li>
-                    <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
-                            회원가입
-                        </a>
+                       <% if(session.getAttribute("userId")==null){  %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/naverlogin">
+			                     로그인
+			                  </a>
+			                  <% }else{ %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Logout">로그아웃
+			                  </a>
+			               <% } %>               
+			                    </li>
+			                    <li class="nav-item ml">
+			                         <% if(session.getAttribute("userId")==null){ %>
+			                  <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/join">
+			                     회원가입
+			                  </a>
+			                  <% }else if(session.getAttribute("nickname")!=null){ %>                   
+			                  <a class="nav-link js-scroll-trigger"><c:out value="${sessionScope.nickname}님"/></a>
+			                  
+			                  <% }else if(session.getAttribute("userNickName")!=null){ %>                   
+			                  <a class="nav-link js-scroll-trigger"><c:out value="${sessionScope.userNickName}님"/></a>      
+			               <% } %>   
                     </li>
                 </ul>
             </div>
@@ -233,8 +238,7 @@ Best 리뷰 수정
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
                         <b>BEST 맛집</b>
-                    </h2>
-                        
+                    </h2> 
                     <!-- Subheading -->
                     <p class="mb-1" style="font-size:20px;">
                       This is a Screen Showing The Best Restaurants.
@@ -257,23 +261,27 @@ Best 리뷰 수정
 
                 <!-- Wrapper for slides -->
                
-                <div class="carousel-inner" role="listbox" >
-<%--                 <c:forEach var = "Member" items="${MemberBestSearch }"> --%>
+                <div class="carousel-inner" role="listbox" >${pageContext.request.contextPath}${MainBestSearch[0].storeImg}
+<%--                 <c:forEach var = "Member" items="${MemberBestSearch }"> --%>${pageContext.request.contextPath}/resources/assets/img/pasta.jpg
                   <div class="item active" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#">${MainBestSearch[0].storeName }</a>
+                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[0].storeName }</p>
+                    <p style = "font-size: 40%;">${MainBestSearch[0].storeAddr }</p></a>
                     
                   </div>
 <%-- 				</c:forEach> --%>
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#">${MainBestSearch[1].storeName }</a>
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[1].storeImg }">
+                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[1].storeName }</p>
+                    <p style = "font-size: 40%;">${MainBestSearch[1].storeAddr }</p></a>
                   </div>
 
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#">${MainBestSearch[2].storeName }</a>
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[2].storeImg }">
+                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[2].storeName }</p>
+                    <p style = "font-size: 40%;">${MainBestSearch[2].storeAddr }</p></a>
                   </div>
                     
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#">${MainBestSearch[3].storeName }</a>
+                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[3].storeImg }">
+                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[3].storeName }</p>
+                    <p style = "font-size: 40%;">${MainBestSearch[3].storeAddr }</p></a>
                   </div>
                 </div>
 
@@ -305,33 +313,42 @@ Best 리뷰 수정
                     <p class="mb-5" align="center" style="font-size:20px;">
                     Today's Recommended Restaurants
                     </p>
+                     <p align = "center"; style = "font-size: 16px; ">현재온도 : ${ktemp }c</p>
          </div>
                    <div class="container">
-                       <p align="right"><a href="list.html">${weather}날씨 추천맛집 더보기</a></p>
+                       <p align="right"><a href="${pageContext.request.contextPath }/weathersearch?searchtxt=${weather }">${weather}날씨 추천맛집 더보기</a></p>
                     </div>
         <div class="container">
             <div class="row ">
                 <div class="col-lg-6">
                     <div class="about-img">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="" class="img-fluid">
+                        <img src="${pageContext.request.contextPath}/${WeatherBestSearch[0].storeImg }" style = "width:500px; ; height: 350px;" alt="" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-lg-6 ">
                     <br>
                        <div class="about-content">
                         <div align="right">
-                          <i class="fas fa-eye">30</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
+                          <i class="fas fa-eye">${WeatherBestSearch[0].storeHit }</i>&nbsp&nbsp
+                           <i class="fas fa-star">${WeatherBestSearch[0].storeUp }</i>&nbsp&nbsp
+                           <i class="fas fa-pen">${WeatherBestSearch[0].replyCount }</i>
                         </div>
                          <h2 class="display-5">
-                          <a href="#"> ${WeatherBestSearch[0].storeName }</a>
-                          <p class="score">4.0</p>
+                          <a href="${pageContext.request.contextPath }/memberdetail/${WeatherBestSearch[0].storeNo }?userid=${sessionScope.userId}">
+                           ${WeatherBestSearch[0].storeName }</a>
+                          <c:if test="${WeatherBestSearch[0].storeScore == null }">
+                         	<p class="score">0.0</p>
+                         </c:if>
+                         <p class="score">${WeatherBestSearch[0].storeScore }</p>
+                          <p class="score">${Store.storeScore }</p>
                         </h2>
                            
-                        <p>이탈리안 파스타와 함께 유럽거리 노천카페의 분위기를 담은 감각적인 공간을 선사합니다.
-                        최상의 맛을 위한 식재료를 사용합니다. 좋은 식재료와 조리법, 모든 면에서 정성을 담으면서, 합리적인 가격을 제시합니다. 기본적인 파스타를 먹기에 좋습니다.</p>
-
+                        <p>
+                        	<p>주소 : ${WeatherBestSearch[0].storeAddr }</p>
+                        	<p>대표메뉴 : ${WeatherBestSearch[0].storeFood }</p>
+                        	<p>영업시간 : ${WeatherBestSearch[0].storeHours }</p>
+                        	<p>휴일 : ${WeatherBestSearch[0].storeClose }</p>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -342,25 +359,28 @@ Best 리뷰 수정
                 <div class="col-lg-6 col-md-6">
                     <div class="about-content-2">
                         <div align="right">
-                          <i class="fas fa-eye">20</i>&nbsp&nbsp
-                           <i class="fas fa-star">20</i>&nbsp&nbsp
-                           <i class="fas fa-pen">10</i>
+                          <i class="fas fa-eye">${WeatherBestSearch[1].storeHit }</i>&nbsp&nbsp
+                           <i class="fas fa-star">${WeatherBestSearch[1].storeUp }</i>&nbsp&nbsp
+                           <i class="fas fa-pen">${WeatherBestSearch[1].replyCount }</i>
                         </div>
                         <h2 class="display-5">
-                            <a href="#">${WeatherBestSearch[1].storeName }</a>
-                            <p class="score">4.0</p></a>
+                            <a href="${pageContext.request.contextPath }/memberdetail/${WeatherBestSearch[1].storeNo }?userid=${sessionScope.userId}">${WeatherBestSearch[1].storeName }</a>
+                            <c:if test="${WeatherBestSearch[1].storeScore == null }">
+                         		<p class="score">0.0</p>
+                         	</c:if>
+                            <p class="score">${WeatherBestSearch[1].storeScore }</p>
                         </h2>
                         
-                        <p> 매일아침 준비하는 신선한채소로 신선함을 올린 피자좋은 식재료를 쓰고 피자위에 갓 따온 신선한 루꼴라와 바질을 듬뿍 올립니다.
-                            쫄깃쫄깃한 반죽과 여러가지 종류의 다양한
-                            피자가 있어 취향에 따른 메뉴를 선택하여 즐기기에 좋습니다.
-                            </p>
+                        <p>주소 : ${WeatherBestSearch[1].storeAddr }</p>
+                        <p>대표메뉴 : ${WeatherBestSearch[1].storeFood }</p>
+                        <p>영업시간 : ${WeatherBestSearch[1].storeHours }</p>
+                        <p>휴일 : ${WeatherBestSearch[1].storeClose }</p>
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6">
                     <div class="about-img">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pizza.jpg" alt="pizza" class="img-fluid">
+                        <img src="${pageContext.request.contextPath}/${WeatherBestSearch[1].storeImg }" style = "width:500px; ; height: 350px;" alt="pizza" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -397,7 +417,7 @@ Best 리뷰 수정
             <c:forEach var = "Member" items="${MemberBestSearch }">
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
                     <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
+                        <img src="${pageContext.request.contextPath}/${Member.storeImg }" style = "width:350px; height: 200px; alt="portfolio">
 
                         <div class="icon">
                            <i class="fas fa-eye">${Member.storeHit }</i>&nbsp&nbsp
@@ -498,12 +518,12 @@ Best 리뷰 수정
 
                     <!-- Heading -->
                     <h2 class="lg-title mb-2">
-                        <b>BEST 리뷰</b>
+                        <b>최신 리뷰</b>
                     </h2>
 
                     <!-- Subheading -->
                     <p class="mb-5">
-                        What should We Eat Today? Best Comments
+                        What should We Eat Today? New Comments
                     </p>
                 </div>
             </div>
@@ -525,11 +545,11 @@ Best 리뷰 수정
                                     <img src="${pageContext.request.contextPath}/resources/assets/img/review/tes-1.jpg" alt="" class="img-fluid ">
                                 </div>
 
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium illum suscipit, quam quas fuga illo cupiditate labore eveniet, officia in modi eum consequuntur quis alias delectus hic? Delectus, molestias eaque.</p>
+                                <p class="lead" Style = "font-size: 20px;">${ReviewList[0].storeReviewContent }</p>
 
                                 <div class="client-text">
-                                    <h3>John Martin</h3>
-                                    <h6>Senior Developer</h6>
+                                    <h3>${ReviewList[0].userNickName }</h3>
+                                    <h6>${ReviewList[0].storeReviewDate }</h6>
                                 </div>
                             </div>
 
@@ -538,11 +558,11 @@ Best 리뷰 수정
                                     <img src="${pageContext.request.contextPath}/resources/assets/img/review/tes-2.jpg" alt="" class="img-fluid ">
                                 </div>
 
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium illum suscipit, quam quas fuga illo cupiditate labore eveniet, officia in modi eum consequuntur quis alias delectus hic? Delectus, molestias eaque.</p>
+                                <p class="lead" Style = "font-size: 20px;">${ReviewList[1].storeReviewContent }</p>
 
                                 <div class="client-text">
-                                    <h3>John Martin</h3>
-                                    <h6>Senior Developer</h6>
+                                    <h3>${ReviewList[1].userNickName }</h3>
+                                    <h6>${ReviewList[1].storeReviewDate }</h6>
                                 </div>
                             </div>
 
@@ -552,11 +572,11 @@ Best 리뷰 수정
                                     <img src="${pageContext.request.contextPath}/resources/assets/img/review/tes-3.jpg" alt="" class="img-fluid ">
                                 </div>
 
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium illum suscipit, quam quas fuga illo cupiditate labore eveniet, officia in modi eum consequuntur quis alias delectus hic? Delectus, molestias eaque.</p>
+                                <p class="lead" Style = "font-size: 20px;">${ReviewList[2].storeReviewContent }</p>
 
                                 <div class="client-text">
-                                    <h3>John Martin</h3>
-                                    <h6>Senior Developer</h6>
+                                    <h3>${ReviewList[2].userNickName }</h3>
+                                    <h6>${ReviewList[2].storeReviewDate }</h6>
                                 </div>
                             </div>
                         </div>

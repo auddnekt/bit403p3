@@ -77,5 +77,19 @@ public interface TFmapper {
 
 	List<StoreListDTO> MemberBest();
 
+	int WeatherCount(HashMap<String, Object> hm);
+
+	List<StoreListDTO> WeatherSearch(HashMap<String, Object> hm);
+
+	List<ReviewListDTO> ReviewList();
+
+	List<UserDTO> User(String userid);
+	
+	UserDTO loginN(UserDTO dto);
+
+	//void userroot(UserDTO dto);
+
+	void naverjoin(UserDTO dto);
+
 	
 }

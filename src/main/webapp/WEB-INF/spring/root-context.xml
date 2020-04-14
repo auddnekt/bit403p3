@@ -29,7 +29,10 @@
 		<property name="mapperLocations" value = "classpath:mapper/*.xml"></property>
 	</bean>
 	
-	<context:component-scan base-package="com.bitcamp.TFService"></context:component-scan>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlsessionFactory"/>
+	</bean>	
+	
 	<mybatis-spring:scan base-package="com.bitcamp.TFmapper"/>
 	
 	<bean name = "transactionManager" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -37,5 +40,8 @@
 	</bean>
 	<tx:annotation-driven/>
 	
-	<context:component-scan base-package="com.bitcamp.TFUtils"></context:component-scan>
+	<context:component-scan base-package="com.bitcamp.TFService"/>
+	<context:component-scan base-package="com.bitcamp.TFDTO"/>
+	<context:component-scan base-package="com.bitcamp.TFUtils"/>
+	
 </beans>

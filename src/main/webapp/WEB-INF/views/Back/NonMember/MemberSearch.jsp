@@ -177,7 +177,7 @@
               <c:forEach var = "MemberBest" items = "${MemberBest }">
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
                     <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
+                        <img src="${pageContext.request.contextPath}/${MemberBest.storeImg }" style = "width:350px; height: 200px;" alt="portfolio">
 
                         <div class="portfolio-content">
                           <div class="icon">
@@ -221,7 +221,7 @@
               <c:forEach var = "Store" items = "${StoreSearch }">
                 <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
                     <div class="portfolio-block">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="portfolio">
+                        <img src="${pageContext.request.contextPath}/${Store.storeImg }" style = "width:350px; height: 200px;" alt="portfolio">
 
                         <div class="portfolio-content">
                           <div class="icon">
@@ -264,7 +264,7 @@
 				<li><a href="membersearch?currpage=${page.endBlock+1 }&search=${search }&searchtxt=${searchtxt } "><span aria-hidden="true">»</span></a></li>
 			</c:if>
 			<% if(session.getAttribute("userId")!=null){  %>
-						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
+						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath }/storeinsert?${sessionScope.userGrade}">작성</a></li>
 			<% } %>
 			
 			

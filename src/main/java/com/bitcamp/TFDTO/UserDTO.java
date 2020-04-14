@@ -13,4 +13,6 @@ public class UserDTO {
 	private String 	userPw;
 	private String 	userEmail;
 	private String 	userNickname;
+	private String  userGrade;
+	private String userRoot;
 }

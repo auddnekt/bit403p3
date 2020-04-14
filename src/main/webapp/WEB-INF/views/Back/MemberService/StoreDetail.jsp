@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
-<!-- 추천 비동기처리하기
-	리플 모달창 조작
-	삭제버튼
- -->
+
 <html>
 <head>
     <!-- Required meta tags -->
@@ -25,9 +22,8 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
     <title>What is eat today?</title>
     
     <!-- map api -->
@@ -43,6 +39,23 @@
 <script>
 $(document).ready(function(){
 	
+	/* var a = ${dto.userNickName};
+	var b = ${sessionScope.userNickName };
+	if( ${sessionScope.userNickName }.equles("")){
+		var b = "";
+	}
+	else{
+		var b = ${sessionScope.userNickName };
+	}
+	
+	console.log(typeof a + "!!")
+	console.log(typeof b + "!!")
+	
+	
+	if(a==b) $(".pagination").show();
+		else $(".pagination").hide();
+	
+	pagination */
 	getLocation();
 	
 	var upDown = "up";
@@ -149,6 +162,33 @@ $(document).ready(function(){
 	.fa-starup:hover {
 	color : #4374D9;
 	}
+	
+	@media (max-width:1100px) {
+    	.RestaurantReviewList{
+    		width: 90%;   
+    	}
+    }
+    @media (min-width:1101px) {
+    	.RestaurantReviewList{
+    		width: 1000px;   
+    	}
+    }
+    
+   
+            
+   a:hover{
+        	text-decoration: none;
+        }
+    
+	 section.replyList { padding:0px 0; margin : 0px auto; width : 80%;}
+	 section.replyList ol { padding:0; margin:0; list-style:none;}
+	 section.replyList ol li { padding:0px 0; border-bottom:2px solid #eee; }
+	 section.replyList div.userInfo { padding:-20px 0; }
+	 section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
+	 section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
+	 section.replyList div.replyContent { padding:0px 20px; margin:20px 0;}
+    
+}
 </style>
 
 <body id="page-top">
@@ -302,7 +342,8 @@ $(document).ready(function(){
           <div class="col-md-12">
            <div class="col-lg-7">
                     <div class="foodimg">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/pasta.jpg" alt="pasta">
+                        <img src="${pageContext.request.contextPath}/${dto.storeImg}"
+                         style = "width: 100%; max-width: 760px; height: 400px; vertical-align: middle">
                     </div>  
             </div>      
         <!-- / .container -->
@@ -318,7 +359,9 @@ $(document).ready(function(){
                          </c:if>
                          <p class="detailscore">${dto.storeScore }</p>
                            <p class="detailstore">${dto.storeName}</p>
-                           	 <p class="detailcontent">작성자 : ${dto.userNickName}${sessionScope.userNickName }</p>
+                           	 <p class="detailcontent">작성자 : dto =  ${dto.userNickName} session = ${sessionScope.userNickName } </p>
+                           	 <p class="detailcontent">작성자 : dto =  ${sessionScope.userNickName == dto.userNickName} </p>
+                           	 <p class="detailcontent">작성자 : dto =  ${testVal.dto.userNickName} </p>
                              <p class="detailcontent">주소 : ${dto.storeAddr}</p>
                              <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
                              <p class="detailcontent">대표메뉴 : ${dto.storeFood}</p>
@@ -331,17 +374,14 @@ $(document).ready(function(){
 
 		   
 			 <nav style="clear:both" aria-label="Page navigation">
-            
+
             <ul class="pagination">
                        <!-- 현재 페이지 -->
-				<c:if test="${sessionScope.userNickName == dto.userNickName}">
-		            <li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}?userid=${sessionScope.userId}">수정</a></li>
-		            <li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
-	            </c:if>
 	            	<li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}?userid=${sessionScope.userId}">수정</a></li>
 		       		<li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
-		       	<%-- <% if(session.getAttribute("userNickName").equals(%>${dto.userNickName }<%)){  %>
-						<li style="margin-left:87%;"><a href="${pageContext.request.contextPath}/storeinsert">작성</a></li>
+		       	<%-- <% if(session.getAttribute("userNickName").equals(${dto.userNickName })){  %>
+					<li><a href = "${pageContext.request.contextPath }/memberupdate/${dto.storeNo}?userid=${sessionScope.userId}">수정</a></li>
+		       		<li><a href = "${pageContext.request.contextPath }/memberdelete/${dto.storeNo}">삭제</a></li>
 				<% } %> --%>
             </ul>
             </nav>
@@ -360,15 +400,12 @@ $(document).ready(function(){
                         Store Location
                  </p>
                  
-                 <div id="StoreMap" style="width:1000px;height:400px;">아아아</div>
+                 <div id="StoreMap" style="height:400px;"></div>
         
             </div>
         </div>
-        
-        
-       	<img src = "${dto.storeImg}">
        	
-        <section class="RestaurantReviewList">
+        <%-- <section class="RestaurantReviewList">
             <header class="RestaurantReviewList__Header">
               <h2 class="RestaurantReviewList__Title">
                 <span class="RestaurantReviewList__RestaurantName">${dto.storeName }</span><span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span><span class="RestaurantReviewList__RestaurantNameSuffixMobile">음식점의 리뷰</span>
@@ -380,7 +417,7 @@ $(document).ready(function(){
             <ul class="RestaurantReviewList__ReviewList">
 			<c:forEach var = "reply" items = "${reply }">
             <li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-		   <a class="RestaurantReviewItem__Link" href="${pageContext.request.contextPath }/replydetail/${reply.storeReviewNo}">
+		   <a class="RestaurantReviewItem__Link " href="${pageContext.request.contextPath }/replydetail/${reply.storeReviewNo}" rel="modal:open" target="_blank">
 			    <div class="RestaurantReviewItem__User">
 			      <!--<div class="RestaurantReviewItem__UserPictureWrap">
 			        <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/707184_1541421772065?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
@@ -410,7 +447,7 @@ $(document).ready(function(){
 			      <ul class="RestaurantReviewItem__PictureList">
 			      <li class="RestaurantReviewItem__PictureItem">
 			        <button class="RestaurantReviewItem__PictureButton" data-index="0">
-			          <img style="padding-bottom: 10px;" class="RestaurantReviewItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" alt="review picture" src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
+			         <!--  <img style="padding-bottom: 10px;" class="RestaurantReviewItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" alt="review picture" src="https://mp-seoul-image-production-s3.mangoplate.com/707184_1584057862288004.jpg?fit=around|120:120&amp;crop=120:120;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true"> -->
 			          
 			        </button>
 			      </li>
@@ -428,7 +465,27 @@ $(document).ready(function(){
 		</ul>
 
             
-          </section>
+          </section> --%>
+          <section class="replyList">
+			 <ol>
+			 <c:forEach items="${reply}" var="reply">
+			  <li>
+			      <div class="userInfo">
+			       <span class="userName">${reply.userNickName }</span>
+			       <span class="date">${reply.storeReviewDate} </span>
+				   <span style="font-size: 150%; margin-left: 20px;" class="RestaurantReviewItem__RatingText">${reply.storeCount}점</span>
+			      </div>
+			      <div class="replyContent">${reply.storeReviewContent}</div>
+				<a href="${pageContext.request.contextPath }/replyupdate/${reply.storeReviewNo}" class="btn btn-primary btn-lg"
+	                                   style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">수정</a>
+	                 <a href="${pageContext.request.contextPath }/replydelete/${reply.storeReviewNo}?rno=${reply.storeNo}" class="btn btn-primary btn-lg"
+	                 style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">삭제</a>
+			    </li>
+			   </c:forEach>
+			
+			  </ol>    
+			</section>
+          
     </section>
 
     <jsp:include page="/footer" ></jsp:include>
@@ -509,10 +566,10 @@ $(document).ready(function(){
     <!-- Plugin JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/ajax-contact.js"></script>
-     
+
     <!-- Theme JS -->
     <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
 
 </body>
 
-</html></html>
+</html>

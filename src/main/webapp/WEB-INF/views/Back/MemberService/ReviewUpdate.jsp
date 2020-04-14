@@ -231,14 +231,6 @@
 	                                </div>
 	                            </div>
 	                            
-	                            
-	                            <div class="col-sm-2 imgUp">
-	                            <div class="imagePreview"></div>
-	                            <label class="btn btn-primary">
-	                            UPLOAD<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-	                            </label>
-	                            </div>
-	                            <i class="fa fa-plus imgAdd"></i>
 	                            <div class="col-lg-12">
 	                                <div class="submit text-center">
 	                                   <input name="submit" type="submit" class="btn btn-danger btn-lg" value="취소">&nbsp;&nbsp;

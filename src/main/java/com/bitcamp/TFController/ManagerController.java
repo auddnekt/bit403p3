@@ -23,6 +23,7 @@ private ManagerService managerservice;
 public String list(Model model)
 {
 	List<NoticeListDTO> dto = managerservice.listAll();
+	
 	model.addAttribute("dto",dto);
 			
 	return "Back/Manager/NoticeList";
@@ -61,7 +62,7 @@ public String managerUpdate(@PathVariable int no, Model model) {
 @RequestMapping("/noticeupdateresult")
 public String managerUpdateResult(NoticeListDTO dto) {
 	
-	int result=managerservice.updateresult(dto);
+	int result = managerservice.updateresult(dto);
 	return "redirect:/noticelist";
 }
 
