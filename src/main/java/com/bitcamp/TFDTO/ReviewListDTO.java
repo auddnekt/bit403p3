@@ -13,4 +13,5 @@ public class ReviewListDTO {
 	private int StoreCount;
 	private int UserNo;
 	private int StoreNo;
+	private String StoreName;
 }

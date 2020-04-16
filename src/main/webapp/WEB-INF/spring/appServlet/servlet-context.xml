@@ -24,8 +24,8 @@
 	<context:component-scan base-package="com.bitcamp.TFController" />
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
-	 <beans:constructor-arg value="C:\javadb\spring2\aaaaa\src\main\webapp\resources" />
-	 <!-- <beans:constructor-arg value="C:\eclipse\spring2\aaaaa\src\main\webapp\resources"/> -->
+	 <!-- <beans:constructor-arg value="C:\javadb\spring2\aaaaa\src\main\webapp\resources" /> -->
+	 <beans:constructor-arg value="C:\eclipse\spring2\aaaaa\src\main\webapp\resources"/>
 	 
 	</beans:bean>
 	

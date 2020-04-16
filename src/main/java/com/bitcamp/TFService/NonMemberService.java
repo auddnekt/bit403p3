@@ -18,26 +18,12 @@ public interface NonMemberService {
 	List<StoreListDTO> MemberSearch(String search, String searchtxt, int endRow);
 
 	int MemberCount(String search, String searchtxt);
-	
-	void insertresult(StoreListDTO dto);
-
-	StoreListDTO detail(String userid, int no);
-
-	void updateresult(StoreListDTO dto);
-
-	void delete(int no);
 
 	StoreListDTO randomreco();
 
 	List<ReviewListDTO> replylist(int no);
 
-	void replyinsert(ReviewListDTO dto);
-
-	void replydelete(int no);
-
 	void view(int no);
-
-	List<ViewListDTO> storeviewlist();
 
 	List<StoreListDTO> MainBestSearch();
 
@@ -47,10 +33,6 @@ public interface NonMemberService {
 
 	int storehit(int no);
 
-	ReviewListDTO replydetail(int no);
-
-	void replyupdateresult(ReviewListDTO dto);
-
 	List<StoreListDTO> WeatherBestSearch(String weather);
 
 	UserDTO login(String userId, String userPw);
@@ -58,18 +40,6 @@ public interface NonMemberService {
 	void userjoin(UserDTO dto);
 
 	int idCheck(String userId);
-	
-	void storeup(int no, String userid);
-
-	void storeupcount(int no);
-
-	void storedown(String userid);
-
-	void storedowncount(int storeno);
-
-	int storetotalupcount(int storeno);
-
-	int storeupaction(String userid, int storeno);
 
 	List<StoreListDTO> MemberBest();
 
@@ -86,5 +56,11 @@ public interface NonMemberService {
 	void naverjoin(UserDTO dto);
 
 	UserDTO loginN(String userId);
-
+	
+	StoreListDTO detail(String userid, int no);
+	
+	int storeupaction(String userid, int storeno);
+	
+	int storetotalupcount(int storeno);
+	
 }

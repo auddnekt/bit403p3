@@ -58,11 +58,11 @@ img{
  Login
 -----------------*/
 .login-form {
-		width: 385px;
-		margin: 30px auto;
-	}
+      width: 385px;
+      margin: 30px auto;
+   }
     .login-form form {        
-    	margin-bottom: 15px;
+       margin-bottom: 15px;
         background: #f7f7f7;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
         padding: 30px;
@@ -90,23 +90,23 @@ img{
         font-size: 15px;
         font-weight: bold;
     }
-	.social-btn .btn {
-		border: none;
+   .social-btn .btn {
+      border: none;
         margin: 10px 3px 0;
         opacity: 1;
-	}
+   }
     .social-btn .btn:hover {
         opacity: 0.9;
     }
-	.social-btn .btn-primary {
+   .social-btn .btn-primary {
         background: #507cc0;
     }
-	.social-btn .btn-info {
-		background: #64ccf1;
-	}
-	.social-btn .btn-danger {
-		background: #df4930;
-	}
+   .social-btn .btn-info {
+      background: #64ccf1;
+   }
+   .social-btn .btn-danger {
+      background: #df4930;
+   }
     .or-seperator {
         margin-top: 20px;
         text-align: center;
@@ -210,10 +210,18 @@ h6 {
 }
 
 .display-5{
-    font-size: 2.5rem;
-    font-weight: 300;
+    font-size: 3rem;
+    font-weight: 600;
     line-height: 1.2;
+    font: bold;
 }
+
+.wcontent{
+   font-size: 1.5rem;
+   font: bold;
+   margin: 0px 0px 0px 0px;
+}
+
 
 /*--------------------
     LIST
@@ -324,8 +332,8 @@ img {
 
 .navbar-toggler-icon {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 5.5em;
+    height: 5.5em;
     content: "";
     vertical-align: middle;
     background: no-repeat 50%;
@@ -398,7 +406,7 @@ img {
 }
 
 .navbar .nav-item-divider .nav-link > span {
-    border-left: 1px solid
+    border-left: 5px solid
 }
 
 @media (max-width:1199.98px) {
@@ -483,7 +491,6 @@ img {
  DETAIL
 ----------------------------*/
 
-
 .detailscore{
      color: orange;
     text-align: left;
@@ -560,7 +567,7 @@ img {
  Banner STYLE
 -----------------------*/
 .banner-content{
-    padding: 130px 0px;
+    padding: 80px 0px;
 }
 
 
@@ -617,10 +624,10 @@ img {
     padding-left: 30px;
 }
 .about-content-2 {
-    padding-right: 40px;
+    padding-left: 30px;
 }
 .about-content-2  p,.about-content p{
-    margin: 20px 0px 30px;
+    margin: 10px 0px 10px;
 }
 
 
@@ -628,6 +635,7 @@ img {
     position: relative;
     z-index: 222;
     padding: 20px;
+    
 }
 
 
@@ -930,7 +938,6 @@ img {
     margin: 30px 0px 20px;
     font-size: 22px;
 }
-
 
 
 
@@ -1444,11 +1451,75 @@ img {
             list-style: none;
             -webkit-box-direction: normal;
             margin: 0;
-            padding: 0;
+/*             padding: 0; */
             -webkit-tap-highlight-color: transparent;
             border: 0 none;
             color: #ff792a;
             font-size: 12px;
         }
-
-
+      .replybox{
+         height: 120px;
+      }
+      .replybtn{
+         position: absolute;
+         margin-right: 100px;
+         margin-bottom: 0px;
+         text-align:right;
+         width: 80%;
+      }
+      .userinfo{
+         margin-bottom: 10px;
+         margin-top: 10px;
+      }
+      .line{
+         background-color: silver;
+         height: 1px;
+         width: 90%;
+      }
+      .review{
+         margin-left: 80px;
+         font-size: 30px; 
+      }
+      #noticeContent{
+         text-align: left;
+         display: block;
+          padding: 9.5px;
+          margin: 0 0 10px;
+          font-size: 15px;
+          color: #3a3a3a;
+          background-color: #ebebeb;       
+      }
+      
+      .modidel{
+         width: 100%;
+      }
+      
+      .clearfix{
+         align-content: center;
+      }
+   /*--------------------
+.noticelist
+-----------------------*/
+      *{padding:0;margin: 0;}
+         ul li {list-style: none;}
+        .clearfix:after{content: "";display: block;clear: both; transition: all 0.3s;}
+        h1{text-align: center;padding: 20px 0; font-size: 27px;}
+        .f_question1>ul>li,.f_answer1>ul>li{float: left;}
+        .fnq{width: 70%;line-height:300%;margin: 0 auto;}
+        .f_question1{position: relative}
+        
+        .f_answer1{background: #ffffff; display: none;
+        
+        /* transform:'rotate(0deg)',transition:'all 0.4s',color:'#000' */
+        }
+        
+        .f_answer1.on{display: block; transition-property: all;
+        
+        /* transform:'rotate(180deg)',transition:'all 0.4s',color:'#7070ea' */
+        }
+        .f_question1>ul>li:nth-child(1){width: 7%;text-align: center;}
+        .f_answer1>ul>li:nth-child(1){width: 7%;text-align: center;}
+        .f_question1>ul>li:nth-child(2){width: 13%;text-align: center;}
+        .f_question1>ul>li:nth-child(3){width:75%; }
+        .f_question1>ul>li:nth-child(4){width:5%; }
+        .f_q_link{width: 100%;height: 100%;position:absolute;top: 0;left: 0;}

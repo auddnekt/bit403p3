@@ -39,23 +39,16 @@
 <script>
 $(document).ready(function(){
 	
-	/* var a = ${dto.userNickName};
-	var b = ${sessionScope.userNickName };
-	if( ${sessionScope.userNickName }.equles("")){
-		var b = "";
-	}
-	else{
-		var b = ${sessionScope.userNickName };
-	}
-	
+	var a = "${dto.userNickName}";
+	var b = "${sessionScope.userNickName } ";
+
 	console.log(typeof a + "!!")
 	console.log(typeof b + "!!")
 	
 	
 	if(a==b) $(".pagination").show();
 		else $(".pagination").hide();
-	
-	pagination */
+
 	getLocation();
 	
 	var upDown = "up";
@@ -180,13 +173,13 @@ $(document).ready(function(){
         	text-decoration: none;
         }
     
-	 section.replyList { padding:0px 0; margin : 0px auto; width : 80%;}
+	 section.replyList { padding:0px 0; margin : 0px auto ; width : 80%;}
 	 section.replyList ol { padding:0; margin:0; list-style:none;}
-	 section.replyList ol li { padding:0px 0; border-bottom:2px solid #eee; }
+	 .replyList ol li { padding:0px 20px 20px 0px; border-bottom:2px solid silver;}
 	 section.replyList div.userInfo { padding:-20px 0; }
-	 section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
-	 section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
-	 section.replyList div.replyContent { padding:0px 20px; margin:20px 0;}
+	 section.replyList div.userInfo .userName { font-size:24px; font-weight:bold;}
+	 section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px;} 
+	 section.replyList div.replyContent { padding:0px 20px; margin:0px 0px;}
     
 }
 </style>
@@ -348,29 +341,29 @@ $(document).ready(function(){
             </div>      
         <!-- / .container -->
       
-        <div class="icon">
-                           <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
-                           <i class="fas fa-star fa-up">${dto.storeUp}</i>&nbsp&nbsp
-                           <i class="fas fa-pen">${ReplyCount }</i>
-                           
-                         </div>
-                          <c:if test="${dto.storeScore == null }">
-                         	<p class="detailscore">0.0</p>
-                         </c:if>
-                         <p class="detailscore">${dto.storeScore }</p>
-                           <p class="detailstore">${dto.storeName}</p>
-                           	 <p class="detailcontent">작성자 : dto =  ${dto.userNickName} session = ${sessionScope.userNickName } </p>
-                           	 <p class="detailcontent">작성자 : dto =  ${sessionScope.userNickName == dto.userNickName} </p>
-                           	 <p class="detailcontent">작성자 : dto =  ${testVal.dto.userNickName} </p>
-                             <p class="detailcontent">주소 : ${dto.storeAddr}</p>
-                             <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
-                             <p class="detailcontent">대표메뉴 : ${dto.storeFood}</p>
-                             <p class="detailcontent">영업시간 : ${dto.storeHours}</p>
-                             <p class="detailcontent">가격대 : ${dto.storeCost}</p>
-                             <p class="detailcontent">주차유무 : ${dto.storeParking}</p>
-                             <p class="detailcontent">쉬는시간 : ${dto.storeBTime}</p>
-                             <p class="detailcontent">휴일 : ${dto.storeClose }</p>                         
-           </div>
+ 				<div class="icon">
+                    <i class="fas fa-eye">${dto.storeHit}</i>&nbsp&nbsp
+                    <i class="fas fa-star fa-up">${dto.storeUp}</i>&nbsp&nbsp
+                    <i class="fas fa-pen">${ReplyCount }</i>
+                    
+                  </div>
+	                   <c:if test="${dto.storeScore == null }">
+	                  	<p class="detailscore">0.0</p>
+	                  </c:if>
+	                  
+	                  <p class="detailscore">${dto.storeScore }</p>
+	                    <p class="detailstore">${dto.storeName}</p>
+	                    <p class="detailcontent">작성자 : ${dto.userNickName}</p>
+	                      <p class="detailcontent">주소 : ${dto.storeAddr}</p>
+	                      <p class="detailcontent">전화번호 : ${dto.storeCall }</p>
+	                      <p class="detailcontent">대표메뉴 : ${dto.storeFood}</p>
+	                      <p class="detailcontent">영업시간 : ${dto.storeHours}</p>
+	                      <p class="detailcontent">가격대 : ${dto.storeCost}</p>
+	                      <p class="detailcontent">주차유무 : ${dto.storeParking}</p>
+	                      <p class="detailcontent">쉬는시간 : ${dto.storeBTime}</p>
+	                      <p class="detailcontent">휴일 : ${dto.storeClose }</p>  
+                                          
+          </div>
 
 		   
 			 <nav style="clear:both" aria-label="Page navigation">
@@ -389,11 +382,11 @@ $(document).ready(function(){
         </div>
         
         
-        <br><hr><br>
+        <br><hr class="line"><br><br>
         <div class="container">
         	<div class="col-md-12" align="center">
        			 <h2 class="lg-title mb-2">
-                    <b>가게위치</b>
+                    <b>음식점위치</b>
                  </h2>
                  <!-- Subheading -->
                  <p class="mb-5" style="font-size:20px;">
@@ -466,27 +459,31 @@ $(document).ready(function(){
 
             
           </section> --%>
-          <section class="replyList">
-			 <ol>
-			 <c:forEach items="${reply}" var="reply">
-			  <li>
-			      <div class="userInfo">
-			       <span class="userName">${reply.userNickName }</span>
-			       <span class="date">${reply.storeReviewDate} </span>
-				   <span style="font-size: 150%; margin-left: 20px;" class="RestaurantReviewItem__RatingText">${reply.storeCount}점</span>
-			      </div>
-			      <div class="replyContent">${reply.storeReviewContent}</div>
-				<a href="${pageContext.request.contextPath }/replyupdate/${reply.storeReviewNo}" class="btn btn-primary btn-lg"
-	                                   style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">수정</a>
-	                 <a href="${pageContext.request.contextPath }/replydelete/${reply.storeReviewNo}?rno=${reply.storeNo}" class="btn btn-primary btn-lg"
-	                 style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">삭제</a>
-			    </li>
-			   </c:forEach>
-			
-			  </ol>    
-			</section>
-          
-    </section>
+		<br><br><hr class="line">
+		<span class="review">[<font color="orange">R</font>eview]</span>
+		<section class="replyList">
+			<ol>
+				<c:forEach items="${reply}" var="reply">
+					<li class="replybox">
+						<div class="userInfo">
+						<span class="userName">${reply.userNickName}</span>     
+						<span class="date">${reply.storeReviewDate}</span> 
+						<span style="font-size: 150%; margin-left: 20px;"class="RestaurantReviewItem__RatingText">${reply.storeCount}점</span>
+						</div>
+						<div class="replyContent">${reply.storeReviewContent}</div>
+						<c:set var="userNickName" value="${sessionScope.userNickName} "></c:set>
+ 						<c:if test="${reply.userNickName == userNickName}">
+							<span class="replybtn"><a href="${pageContext.request.contextPath }/replyupdate/${reply.storeReviewNo}"
+								class="btn btn-primary btn-lg" style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">수정</a>
+								<a href="${pageContext.request.contextPath }/replydelete/${reply.storeReviewNo}?rno=${reply.storeNo}" class="btn btn-primary btn-lg"
+								style="margin: 0px 7px 10px 0px; width: 50px; font-size: 12px; height: 30px; padding: 5px 0px;">삭제</a>
+							</span>
+							</c:if>
+					</li>
+				</c:forEach>
+			</ol>
+		</section>
+	</section>
 
     <jsp:include page="/footer" ></jsp:include>
     <!-- FOOTER

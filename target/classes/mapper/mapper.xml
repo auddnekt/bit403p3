@@ -91,8 +91,8 @@
      </select>
      
      <select id = "ReviewList" resultType = "com.bitcamp.TFDTO.ReviewListDTO" parameterMap="hashmap">
-      select StoreReviewNo, UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, StoreNo
-      from ReviewList
+      select StoreReviewNo, r.UserNickName, StoreReviewDate, StoreReviewContent, StoreCount, r.StoreNo, s.StoreName
+      from ReviewList r inner join StoreInfo s on r.StoreNo=s.StoreNo
       order by StoreReviewNo desc, StoreReviewNo limit 3 offset 0;
      </select>
      
@@ -219,6 +219,7 @@
         insert into StoreView(StoreNo)
       values(#{no})
      </insert>
+     
      <select id = "StoreViewList" resultType = "com.bitcamp.TFDTO.ViewListDTO" parameterMap="hashmap">
       select v.StoreNo as StoreNo, StoreName, StoreAddr
       from StoreInfo s inner join StoreView v on s.StoreNo = v.StoreNo

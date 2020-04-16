@@ -60,21 +60,45 @@
 
 </script>
 <style>
-	.item_no1{
+	.active{
+		position: relative;
+	}
+	.carousel-text{
 		position: absolute;
-	    top : 50%;
-	    left: 50%;
-	    transform : translate(-50%, -50%);
-	    color: white;
-	    font-weight: bolder;
-	    font-size:300%;
+		top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		font-size: 200%;
+		font-weight: bolder;
+		color : white;
+	}
+	.carousel-img{
+		opacity: 0.8;
 	}
 	
-	.item_no1:hover {
-		color: white;
+	.linking{
+		color: black;
+		font-weight: bolder;
+	}
+	.linking:hover {
+		color: black;
 		text-decoration: none;
 	}
 	
+	.container p{
+		font-weight: bolder;
+	}
+	.display-5 a:hover{
+		text-decoration: none;
+	}
+	
+	@media screen and (max-width: 768px) {
+	 
+	 .carousel-text{
+	 	font-size: 100%;
+	 } 
+	
+	}
 </style>
 </head>
 
@@ -95,7 +119,7 @@
             </a>
             
             <!-- Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon-bar">
                     <i class="fa fa-bars"></i>
                 </span>
@@ -105,14 +129,14 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item ml">
                         <a class="nav-link js-scroll-trigger" href="#page-top">
-                            HOME
+                        HOME
                         </a>
                     </li>
                     <li class="nav-item ml">
                         <a class="nav-link js-scroll-trigger" href="#feature">
-                            BEST 맛집
+                        BEST맛집
                         </a>
                     </li>
                     <li class="nav-item ml">
@@ -203,10 +227,9 @@
                         </h1>--!>
 
                         <!-- Subheading -->
-                        <p class="lead text-white text-center mb-5">
+                        <!-- <p class="lead text-white text-center mb-5">
                             
-                        </p>
-
+                        </p> -->
                         <!-- Button -->
                         <p class="text-center mb-0" >
                             <a href="${pageContext.request.contextPath}/randomreco" rel="modal:open" target="_blank" class="btn btn-primary ">
@@ -241,14 +264,13 @@
                     </h2> 
                     <!-- Subheading -->
                     <p class="mb-1" style="font-size:20px;">
-                      This is a Screen Showing The Best Restaurants.
+                      The Best Restaurants.
                     </p>
-        
                 </div>
             </div>
             <!-- / .row -->
                 <div class="container" align="center">
-             <b></b><p align="right"><a href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">BEST맛집 더보기</a></p>
+             <b></b><p align="right"><a class = linking href="${pageContext.request.contextPath}/storesearch?currpage${page.startBlock }">BEST맛집 더보기</a></p>
              
               <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 70%;">
                 <!-- Indicators -->
@@ -261,27 +283,49 @@
 
                 <!-- Wrapper for slides -->
                
-                <div class="carousel-inner" role="listbox" >${pageContext.request.contextPath}${MainBestSearch[0].storeImg}
-<%--                 <c:forEach var = "Member" items="${MemberBestSearch }"> --%>${pageContext.request.contextPath}/resources/assets/img/pasta.jpg
-                  <div class="item active" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/resources/assets/img/pasta.jpg)">
-                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[0].storeName }</p>
-                    <p style = "font-size: 40%;">${MainBestSearch[0].storeAddr }</p></a>
-                    
-                  </div>
-<%-- 				</c:forEach> --%>
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[1].storeImg }">
-                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[1].storeName }</p>
-                    <p style = "font-size: 40%;">${MainBestSearch[1].storeAddr }</p></a>
+                <div class="carousel-inner" role="listbox">
+                  <div class="item active">
+                    <a href="${pageContext.request.contextPath }/memberdetail/${MainBestSearch[0].storeNo }?userid=${sessionScope.userId}">
+                    <img class = "carousel-img" src="${pageContext.request.contextPath}/${MainBestSearch[0].storeImg}"  
+                    alt="pizza" style="width:100%;">
+                    <div class = "carousel-text">
+	                    <p>${MainBestSearch[0].storeName}</p>
+	                    <p>${MainBestSearch[0].storeAddr}</p>
+                    </div>
+                    </a>
                   </div>
 
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[2].storeImg }">
-                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[2].storeName }</p>
-                    <p style = "font-size: 40%;">${MainBestSearch[2].storeAddr }</p></a>
+                  <div class="item" align="center">
+                    <a href="${pageContext.request.contextPath }/memberdetail/${MainBestSearch[1].storeNo }?userid=${sessionScope.userId}">
+                    <img class = "carousel-img" src="${pageContext.request.contextPath}/${MainBestSearch[1].storeImg}"
+                      alt="nuddle" style="width:100%">
+                      <div class = "carousel-text">
+	                    <p>${MainBestSearch[1].storeName}</p>
+	                    <p>${MainBestSearch[1].storeAddr}</p>
+                    </div>
+                      </a>
                   </div>
-                    
-                  <div class="item" align="center" style="padding-top: 60%; background-image: url(${pageContext.request.contextPath}/${MainBestSearch[3].storeImg }">
-                    <a class="item_no1" href="#"><p  style = "font-size: 80%;">${MainBestSearch[3].storeName }</p>
-                    <p style = "font-size: 40%;">${MainBestSearch[3].storeAddr }</p></a>
+
+                  <div class="item" align="center">
+                    <a href="${pageContext.request.contextPath }/memberdetail/${MainBestSearch[2].storeNo }?userid=${sessionScope.userId}">
+                    <img class = "carousel-img" src="${pageContext.request.contextPath}/${MainBestSearch[2].storeImg}"
+                   alt="pasta" style="width:100%">
+                   <div class = "carousel-text">
+	                    <p>${MainBestSearch[2].storeName}</p>
+	                    <p>${MainBestSearch[2].storeAddr}</p>
+                    </div>
+                   </a>
+                  </div>
+                  
+                  <div class="item" align="center">
+                    <a href="${pageContext.request.contextPath }/memberdetail/${MainBestSearch[3].storeNo }?userid=${sessionScope.userId}">
+                    <img class = "carousel-img" src="${pageContext.request.contextPath}/${MainBestSearch[3].storeImg}"
+                   alt="koreansoup" style="width:100%">
+                   <div class = "carousel-text">
+	                    <p>${MainBestSearch[3].storeName}</p>
+	                    <p>${MainBestSearch[3].storeAddr}</p>
+                    </div>
+                   </a>
                   </div>
                 </div>
 
@@ -303,7 +347,7 @@
 
     <!-- ABOUT
     ================================================== -->
-    <hr>   
+    <hr class="line">   
      <section class="section bg-light" id="about">
         <!-- Heading -->
         <div>
@@ -311,12 +355,11 @@
                         <b>${weather}날씨 추천맛집</b>
                     </h2>
                     <p class="mb-5" align="center" style="font-size:20px;">
-                    Today's Recommended Restaurants
+                    Today's Weather Recommended Restaurants
                     </p>
-                     <p align = "center"; style = "font-size: 16px; ">현재온도 : ${ktemp }c</p>
          </div>
                    <div class="container">
-                       <p align="right"><a href="${pageContext.request.contextPath }/weathersearch?searchtxt=${weather }">${weather}날씨 추천맛집 더보기</a></p>
+                       <p align="right"><a class = linking href="${pageContext.request.contextPath }/weathersearch?searchtxt=${weather }">${weather}날씨 추천맛집 더보기</a></p>
                     </div>
         <div class="container">
             <div class="row ">
@@ -334,13 +377,12 @@
                            <i class="fas fa-pen">${WeatherBestSearch[0].replyCount }</i>
                         </div>
                          <h2 class="display-5">
-                          <a href="${pageContext.request.contextPath }/memberdetail/${WeatherBestSearch[0].storeNo }?userid=${sessionScope.userId}">
-                           ${WeatherBestSearch[0].storeName }</a>
+                          <a class = "weathername" href="${pageContext.request.contextPath }/memberdetail/${WeatherBestSearch[0].storeNo }?userid=${sessionScope.userId}">
+                          ${WeatherBestSearch[0].storeName }</a>
                           <c:if test="${WeatherBestSearch[0].storeScore == null }">
-                         	<p class="score">0.0</p>
+                         	<p class="score" style = "font-weight: 700;">0.0</p>
                          </c:if>
-                         <p class="score">${WeatherBestSearch[0].storeScore }</p>
-                          <p class="score">${Store.storeScore }</p>
+                         <p class="score" style = "font-weight: 700;">${WeatherBestSearch[0].storeScore }</p>
                         </h2>
                            
                         <p>
@@ -348,6 +390,8 @@
                         	<p>대표메뉴 : ${WeatherBestSearch[0].storeFood }</p>
                         	<p>영업시간 : ${WeatherBestSearch[0].storeHours }</p>
                         	<p>휴일 : ${WeatherBestSearch[0].storeClose }</p>
+                        	<p>가격대 : ${WeatherBestSearch[0].storeCost }</p>
+                        	<p>전화번호 : ${WeatherBestSearch[0].storeCall }</p>
                         </p>
                     </div>
                 </div>
@@ -365,16 +409,19 @@
                         </div>
                         <h2 class="display-5">
                             <a href="${pageContext.request.contextPath }/memberdetail/${WeatherBestSearch[1].storeNo }?userid=${sessionScope.userId}">${WeatherBestSearch[1].storeName }</a>
-                            <c:if test="${WeatherBestSearch[1].storeScore == null }">
-                         		<p class="score">0.0</p>
-                         	</c:if>
-                            <p class="score">${WeatherBestSearch[1].storeScore }</p>
+                         <c:if test="${WeatherBestSearch[1].storeScore == null }">
+                         	<p class="score" style = "font-weight: 700;">0.0</p>
+                         </c:if>
+                         <p class="score" style = "font-weight: 700;">${WeatherBestSearch[1].storeScore }</p>
                         </h2>
-                        
+                      
                         <p>주소 : ${WeatherBestSearch[1].storeAddr }</p>
                         <p>대표메뉴 : ${WeatherBestSearch[1].storeFood }</p>
                         <p>영업시간 : ${WeatherBestSearch[1].storeHours }</p>
                         <p>휴일 : ${WeatherBestSearch[1].storeClose }</p>
+                        <p>가격대 : ${WeatherBestSearch[0].storeCost }</p>
+                        <p>전화번호 : ${WeatherBestSearch[0].storeCall }</p>
+                   		
                     </div>
                 </div>
 
@@ -386,7 +433,7 @@
             </div>
         </div>
     </section>
-
+	<hr class="line">
     <!-- 회원추천 맛집
     ================================================== -->
     <section class="section bg-light" id="portfolio">
@@ -406,7 +453,7 @@
                         Good Restaurants To Recommendable Restaurants
                     </p>
                    <p align="right">
-                   <a href="${pageContext.request.contextPath}/membersearch">회원추천 맛집 더보기</a>
+                   <a class = linking href="${pageContext.request.contextPath}/membersearch">회원추천 맛집 더보기</a>
                    </p>
                 </div>
                 
@@ -510,7 +557,8 @@
         </div>
     </section>-->
 
-
+	<hr class="line">
+	<br><br><br>
     <!-- Testimonial
     ================================================== -->
     <div class="row justify-content-center mb-4">
@@ -548,8 +596,10 @@
                                 <p class="lead" Style = "font-size: 20px;">${ReviewList[0].storeReviewContent }</p>
 
                                 <div class="client-text">
+                                	<h3>가게 이름 : ${ReviewList[0].storeName }</h3>
+                                	<br>
                                     <h3>${ReviewList[0].userNickName }</h3>
-                                    <h6>${ReviewList[0].storeReviewDate }</h6>
+                                    <h5>${ReviewList[0].storeReviewDate }</h6>
                                 </div>
                             </div>
 
@@ -561,6 +611,8 @@
                                 <p class="lead" Style = "font-size: 20px;">${ReviewList[1].storeReviewContent }</p>
 
                                 <div class="client-text">
+                                	<h3>가게 이름 : ${ReviewList[1].storeName }</h3>
+                                	<br>
                                     <h3>${ReviewList[1].userNickName }</h3>
                                     <h6>${ReviewList[1].storeReviewDate }</h6>
                                 </div>
@@ -575,6 +627,8 @@
                                 <p class="lead" Style = "font-size: 20px;">${ReviewList[2].storeReviewContent }</p>
 
                                 <div class="client-text">
+                                	<h3>가게 이름 : ${ReviewList[2].storeName }</h3>
+                                	<br>
                                     <h3>${ReviewList[2].userNickName }</h3>
                                     <h6>${ReviewList[2].storeReviewDate }</h6>
                                 </div>

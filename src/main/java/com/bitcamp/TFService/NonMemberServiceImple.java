@@ -22,9 +22,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service("nonmemberservice")
 public class NonMemberServiceImple implements NonMemberService{
-
+	
+	
 	@Autowired
 	private TFmapper mapper;
+
 	
 	
 	/*@Inject
@@ -69,31 +71,7 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.MemberSearch(hm);
 	}
 	
-	@Override
-	public void insertresult(StoreListDTO dto) {
-		mapper.MamberInsertResult(dto);
-	}
-
-	@Override
-	public StoreListDTO detail(String userid, int no) {
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("userid", userid);
-		hm.put("no", no);
-				
-		return mapper.MemberDetail(hm);
-	}
-
-	@Override
-	public void updateresult(StoreListDTO dto) {
-		mapper.MemberUpdateResult(dto);
-		
-	}
-
-	@Override
-	public void delete(int no) {
-		mapper.MemberDelete(no);
-		
-	}
+	
 
 	@Override
 	public StoreListDTO randomreco() {
@@ -106,16 +84,7 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.ReplyList(no);
 	}
 
-	@Override
-	public void replyinsert(ReviewListDTO dto) {
-		mapper.ReplyInsert(dto);		
-	}
-
-	@Override
-	public void replydelete(int no) {
-		mapper.ReplyDelete(no);
-		
-	}
+	
 
 	@Override
 	public void view(int no) {
@@ -123,10 +92,7 @@ public class NonMemberServiceImple implements NonMemberService{
 		
 	}
 
-	@Override
-	public List<ViewListDTO> storeviewlist() {
-		return mapper.StoreViewList();
-	}
+
 
 	@Override
 	public List<StoreListDTO> MainBestSearch() {
@@ -148,15 +114,6 @@ public class NonMemberServiceImple implements NonMemberService{
 		return mapper.StoreHit(no);		
 	}
 
-	@Override
-	public ReviewListDTO replydetail(int no) {
-		return mapper.ReplyDetail(no);
-	}
-
-	@Override
-	public void replyupdateresult(ReviewListDTO dto) {
-		mapper.ReplyUpdateResult(dto);
-	}
 
 	@Override
 	public List<StoreListDTO> WeatherBestSearch(String weather) {
@@ -186,50 +143,9 @@ public class NonMemberServiceImple implements NonMemberService{
 			
 		return result;
 	}
-	
-	@Override
-	public void storeup(int storeno, String userid) {
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("userid", userid);
-		hm.put("storeno", storeno);
-		
-		mapper.StoreUp(hm);
-	}
-	
-	@Override
-	public void storeupcount(int storeno) {
-		mapper.StoreUpCount(storeno);
-		
-	}
 
-	@Override
-	public void storedown(String userid) {
-		
-		log.info("param data2-1...."+userid);
-		mapper.Storedown(userid);	
-		
-	}
 
-	@Override
-	public void storedowncount(int storeno) {
-		log.info("param data2-2...."+storeno);
-		mapper.StoredownCount(storeno);
-		
-	}
 
-	@Override
-	public int storetotalupcount(int storeno) {
-		return mapper.StoretotalupCount(storeno);
-	}
-
-	@Override
-	public int storeupaction(String userid, int storeno) {
-		HashMap<String, Object> hm = new HashMap<>();
-		hm.put("userid", userid);
-		hm.put("storeno", storeno);
-		
-		return mapper.StoreUpAction(hm);
-	}
 
 	@Override
 	public List<StoreListDTO> MemberBest() {
@@ -287,4 +203,27 @@ public class NonMemberServiceImple implements NonMemberService{
 		
 	}
 	
+	@Override
+	public StoreListDTO detail(String userid, int no) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("userid", userid);
+		hm.put("no", no);
+				
+		return mapper.MemberDetail(hm);
+	}
+	
+	@Override
+	public int storeupaction(String userid, int storeno) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("userid", userid);
+		hm.put("storeno", storeno);
+		
+		return mapper.StoreUpAction(hm);
+	}
+	
+	@Override
+	public int storetotalupcount(int storeno) {
+		return mapper.StoretotalupCount(storeno);
+	}
+
 }

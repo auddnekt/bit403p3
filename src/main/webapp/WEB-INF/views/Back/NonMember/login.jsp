@@ -148,127 +148,64 @@
         <!-- / .container -->
     </section> --%>
    
-	<section class="section" id="login">
+   <section class="section" id="login">
         <div class="container">
-	           <div class="row justify-content-center mb-4">
-	                <div class="col-md-8 col-lg-8 text-center">
-	                    <!-- Heading -->
-	                    <h2 class="lg-title mb-2">
-	                        <b>로그인</b>
-	                    </h2>
-	                    <!-- Subheading -->
-	                    <p class="mb-5">
-	                       Member Login Page
-	                    </p>
-	                </div>
-	            </div>
-	            
-			    <div class="login-form">
-			    			    
-			    <form class="loginresultForm" id="loginresultForm" action="loginresult">
-			        <div class="form-group">
-			        	<div class="input-group">
-			                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-			                <input type="text" class="form-control" name="userId" placeholder="아이디를 입력해주세요." required="required" autofocus onkeyup="enterKeyCheck()">				
-			            </div>
-			        </div>
-					<div class="form-group">
-			            <div class="input-group">
-			                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-			                <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력해주세요." required="required" onkeyup="enterKeyCheck()">				
-			            </div>
-			        </div>        
-			        <div class="form-group">
-			            <button type="submit" class="btn btn-primary login-btn btn-block" >로그인</button>
-			        </div>
-			        
-			       <!-- 비밀번호저장, 비밀번호찾기 -->
-			       <!-- <div class="clearfix">
-			            <a href="#"><label class="pull-left checkbox-inline">비밀번호를 잊으셨나요?</label></a>
-			        </div> -->
-			        
-					<div class="or-seperator"><i>or</i></div>
-			        <p class="text-center">소셜 미디어 계정으로 로그인</p>
-			        <div class="text-center social-btn" id="naver_id_login">
-			            <!-- <a href="#" class="btn btn-warning"><i class="fab fa-korvue"></i>&nbsp; KAKAO</a> -->
-			            <a href="${url}" class="btn btn-success"><i class="fab fa-neos"></i>&nbsp; NAVER</a>
-						<!--<a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>-->
-			        </div>
-			        <br>
-			        <p class="text-center text-muted small">아직 계정이 없으신가요?
-			  		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			   		 <input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/join'" class="joinbtn">
-		   	 </form><br>
-			</div>
+              <div class="row justify-content-center mb-4">
+                   <div class="col-md-8 col-lg-8 text-center">
+                       <!-- Heading -->
+                       <h2 class="lg-title mb-2">
+                           <b>로그인</b>
+                       </h2>
+                       <!-- Subheading -->
+                       <p class="mb-5">
+                          Member Login Page
+                       </p>
+                   </div>
+               </div>
+               
+             <div class="login-form">
+                          
+             <form class="loginresultForm" id="loginresultForm" action="loginresult">
+                 <div class="form-group">
+                    <div class="input-group">
+                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                         <input type="text" class="form-control" name="userId" placeholder="아이디를 입력해주세요." required="required" autofocus onkeyup="enterKeyCheck()">            
+                     </div>
+                 </div>
+               <div class="form-group">
+                     <div class="input-group">
+                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                         <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력해주세요." required="required" onkeyup="enterKeyCheck()">            
+                     </div>
+                 </div>        
+                 <div class="form-group">
+                     <button type="submit" class="btn btn-primary login-btn btn-block" >로그인</button>
+                 </div>
+                 
+                <!-- 비밀번호저장, 비밀번호찾기 -->
+                <!-- <div class="clearfix">
+                     <a href="#"><label class="pull-left checkbox-inline">비밀번호를 잊으셨나요?</label></a>
+                 </div> -->
+                 
+               <div class="or-seperator"><i>or</i></div>
+                 <p class="text-center">소셜 미디어 계정으로 로그인</p>
+                 <div class="text-center social-btn" id="naver_id_login">
+                     <!-- <a href="#" class="btn btn-warning"><i class="fab fa-korvue"></i>&nbsp; KAKAO</a> -->
+                     <a href="${url}" class="btn btn-success"><i class="fab fa-neos"></i>&nbsp; NAVER</a>
+                  <!--<a href="#" class="btn btn-danger"><i class="fab fa-google"></i>&nbsp; Google</a>-->
+                 </div>
+                 <br>
+                 <p class="text-center text-muted small">아직 계정이 없으신가요?
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/join'" class="joinbtn">
+             </form><br>
+         </div>
         <!-- / .container -->
         </div>
     </section>
     <!-- FOOTER
     ================================================== -->
-     <footer class="top-padding bg-dark">
-       
-        <div class="container">
-            <div class="row align-self-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="footer-widget">
-                       
-                        <a href="#" class="footer-brand text-white">
-                           <font color=lightgray size=6><b>오늘</b></font>
-                            <font color=skyblue size=6><b>뭐</b></font>
-                            <font color=orange size=6><b>먹지?</b></font>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 ml-lg-auto col-md-2">
-
-                    
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <a href="#" class="text-white">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Address
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white">
-                                Creator
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-5">
-
-                    
-                    <ul class="footer-link list-unstyled ml-0 justify-content-end">
-                        <li>
-                            <i class="fa fa-mobile"></i> 
-                            02-1234-5678
-                        </li>
-                        <li>
-                            <i class="fa fa-location-arrow"></i>
-                            서울 서초구 강남대로 459
-                        </li>
-                        <li>
-                            <i class="fa fa-globe"></i> Kim HyunJin , Koo MyungWoo
-                        </li>
-                    </ul>
-                </div>
-            </div>
-           
-
-            <div class="row justify-content-md-center footer-copy">
-                <div class="col-lg-8 col-md-6 col-sm-6 text-center">
-                    <p class="lead text-white-50">&copy; Copyright 
-                     What should We Eat Today? Co.Ltd.All rights reserved. </p>
-                </div>
-            </div>
-        </div>
-    </footer> 
+     <jsp:include page="/footer" ></jsp:include>
      
 
     <!-- JAVASCRIPT
@@ -285,12 +222,12 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
     
     <script>
-    	var msg="${msg}";
-    	if (msg=== "registered"){
-    		alert("회원가입이 완료되었습니다. 로그인해주세요~");
-    	}else if (msg == "faulure"){
-    		alert("아이디와 비밀번호를 확인해주세요.");
-    	}
+       var msg="${msg}";
+       if (msg=== "registered"){
+          alert("회원가입이 완료되었습니다. 로그인해주세요~");
+       }else if (msg == "faulure"){
+          alert("아이디와 비밀번호를 확인해주세요.");
+       }
     </script>
     
 </body>

@@ -1,6 +1,7 @@
 package com.bitcamp.TFController;
 import java.io.BufferedReader;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,12 +70,85 @@ public class NonMemberController {
 	@Resource
 	public NonMemberService nonmemberservice;
 	
-	@Resource(name="uploadPath")
-	private String uploadPath;
+/*	@Resource(name="uploadPath")
+	private String uploadPath;*/
 
 	
 	@RequestMapping("/header")
-	public String header() {
+	public String header(Model model) {
+		
+		try {
+			String urlstr = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=f864cb8b429877a2f548008e3260e8a5&units=metric&lang=kr";
+	        URL url = new URL(urlstr);
+	        BufferedReader bf;
+	        String line;
+	        String result="";
+	
+	        //날씨 정보를 받아온다.
+	        bf = new BufferedReader(new InputStreamReader(url.openStream()));
+	
+	        //버퍼에 있는 정보를 문자열로 변환.
+	        while((line=bf.readLine())!=null){
+	            result=result.concat(line);
+	            //System.out.println(line);
+	        }
+	        
+	        System.out.println(result);
+	        
+	        //문자열을 JSON으로 파싱
+	        JSONParser jsonParser = new JSONParser();
+	        JSONObject jsonObj = (JSONObject) jsonParser.parse(result);
+	
+	        //지역 출력
+	        //System.out.println("지역 : " + jsonObj.get("name"));
+	
+	        //날씨 출력
+	        JSONArray weatherArray = (JSONArray) jsonObj.get("weather");
+	        JSONObject obj = (JSONObject) weatherArray.get(0);
+	        
+	        int code = Integer.parseInt(obj.get("id").toString());
+	        System.out.println("날씨코드 : "+ code);
+	        String weather="";
+	        
+	      //온도 출력
+	        JSONObject mainArray = (JSONObject) jsonObj.get("main");
+	        double ktemp = Double.parseDouble(mainArray.get("temp").toString());
+	        
+	        if(code>=800 && code<=801) {
+	        	weather="맑음";
+	        }
+			else if(code>=802 && code<=804){
+				weather="흐림";
+			}
+			else if(code>=600 && code<=622){
+				weather="눈";
+			} 
+			else if(code==800){
+				weather="맑음";
+			}
+			else if(code>=500 && code<=531){
+				weather="비";
+			}
+			else if(code>=700 && code<=721) {
+				weather="맑음";
+			}
+	        
+	        List<StoreListDTO> WeatherBestSearch = nonmemberservice.WeatherBestSearch(weather);
+			model.addAttribute("WeatherBestSearch", WeatherBestSearch);
+	        
+			List<ReviewListDTO> ReviewList = nonmemberservice.reviewlist();
+			model.addAttribute("ReviewList", ReviewList);
+	        
+	        model.addAttribute("weather", weather);
+	        model.addAttribute("ktemp", ktemp);
+	        
+	        bf.close();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		
 		return "Back/NonMember/Header";
 		
 	}
@@ -125,16 +199,6 @@ public class NonMemberController {
 		}else {
 			return "redirect:/login";
 		}
-	}
-	
-	@RequestMapping("/Logout")
-	public String loginresult(HttpSession session) {
-		//System.out.println(session.getAttribute("userId"));
-		//System.out.println(session.getAttribute("userName"));
-		//System.out.println(session.getAttribute("userNickName"));
-		
-		session.invalidate();
-		return "redirect:/login";
 	}
 	
 	@RequestMapping("/join")
@@ -219,6 +283,9 @@ public class NonMemberController {
 			}
 			else if(code>=500 && code<=531){
 				weather="비";
+			}
+			else if(code>=700 && code<=721) {
+				weather="맑음";
 			}
 	        
 	        List<StoreListDTO> WeatherBestSearch = nonmemberservice.WeatherBestSearch(weather);
@@ -328,43 +395,7 @@ public class NonMemberController {
 	}
 	
 	
-/*	@RequestMapping(value = "/storeinsert", method = {RequestMethod.GET})*/
-	@RequestMapping("/storeinsert")
-	public String memberInsert(/*@PathVariable String userid, Model model*/) {
-		
-		/*List<UserDTO> User = nonmemberservice.user(userid);
-		model.addAttribute("User", User);*/
-		
-		return "Back/MemberService/StoreInsert";
-	}
-	
-		
-	@RequestMapping("/memberinsertresult")
-	public String memberInsert(StoreListDTO dto, MultipartFile file) throws IOException, Exception{
-		String imgUploadPath = uploadPath + File.separator + "imgUpload";
-		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-		String fileName = null;
 
-		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-		}
-		else {
-		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		}
-
-		dto.setStoreImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		//dto.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		nonmemberservice.insertresult(dto);
-		
-		String grade = dto.getStoreGrade();
-		System.out.println(grade+"!!!");
-		if(grade.equals("1")) {
-			return "redirect:/storesearch";
-		}
-		else {
-			return "redirect:/membersearch";
-		}
-	}
 	
 	@RequestMapping("/memberdetail/{no}")
 	public String memberDetail(@PathVariable int no, @RequestParam(required=false, defaultValue="") String userid, Model model)  {
@@ -384,6 +415,7 @@ public class NonMemberController {
 		List<ReviewListDTO> reply = nonmemberservice.replylist(no);
 		model.addAttribute("reply", reply);
 		
+		
 		/*리플 갯수*/
 		int ReplyCount = nonmemberservice.replyCount(no);
 		model.addAttribute("ReplyCount", ReplyCount);
@@ -399,64 +431,6 @@ public class NonMemberController {
 		return "Back/MemberService/StoreDetail";
 	}
 	
-	@RequestMapping("/storeup")
-	@ResponseBody
-	public int storeUp(@RequestParam int storeno, @RequestParam String userid,  @RequestParam String upDown, Model model) {
-
-		   int StoreUpAction = nonmemberservice.storeupaction(userid, storeno);
-			System.out.println(StoreUpAction);   
-   
-	     return  StoreUpAction;
-	}
-	
-	@RequestMapping("/storeupcount")
-	@ResponseBody
-	public int storeUpCount(@RequestParam int storeno, @RequestParam String userid,  @RequestParam int upDown, Model model) {
-		
-		log.info(" param data....."+storeno);
-		log.info("param data2...."+userid);
-		log.info("param data3...."+upDown);
-		
-		if(upDown==0) {
-			nonmemberservice.storeup(storeno, userid);
-			nonmemberservice.storeupcount(storeno);
-		} else {
-			nonmemberservice.storedown(userid);
-			nonmemberservice.storedowncount(storeno);
-		}
-		
-		int totalupcount = nonmemberservice.storetotalupcount(storeno);
-		log.info("param data4...."+totalupcount);
-		model.addAttribute("totalupcount", totalupcount);
-		   
-	    return totalupcount;
-
-	}
-
-	
-	@RequestMapping("/memberupdate/{no}")
-	public String memberUpdate(@RequestParam(required=false, defaultValue="") String userid, @PathVariable int no, Model model) {
-		
-		StoreListDTO dto = nonmemberservice.detail(userid, no);
-		model.addAttribute("dto", dto);
-		
-		return "Back/MemberService/StoreUpdate";
-	}
-	
-	@RequestMapping("/memberupdateresult")
-	public String memberUpdateResult(StoreListDTO dto) {
-		nonmemberservice.updateresult(dto);
-		int no = dto.getStoreNo();
-		return "redirect:/memberdetail/"+no;
-	}
-	
-	@RequestMapping("/memberdelete/{no}")
-	public String delete(@PathVariable int no) {
-		
-		nonmemberservice.delete(no);
-				
-		return "redirect:/membersearch";
-	}
 	
 	@RequestMapping("/randomreco")
 	public String randomReco(Model model) {
@@ -465,64 +439,5 @@ public class NonMemberController {
 				
 		return "Back/NonMember/RandomReco";
 	}
-	
-	
-	@RequestMapping("/replyinsert/{no}")
-	public String replyInsert(@PathVariable int no, Model model) {
-		
-		model.addAttribute("no", no);
-				
-		return "Back/MemberService/ReviewInsert";
-	}
-	
-	@RequestMapping("/replydetail/{no}")
-	public String replyDetail(@PathVariable int no, Model model) {
-		
-		ReviewListDTO dto = nonmemberservice.replydetail(no);
-		model.addAttribute("dto", dto);
-				
-		return "Back/NonMember/ReviewDetail";
-	}
-	
-	
-	@RequestMapping("/replyinsertresult")
-	public String replyInsertResult(ReviewListDTO dto) {
-		
-		nonmemberservice.replyinsert(dto);
-		int no = dto.getStoreNo();
-		
-		return "redirect:/memberdetail/"+no;
-	}
-	
-	@RequestMapping("/replyupdate/{no}")
-	public String replyUpdate(@PathVariable int no, Model model) {
-		
-		ReviewListDTO dto = nonmemberservice.replydetail(no);
-		model.addAttribute("dto", dto);
-		
-		return "Back/MemberService/ReviewUpdate";
-	}
-	
-	@RequestMapping("/replyupdateresult")
-	public String replyUpdateResult(ReviewListDTO dto) {
-		nonmemberservice.replyupdateresult(dto);
-		int no = dto.getStoreNo();
-		return "redirect:/memberdetail/"+no;
-	}
-	
-	@RequestMapping("/replydelete/{no}")
-	public String replydelete(@PathVariable int no, int rno) {
-		
-		nonmemberservice.replydelete(no);
-		return "redirect:/memberdetail/"+rno;
-	}
-	
-	@RequestMapping("/storeview")
-	public String storeView(Model model) {
-		List<ViewListDTO> dto = nonmemberservice.storeviewlist();
-		model.addAttribute("dto", dto);
-				
-		return "Back/NonMember/StoreListView";
-	}
-	
+
 }

@@ -92,16 +92,18 @@
 
 /* Extra Small Devices, Phones */ 
 @media (min-width : 480px) and (max-width:767px){
-
+	
+	
+	
     .navbar-light .navbar-toggler {
         color: rgba(0,0,0,.5);
         border-color: rgba(0,0,0,.1);
         padding: 10px 10px;
-         border-radius: 0px;
+        border-radius: 0px;
     }
     
     .navbar-nav{
-        background: #F6AA12;
+        background: #ffa74f;
     }
     
     .navbar-light .navbar-nav{
@@ -109,7 +111,7 @@
     }
     
    .navbar-light .navbar-toggler-icon-bar{
-       background: #fff;
+       background: #ebebeb;
        height: auto;
     }
     
@@ -124,8 +126,6 @@
     .about-img,.about-content-2,.footer-link{
         margin-bottom: 30px;
     }
-
-    
     
     .pricing-block{
         margin-bottom: 20px;
@@ -157,7 +157,7 @@
        height: auto;
     }
     .navbar-brand{
-        position: absolute;
+        position: fixed;
     }
 /*================
      FEATURE

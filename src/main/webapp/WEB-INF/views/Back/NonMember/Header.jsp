@@ -110,7 +110,7 @@
                         </a>
                     </li>
                     <li class="nav-item ml">
-                        <a class="nav-link js-scroll-trigger" href="#about">
+                        <a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath }/weathersearch?searchtxt=${weather }">
                             오늘날씨 추천맛집
                         </a>
                     </li>
