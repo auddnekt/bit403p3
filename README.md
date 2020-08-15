@@ -4,6 +4,6 @@
 기간 : 1달 <br>
 
 <제작 Tool><br>
-Front-End : HTML5, CSS3, JS, jQuery, JSON, AJAX
-Back-End :  Tomcat9, github, Spring, Maven, MySQL, MyBatis, AmazonRDS
+Front-End : HTML5, CSS3, JS, jQuery, JSON, AJAX <br>
+Back-End :  Tomcat9, github, Spring, Maven, MySQL, MyBatis, AmazonRDS <br>
 OpenAPI : CKEditor5, OpenWeatherMap, Naver, Daum, kakaomap
